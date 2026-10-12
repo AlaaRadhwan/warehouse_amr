@@ -1,15 +1,28 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import (
+    DeclareLaunchArgument,
+    IncludeLaunchDescription,
+    RegisterEventHandler,
+)
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
-
+from launch.substitutions import (
+    Command,
+    FindExecutable,
+    LaunchConfiguration,
+    PathJoinSubstitution,
+)
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
 
+
 def generate_launch_description():
+
+    spawn_x = LaunchConfiguration("spawn_x")
+    spawn_y = LaunchConfiguration("spawn_y")
+    spawn_yaw = LaunchConfiguration("spawn_yaw")
 
     # ---------------------------------------------------------
     # Paths
@@ -120,7 +133,11 @@ def generate_launch_description():
             "-world", "warehouse_world",
             "-topic", "robot_description",
             "-name", "warehouse_amr",
+
+            "-x", spawn_x,
+            "-y", spawn_y,
             "-z", "0.02",
+            "-Y", spawn_yaw,
         ],
     )
 
@@ -196,6 +213,22 @@ def generate_launch_description():
 
 
     return LaunchDescription([
+
+        DeclareLaunchArgument(
+            "spawn_x",
+            default_value="0.0",
+        ),
+
+        DeclareLaunchArgument(
+            "spawn_y",
+            default_value="0.0",
+        ),
+
+        DeclareLaunchArgument(
+            "spawn_yaw",
+            default_value="0.0",
+        ),
+        
         robot_state_publisher,
         gazebo,
         bridge,

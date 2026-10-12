@@ -2,20 +2,17 @@ frame_id: map
 
 stations:
 
-  pickup_a:
-    x: 3.421
-    y: -6.188
-    qz: 0.707
-    qw: 0.707
+  home:
+    x: -7.589
+    y: 0.907
+    yaw: 0.0
 
-  dropoff_a:
-    x: 0.0
-    y: 0.0
-    qz: 0.0
-    qw: 1.0
+  station_a:
+    x: 0.799
+    y: -0.175
+    yaw: 0.0
 
-  charging:
-    x: 0.0
-    y: 0.0
-    qz: 0.0
-    qw: 1.0
+  station_b:
+    x: 8.716
+    y: 2.705
+    yaw: 0.0

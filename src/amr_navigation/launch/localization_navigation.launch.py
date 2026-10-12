@@ -1,19 +1,27 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import (
+    DeclareLaunchArgument,
+    IncludeLaunchDescription,
+)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution
+from launch.substitutions import (
+    LaunchConfiguration,
+    PathJoinSubstitution,
+)
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-
 def generate_launch_description():
 
-    nav2_params = PathJoinSubstitution([
+    default_nav2_params = PathJoinSubstitution([
         FindPackageShare("amr_navigation"),
         "config",
         "nav2_params.yaml",
     ])
+
+    nav2_params = LaunchConfiguration("params_file")
+
 
     map_file = PathJoinSubstitution([
         FindPackageShare("amr_navigation"),
@@ -60,6 +68,13 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+
+        DeclareLaunchArgument(
+            "params_file",
+            default_value=default_nav2_params,
+            description="Nav2 parameters file",
+        ),
+        
         nav2,
         rviz,
     ])

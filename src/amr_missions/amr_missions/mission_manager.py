@@ -1,5 +1,6 @@
 import os
 import yaml
+import math
 
 import rclpy
 from rclpy.node import Node
@@ -65,13 +66,16 @@ class MissionManager(Node):
             callback_group=self.callback_group,
         )
 
+        self.busy = False
+        self.active_nav_goal = None
+
 
     # Station Configuration
 
     def load_stations(self, filename):
 
         with open(filename, 'r') as file:
-            data = yaml.safe_laod(file)
+            data = yaml.safe_load(file)
 
         if not data:
             raise RuntimeError(f'stations.yaml is empty')
@@ -82,7 +86,7 @@ class MissionManager(Node):
         if not stations:
             raise RuntimeError('No stations defined in stations.yaml')
 
-        required_fields = {'x', 'y', 'qz', 'qw'}
+        required_fields = {'x', 'y', 'yaw'}
 
         for name, station in stations.items():
 
@@ -171,8 +175,12 @@ class MissionManager(Node):
             nav_goal.pose.pose.position.y = float(station['y'])
             nav_goal.pose.pose.position.z = 0.0
 
-            nav_goal.pose.pose.orientation.z = float(station['qz'])
-            nav_goal.pose.pose.orientation.w = float(station['qw'])
+            yaw = float(station['yaw'])
+
+            nav_goal.pose.pose.orientation.x = 0.0
+            nav_goal.pose.pose.orientation.y = 0.0
+            nav_goal.pose.pose.orientation.z = math.sin(yaw / 2.0)
+            nav_goal.pose.pose.orientation.w = math.cos(yaw / 2.0)
 
             self.get_logger().info(
                 f'Sending Nav2 goal for {station_name}: '
