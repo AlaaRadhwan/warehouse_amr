@@ -1,0 +1,9 @@
+string station_name
+---
+bool success
+string message
+uint16 nav2_error_code
+---
+string state
+float32 distance_remaining
+int16 number_of_recoveries

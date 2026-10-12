@@ -1,0 +1,208 @@
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription, RegisterEventHandler
+from launch.event_handlers import OnProcessExit
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
+
+from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
+from launch_ros.substitutions import FindPackageShare
+
+
+def generate_launch_description():
+
+    # ---------------------------------------------------------
+    # Paths
+    # ---------------------------------------------------------
+
+    xacro_file = PathJoinSubstitution([
+        FindPackageShare("amr_description"),
+        "urdf",
+        "amr.urdf.xacro",
+    ])
+
+    controllers_file = PathJoinSubstitution([
+        FindPackageShare("amr_control"),
+        "config",
+        "controllers.yaml",
+    ])
+
+    ekf_file = PathJoinSubstitution([
+        FindPackageShare("amr_localization"),
+        "config",
+        "ekf.yaml",
+    ])
+
+    bridge_file = PathJoinSubstitution([
+        FindPackageShare("amr_simulation"),
+        "config",
+        "bridge.yaml",
+    ])
+
+    world_file = PathJoinSubstitution([
+        FindPackageShare("amr_simulation"),
+        "worlds",
+        "warehouse_world.sdf",
+    ])
+
+
+    # ---------------------------------------------------------
+    # Robot description
+    # ---------------------------------------------------------
+
+    robot_description = {
+        "robot_description": ParameterValue(
+            Command([
+                FindExecutable(name="xacro"),
+                " ",
+                xacro_file,
+                " use_sim:=true",
+                " controllers_file:=",
+                controllers_file,
+            ]),
+            value_type=str,
+        )
+    }
+
+
+    robot_state_publisher = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        output="screen",
+        parameters=[
+            robot_description,
+            {"use_sim_time": True},
+        ],
+    )
+
+
+    # ---------------------------------------------------------
+    # Gazebo
+    # ---------------------------------------------------------
+
+    gazebo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([
+                FindPackageShare("ros_gz_sim"),
+                "launch",
+                "gz_sim.launch.py",
+            ])
+        ),
+        launch_arguments={
+            "gz_args": ["-r -v 3 ", world_file],
+        }.items(),
+    )
+
+
+    # ---------------------------------------------------------
+    # ROS <-> Gazebo bridge
+    # ---------------------------------------------------------
+
+    bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        output="screen",
+        parameters=[
+            {"config_file": bridge_file},
+        ],
+    )
+
+
+    # ---------------------------------------------------------
+    # Spawn robot
+    # ---------------------------------------------------------
+
+    spawn_robot = Node(
+        package="ros_gz_sim",
+        executable="create",
+        output="screen",
+        arguments=[
+            "-world", "warehouse_world",
+            "-topic", "robot_description",
+            "-name", "warehouse_amr",
+            "-z", "0.02",
+        ],
+    )
+
+
+    # ---------------------------------------------------------
+    # ros2_control controllers
+    # ---------------------------------------------------------
+
+    joint_state_broadcaster = Node(
+        package="controller_manager",
+        executable="spawner",
+        output="screen",
+        arguments=[
+            "joint_state_broadcaster",
+            "--controller-manager",
+            "/controller_manager",
+        ],
+    )
+
+
+    diff_drive_controller = Node(
+        package="controller_manager",
+        executable="spawner",
+        output="screen",
+        arguments=[
+            "diff_drive_controller",
+            "--controller-manager",
+            "/controller_manager",
+
+            # Present a clean robot-level command interface
+            "--controller-ros-args",
+            "-r /diff_drive_controller/cmd_vel:=/cmd_vel",
+        ],
+    )
+
+
+    # ---------------------------------------------------------
+    # EKF
+    # ---------------------------------------------------------
+
+    ekf = Node(
+        package="robot_localization",
+        executable="ekf_node",
+        name="ekf_filter_node",
+        output="screen",
+        parameters=[
+            ekf_file,
+            {"use_sim_time": True},
+        ],
+        remappings=[
+            ("odometry/filtered", "/odom"),
+        ],
+    )
+
+
+    # ---------------------------------------------------------
+    # Startup order
+    # ---------------------------------------------------------
+
+    start_joint_state_broadcaster = RegisterEventHandler(
+        OnProcessExit(
+            target_action=spawn_robot,
+            on_exit=[joint_state_broadcaster],
+        )
+    )
+
+    start_diff_drive = RegisterEventHandler(
+        OnProcessExit(
+            target_action=joint_state_broadcaster,
+            on_exit=[diff_drive_controller],
+        )
+    )
+
+
+    return LaunchDescription([
+        robot_state_publisher,
+        gazebo,
+        bridge,
+        spawn_robot,
+
+        start_joint_state_broadcaster,
+        start_diff_drive,
+
+        ekf,
+    ])

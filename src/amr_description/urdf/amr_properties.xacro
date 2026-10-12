@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- ========================================================= -->
+    <!-- AMR V0 PLACEHOLDER PARAMETERS                             -->
+    <!-- Replace these as the mechanical design becomes available. -->
+    <!-- All dimensions are SI units: m, kg.                       -->
+    <!-- ========================================================= -->
+
+    <!-- Chassis -->
+    <xacro:property name="base_length" value="1.00"/>
+    <xacro:property name="base_width"  value="0.60"/>
+    <xacro:property name="base_height" value="0.20"/>
+
+    <!-- Approximate base mass, without payload -->
+    <xacro:property name="base_mass" value="50.0"/>
+
+    <!-- Ground clearance under the chassis -->
+    <xacro:property name="ground_clearance" value="0.06"/>
+    
+    <!-- Drive wheels -->
+    <xacro:property name="wheel_radius"     value="0.10"/>
+    <xacro:property name="wheel_width"     value="0.05"/>
+    <xacro:property name="wheel_clearance" value="0.02"/>
+
+    <!-- Distance between left and right wheel centerlines -->
+    <xacro:property
+        name="wheel_separation"
+        value="${base_width + wheel_width + 2.0*wheel_clearance}"/>
+
+    <!-- Passive support wheels / caster placeholders -->
+    <xacro:property name="caster_radius" value="0.04"/>
+
+    <xacro:property name="caster_x" value="0.40"/>
+    <xacro:property name="caster_y" value="0.24"/>
+
+    <xacro:property name="wheel_mass" value="2.0"/>
+    <xacro:property name="caster_mass" value="0.5"/>
+    
+
+</robot>
