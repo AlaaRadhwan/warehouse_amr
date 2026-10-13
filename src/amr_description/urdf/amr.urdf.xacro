@@ -4,38 +4,107 @@
        xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="amr_properties.xacro"/>
+
     <!-- ========================================================= -->
-    <!-- Coordinate convention                                    -->
-    <!-- x = forward                                               -->
-    <!-- y = left                                                  -->
-    <!-- z = up                                                    -->
+    <!-- Coordinate convention                                     -->
+    <!-- x = forward, y = left, z = up                             -->
     <!-- ========================================================= -->
 
     <xacro:arg name="use_sim" default="false"/>
     <xacro:arg name="controllers_file" default=""/>
-    <!-- ===================== -->
-    <!-- BASE FOOTPRINT        -->
-    <!-- ===================== -->
+
+    <!-- ========================================================= -->
+    <!-- BASE FOOTPRINT                                            -->
+    <!-- ========================================================= -->
 
     <link name="base_footprint"/>
 
-
-    <!-- ===================== -->
-    <!-- CHASSIS               -->
-    <!-- ===================== -->
+    <!-- ========================================================= -->
+    <!-- MAIN CHASSIS                                              -->
+    <!--                                                          -->
+    <!-- IMPORTANT:                                                -->
+    <!-- The collision and inertial model intentionally remain     -->
+    <!-- equivalent to the previous V0 chassis so the working      -->
+    <!-- navigation / drivetrain baseline is not changed by this   -->
+    <!-- visual redesign.                                          -->
+    <!-- ========================================================= -->
 
     <link name="base_link">
 
+        <!-- Lower equipment enclosure -->
         <visual>
+            <origin xyz="0 0 ${lower_body_z}" rpy="0 0 0"/>
             <geometry>
-                <box size="${base_length} ${base_width} ${base_height}"/>
+                <box size="${lower_body_length} ${lower_body_width} ${lower_body_height}"/>
             </geometry>
-
-            <material name="chassis_gray">
-                <color rgba="0.45 0.45 0.45 1.0"/>
+            <material name="body_blue">
+                <color rgba="0.08 0.20 0.32 1.0"/>
             </material>
         </visual>
 
+        <!-- Raised payload deck -->
+        <visual>
+            <origin xyz="${deck_x} 0 ${deck_z}" rpy="0 0 0"/>
+            <geometry>
+                <box size="${deck_length} ${deck_width} ${deck_height}"/>
+            </geometry>
+            <material name="deck_dark">
+                <color rgba="0.10 0.11 0.12 1.0"/>
+            </material>
+        </visual>
+
+        <!-- Front sensor nose -->
+        <visual>
+            <origin xyz="${sensor_nose_x} 0 ${sensor_nose_z}" rpy="0 0 0"/>
+            <geometry>
+                <box size="${sensor_nose_length} ${sensor_nose_width} ${sensor_nose_height}"/>
+            </geometry>
+            <material name="sensor_nose_dark">
+                <color rgba="0.05 0.07 0.09 1.0"/>
+            </material>
+        </visual>
+
+        <!-- Left side protection rail / fairing -->
+        <visual>
+            <origin xyz="-0.03 ${side_rail_y} ${side_rail_z}" rpy="0 0 0"/>
+            <geometry>
+                <box size="${side_rail_length} ${side_rail_width} ${side_rail_height}"/>
+            </geometry>
+            <material name="side_rail_gray">
+                <color rgba="0.24 0.27 0.30 1.0"/>
+            </material>
+        </visual>
+
+        <!-- Right side protection rail / fairing -->
+        <visual>
+            <origin xyz="-0.03 ${-side_rail_y} ${side_rail_z}" rpy="0 0 0"/>
+            <geometry>
+                <box size="${side_rail_length} ${side_rail_width} ${side_rail_height}"/>
+            </geometry>
+            <material name="side_rail_gray"/>
+        </visual>
+
+        <!-- Front safety bumper -->
+        <visual>
+            <origin xyz="${front_bumper_x} 0 ${bumper_z}" rpy="0 0 0"/>
+            <geometry>
+                <box size="${bumper_length} ${bumper_width} ${bumper_height}"/>
+            </geometry>
+            <material name="safety_orange">
+                <color rgba="0.95 0.35 0.05 1.0"/>
+            </material>
+        </visual>
+
+        <!-- Rear safety bumper -->
+        <visual>
+            <origin xyz="${-front_bumper_x} 0 ${bumper_z}" rpy="0 0 0"/>
+            <geometry>
+                <box size="${bumper_length} ${bumper_width} ${bumper_height}"/>
+            </geometry>
+            <material name="safety_orange"/>
+        </visual>
+
+        <!-- Existing conservative collision envelope -->
         <collision>
             <geometry>
                 <box size="${base_length} ${base_width} ${base_height}"/>
@@ -45,7 +114,7 @@
         <inertial>
             <mass value="${base_mass}"/>
 
-            <!-- Temporary box inertia approximation -->
+            <!-- Temporary box inertia approximation retained from V0 -->
             <inertia
                 ixx="${base_mass * (base_width*base_width + base_height*base_height) / 12.0}"
                 iyy="${base_mass * (base_length*base_length + base_height*base_height) / 12.0}"
@@ -57,66 +126,52 @@
 
     </link>
 
-
     <joint name="base_footprint_joint" type="fixed">
 
         <parent link="base_footprint"/>
         <child link="base_link"/>
 
-        <!-- Put chassis center above ground -->
         <origin
             xyz="0 0 ${ground_clearance + base_height/2.0}"
             rpy="0 0 0"/>
 
     </joint>
 
-
-    <!-- ===================== -->
-    <!-- LEFT DRIVE WHEEL      -->
-    <!-- ===================== -->
+    <!-- ========================================================= -->
+    <!-- LEFT DRIVE WHEEL                                         -->
+    <!-- ========================================================= -->
 
     <link name="left_wheel_link">
 
         <visual>
             <origin rpy="${pi/2} 0 0"/>
-
             <geometry>
-                <cylinder
-                    radius="${wheel_radius}"
-                    length="${wheel_width}"/>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
             </geometry>
-
             <material name="wheel_black">
-                <color rgba="0.08 0.08 0.08 1.0"/>
+                <color rgba="0.04 0.04 0.04 1.0"/>
             </material>
         </visual>
 
         <collision>
             <origin rpy="${pi/2} 0 0"/>
-
             <geometry>
-                <cylinder
-                    radius="${wheel_radius}"
-                    length="${wheel_width}"/>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
             </geometry>
         </collision>
 
         <inertial>
             <mass value="${wheel_mass}"/>
-
-            <!-- Cylinder axis is along Y -->
             <inertia
                 ixx="${wheel_mass * (3.0*wheel_radius*wheel_radius + wheel_width*wheel_width) / 12.0}"
                 iyy="${wheel_mass * wheel_radius*wheel_radius / 2.0}"
                 izz="${wheel_mass * (3.0*wheel_radius*wheel_radius + wheel_width*wheel_width) / 12.0}"
                 ixy="0.0"
                 ixz="0.0"
-                iyz="0.0"/>        
-                
+                iyz="0.0"/>
         </inertial>
 
     </link>
-
 
     <joint name="left_wheel_joint" type="continuous">
 
@@ -131,51 +186,39 @@
 
     </joint>
 
-
-    <!-- ===================== -->
-    <!-- RIGHT DRIVE WHEEL     -->
-    <!-- ===================== -->
+    <!-- ========================================================= -->
+    <!-- RIGHT DRIVE WHEEL                                        -->
+    <!-- ========================================================= -->
 
     <link name="right_wheel_link">
 
         <visual>
             <origin rpy="${pi/2} 0 0"/>
-
             <geometry>
-                <cylinder
-                    radius="${wheel_radius}"
-                    length="${wheel_width}"/>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
             </geometry>
-
             <material name="wheel_black"/>
         </visual>
 
         <collision>
             <origin rpy="${pi/2} 0 0"/>
-
             <geometry>
-                <cylinder
-                    radius="${wheel_radius}"
-                    length="${wheel_width}"/>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
             </geometry>
         </collision>
 
         <inertial>
             <mass value="${wheel_mass}"/>
-
-            <!-- Cylinder axis is along Y -->
             <inertia
                 ixx="${wheel_mass * (3.0*wheel_radius*wheel_radius + wheel_width*wheel_width) / 12.0}"
                 iyy="${wheel_mass * wheel_radius*wheel_radius / 2.0}"
                 izz="${wheel_mass * (3.0*wheel_radius*wheel_radius + wheel_width*wheel_width) / 12.0}"
                 ixy="0.0"
                 ixz="0.0"
-                iyz="0.0"/>        
-                
+                iyz="0.0"/>
         </inertial>
 
     </link>
-
 
     <joint name="right_wheel_joint" type="continuous">
 
@@ -190,12 +233,8 @@
 
     </joint>
 
-
     <!-- ========================================================= -->
     <!-- PASSIVE SUPPORT WHEELS                                   -->
-    <!--                                                          -->
-    <!-- For V0 these are only geometric placeholders.            -->
-    <!-- Proper caster dynamics will be added during Gazebo work. -->
     <!-- ========================================================= -->
 
     <xacro:macro name="support_wheel" params="name x y">
@@ -206,9 +245,8 @@
                 <geometry>
                     <sphere radius="${caster_radius}"/>
                 </geometry>
-
                 <material name="caster_dark">
-                    <color rgba="0.15 0.15 0.15 1.0"/>
+                    <color rgba="0.12 0.12 0.12 1.0"/>
                 </material>
             </visual>
 
@@ -220,7 +258,6 @@
 
             <inertial>
                 <mass value="${caster_mass}"/>
-
                 <inertia
                     ixx="${2.0/5.0 * caster_mass * caster_radius*caster_radius}"
                     iyy="${2.0/5.0 * caster_mass * caster_radius*caster_radius}"
@@ -245,7 +282,6 @@
 
     </xacro:macro>
 
-
     <xacro:support_wheel
         name="front_left_support"
         x="${caster_x}"
@@ -266,12 +302,7 @@
         x="${-caster_x}"
         y="${-caster_y}"/>
 
-    <!-- ========================================================= -->
-    <!-- SIMPLIFIED PASSIVE SUPPORT CONTACTS                       -->
-    <!--                                                          -->
-    <!-- V0 autonomy model: supports carry vertical load but       -->
-    <!-- should not significantly resist planar motion / yaw.      -->
-    <!-- ========================================================= -->
+    <!-- Simplified low-friction support contacts retained from V0 -->
 
     <gazebo reference="front_left_support_link">
         <mu1>0.01</mu1>
@@ -294,7 +325,7 @@
     </gazebo>
 
     <!-- ========================================================= -->
-    <!-- IMU FRAME                                                 -->
+    <!-- IMU FRAME                                                -->
     <!-- ========================================================= -->
 
     <link name="imu_link"/>
@@ -305,20 +336,32 @@
         <origin xyz="0 0 0.05" rpy="0 0 0"/>
     </joint>
 
-
     <!-- ========================================================= -->
-    <!-- LIDAR FRAME                                               -->
+    <!-- LIDAR + PEDESTAL                                         -->
+    <!--                                                          -->
+    <!-- TF location is intentionally unchanged from V0.           -->
     <!-- ========================================================= -->
 
     <link name="lidar_link">
 
+        <!-- Pedestal -->
+        <visual>
+            <origin xyz="0 0 -0.065" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.025" length="0.08"/>
+            </geometry>
+            <material name="lidar_pedestal">
+                <color rgba="0.18 0.20 0.22 1.0"/>
+            </material>
+        </visual>
+
+        <!-- LiDAR puck -->
         <visual>
             <geometry>
-                <cylinder radius="0.035" length="0.05"/>
+                <cylinder radius="0.040" length="0.05"/>
             </geometry>
-
             <material name="lidar_dark">
-                <color rgba="0.1 0.1 0.1 1.0"/>
+                <color rgba="0.03 0.03 0.03 1.0"/>
             </material>
         </visual>
 
@@ -328,11 +371,89 @@
         <parent link="base_link"/>
         <child link="lidar_link"/>
 
-        <!-- provisional placement near front/top -->
+        <!-- Existing verified transform retained -->
         <origin
             xyz="0.35 0 ${base_height/2.0 + 0.04}"
             rpy="0 0 0"/>
     </joint>
+
+    <!-- ========================================================= -->
+    <!-- DOCKING CAMERA                                           -->
+    <!--                                                          -->
+    <!-- Reference hardware envelope:                              -->
+    <!-- Raspberry Pi Global Shutter Camera (IMX296) + C/CS lens. -->
+    <!-- Optical center is ~0.24 m above the floor and the camera  -->
+    <!-- is pitched 25 degrees downward for floor fiducials.       -->
+    <!-- ========================================================= -->
+
+    <link name="camera_mount_link">
+
+        <!-- Protective camera housing -->
+        <visual>
+            <geometry>
+                <box size="${camera_housing_length} ${camera_housing_width} ${camera_housing_height}"/>
+            </geometry>
+            <material name="camera_housing_black">
+                <color rgba="0.035 0.035 0.04 1.0"/>
+            </material>
+        </visual>
+
+        <!-- Front lens barrel, approximate only -->
+        <visual>
+            <origin xyz="${camera_housing_length/2.0 + 0.012} 0 0" rpy="0 ${pi/2.0} 0"/>
+            <geometry>
+                <cylinder radius="0.018" length="0.024"/>
+            </geometry>
+            <material name="camera_lens">
+                <color rgba="0.02 0.02 0.025 1.0"/>
+            </material>
+        </visual>
+
+    </link>
+
+    <joint name="camera_mount_joint" type="fixed">
+
+        <parent link="base_link"/>
+        <child link="camera_mount_link"/>
+
+        <origin
+            xyz="${camera_x} ${camera_y} ${camera_z}"
+            rpy="0 ${camera_pitch} 0"/>
+
+    </joint>
+
+    <!-- Conventional robot camera frame: x forward, y left, z up -->
+    <link name="camera_link"/>
+
+    <joint name="camera_joint" type="fixed">
+
+        <parent link="camera_mount_link"/>
+        <child link="camera_link"/>
+
+        <!-- Approximate optical center near the front of the housing -->
+        <origin
+            xyz="${camera_housing_length/2.0} 0 0"
+            rpy="0 0 0"/>
+
+    </joint>
+
+    <!-- REP-103 optical frame: x right, y down, z forward -->
+    <link name="camera_optical_frame"/>
+
+    <joint name="camera_optical_joint" type="fixed">
+
+        <parent link="camera_link"/>
+        <child link="camera_optical_frame"/>
+
+        <origin
+            xyz="0 0 0"
+            rpy="${-pi/2.0} 0 ${-pi/2.0}"/>
+
+    </joint>
+
+    <!-- ========================================================= -->
+    <!-- SIMULATION-ONLY COMPONENTS                               -->
+    <!-- ========================================================= -->
 
     <xacro:if value="$(arg use_sim)">
 
@@ -372,7 +493,6 @@
 
         </ros2_control>
 
-
         <!-- ===================================================== -->
         <!-- gz_ros2_control plugin                               -->
         <!-- ===================================================== -->
@@ -388,7 +508,6 @@
             </plugin>
 
         </gazebo>
-
 
         <!-- ===================================================== -->
         <!-- IMU                                                  -->
@@ -407,7 +526,6 @@
             </sensor>
 
         </gazebo>
-
 
         <!-- ===================================================== -->
         <!-- 2D GPU LIDAR                                         -->
@@ -445,6 +563,45 @@
                     </range>
 
                 </lidar>
+
+            </sensor>
+
+        </gazebo>
+
+        <!-- ===================================================== -->
+        <!-- DOCKING CAMERA                                       -->
+        <!--                                                     -->
+        <!-- Approximate Raspberry Pi Global Shutter Camera       -->
+        <!-- geometry with provisional 6 mm lens (~45.4 deg HFOV).-->
+        <!-- A ros_gz_bridge image + camera_info bridge will be   -->
+        <!-- added when AprilTag simulation is introduced.        -->
+        <!-- ===================================================== -->
+
+        <gazebo reference="camera_link">
+
+            <sensor name="docking_camera_sensor" type="camera">
+
+                <always_on>true</always_on>
+                <visualize>true</visualize>
+                <update_rate>30</update_rate>
+
+                <topic>/camera/image_raw</topic>
+                <gz_frame_id>camera_optical_frame</gz_frame_id>
+
+                <camera>
+                    <horizontal_fov>0.7924</horizontal_fov>
+
+                    <image>
+                        <width>1456</width>
+                        <height>1088</height>
+                        <format>R8G8B8</format>
+                    </image>
+
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
 
             </sensor>
 

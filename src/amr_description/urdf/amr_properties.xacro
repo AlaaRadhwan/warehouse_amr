@@ -3,12 +3,18 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- ========================================================= -->
-    <!-- AMR V0 PLACEHOLDER PARAMETERS                             -->
-    <!-- Replace these as the mechanical design becomes available. -->
+    <!-- AMR V1.1 PARAMETERS                                      -->
+    <!--                                                          -->
+    <!-- The drive geometry / mass values are intentionally kept   -->
+    <!-- from the working V0 model. New values below primarily     -->
+    <!-- define the upgraded visual body and docking-camera bay.    -->
     <!-- All dimensions are SI units: m, kg.                       -->
     <!-- ========================================================= -->
 
-    <!-- Chassis -->
+    <!-- ========================================================= -->
+    <!-- EXISTING VEHICLE ENVELOPE / DYNAMICS                      -->
+    <!-- ========================================================= -->
+
     <xacro:property name="base_length" value="1.00"/>
     <xacro:property name="base_width"  value="0.60"/>
     <xacro:property name="base_height" value="0.20"/>
@@ -18,7 +24,7 @@
 
     <!-- Ground clearance under the chassis -->
     <xacro:property name="ground_clearance" value="0.06"/>
-    
+
     <!-- Drive wheels -->
     <xacro:property name="wheel_radius"     value="0.10"/>
     <xacro:property name="wheel_width"     value="0.05"/>
@@ -31,12 +37,80 @@
 
     <!-- Passive support wheels / caster placeholders -->
     <xacro:property name="caster_radius" value="0.04"/>
-
     <xacro:property name="caster_x" value="0.40"/>
     <xacro:property name="caster_y" value="0.24"/>
 
     <xacro:property name="wheel_mass" value="2.0"/>
     <xacro:property name="caster_mass" value="0.5"/>
-    
+
+    <!-- ========================================================= -->
+    <!-- V1.1 INDUSTRIAL BODY VISUALS                              -->
+    <!-- ========================================================= -->
+
+    <!-- Lower equipment enclosure -->
+    <xacro:property name="lower_body_length" value="0.96"/>
+    <xacro:property name="lower_body_width"  value="0.56"/>
+    <xacro:property name="lower_body_height" value="0.14"/>
+
+    <!-- base_link origin is ~0.16 m above floor.
+         This places the lower enclosure bottom near the existing
+         0.06 m ground clearance. -->
+    <xacro:property name="lower_body_z" value="-0.03"/>
+
+    <!-- Payload deck -->
+    <xacro:property name="deck_length" value="0.82"/>
+    <xacro:property name="deck_width"  value="0.54"/>
+    <xacro:property name="deck_height" value="0.045"/>
+
+    <!-- Deck shifted rearward to preserve front sensor zone -->
+    <xacro:property name="deck_x" value="-0.05"/>
+
+    <!-- Existing chassis top is at ~0.26 m above floor.
+         Deck spans approximately 0.26 -> 0.305 m. -->
+    <xacro:property name="deck_z" value="0.1225"/>
+
+    <!-- Front sensor nose -->
+    <xacro:property name="sensor_nose_length" value="0.11"/>
+    <xacro:property name="sensor_nose_width"  value="0.50"/>
+    <xacro:property name="sensor_nose_height" value="0.08"/>
+    <xacro:property name="sensor_nose_x" value="0.425"/>
+    <xacro:property name="sensor_nose_z" value="0.07"/>
+
+    <!-- Side protection fairings -->
+    <xacro:property name="side_rail_length" value="0.76"/>
+    <xacro:property name="side_rail_width"  value="0.025"/>
+    <xacro:property name="side_rail_height" value="0.075"/>
+    <xacro:property name="side_rail_y" value="0.2875"/>
+    <xacro:property name="side_rail_z" value="0.015"/>
+
+    <!-- Front/rear bumper visuals -->
+    <xacro:property name="bumper_length" value="0.025"/>
+    <xacro:property name="bumper_width"  value="0.58"/>
+    <xacro:property name="bumper_height" value="0.055"/>
+    <xacro:property name="front_bumper_x" value="0.4875"/>
+    <xacro:property name="bumper_z" value="-0.005"/>
+
+    <!-- ========================================================= -->
+    <!-- DOCKING CAMERA ENVELOPE                                  -->
+    <!--                                                          -->
+    <!-- Reference: Raspberry Pi Global Shutter Camera + lens.     -->
+    <!-- Housing is intentionally larger than the 38 x 38 mm PCB   -->
+    <!-- to reserve space for lens, bracket and protective window.  -->
+    <!-- ========================================================= -->
+
+    <xacro:property name="camera_housing_length" value="0.070"/>
+    <xacro:property name="camera_housing_width"  value="0.060"/>
+    <xacro:property name="camera_housing_height" value="0.060"/>
+
+    <!-- Relative to base_link. base_link is ~0.16 m above floor,
+         giving an optical center near ~0.24 m above floor. -->
+    <xacro:property name="camera_x" value="0.430"/>
+    <xacro:property name="camera_y" value="0.000"/>
+    <xacro:property name="camera_z" value="0.080"/>
+
+    <!-- 25 degrees downward -->
+    <xacro:property
+        name="camera_pitch"
+        value="${25.0*pi/180.0}"/>
 
 </robot>
