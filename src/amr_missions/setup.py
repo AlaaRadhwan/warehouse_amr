@@ -17,6 +17,10 @@ setup(
             os.path.join('share', package_name, 'config'),
             glob('config/*.yaml')
         ),
+        (
+            os.path.join('share', package_name, 'launch'),
+            glob('launch/*.launch.py')
+        ),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -31,7 +35,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'mission_manager = amr_missions.mission_manager:main',
+            'robot_executor = amr_missions.robot_executor:main',
         ],
     },
 )

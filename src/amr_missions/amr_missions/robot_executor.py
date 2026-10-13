@@ -19,10 +19,10 @@ from ament_index_python.packages import get_package_share_directory
 from nav2_msgs.action import NavigateToPose
 from amr_interfaces.action import GoToStation
 
-class MissionManager(Node):
+class RobotExecutor(Node):
 
     def __init__(self):
-        super().__init__('mission_manager')
+        super().__init__('robot_executor')
 
         self.callback_group = ReentrantCallbackGroup()
 
@@ -311,7 +311,7 @@ def main(args=None):
 
     rclpy.init(args=args)
 
-    node = MissionManager()
+    node = RobotExecutor()
 
     executor = MultiThreadedExecutor(num_threads=4)
     executor.add_node(node)

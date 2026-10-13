@@ -123,7 +123,18 @@ def generate_launch_description():
         }.items(),
     )
 
+    robot_executor = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                missions_share,
+                "launch",
+                "robot_executor.launch.py",
+            )
+        ),
+    )
+
     return LaunchDescription([
         simulation,
         navigation,
+        robot_executor,
     ])
