@@ -218,10 +218,16 @@ class RobotExecutor(Node):
             status = wrapped_result.status
             nav_result = wrapped_result.result
 
-            nav_error = getattr(nav_result, 'error_code', 0)
-            nav_error_msg = getattr(nav_result, 'message', '')
+            nav_error = int(getattr(nav_result, 'error_code', 0))
+            nav_error_msg = getattr(nav_result, 'error_msg', '')
 
-            result.nav2_error_code = int(nav_error)
+            result.nav2_error_code = nav_error
+
+            self.get_logger().info(
+                f'Nav2 finished: status={status}, '
+                f'error_code={nav_error}, '
+                f'error_msg="{nav_error_msg}"'
+            )
 
             # Successful navigation
 

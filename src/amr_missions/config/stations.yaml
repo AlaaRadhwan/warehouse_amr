@@ -4,7 +4,7 @@ stations:
 
   home:
     x: -7.589
-    y: 0.907
+    y: 1.2
     yaw: 0.0
 
   station_a:

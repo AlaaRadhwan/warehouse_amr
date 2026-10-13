@@ -31,6 +31,13 @@ def generate_launch_description():
         ],
     )
 
+    mission_manager = Node(
+        package='amr_missions',
+        executable='mission_manager',
+        name='mission_manager',
+        output='screen',
+    )
+
     return LaunchDescription([
 
         DeclareLaunchArgument(
@@ -39,4 +46,5 @@ def generate_launch_description():
         ),
 
         robot_executor,
+        mission_manager,
     ])

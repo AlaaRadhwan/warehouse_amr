@@ -1,0 +1,13 @@
+string[] station_names
+---
+bool success
+string message
+uint16 completed_steps
+string failed_station
+---
+string state
+string current_station
+uint16 current_step
+uint16 total_steps
+float32 distance_remaining
+int16 number_of_recoveries

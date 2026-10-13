@@ -36,6 +36,7 @@ setup(
     entry_points={
         'console_scripts': [
             'robot_executor = amr_missions.robot_executor:main',
+            'mission_manager = amr_missions.mission_manager:main',
         ],
     },
 )
