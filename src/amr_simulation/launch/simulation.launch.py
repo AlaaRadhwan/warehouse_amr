@@ -1,5 +1,6 @@
 from launch import LaunchDescription
 from launch.actions import (
+    AppendEnvironmentVariable,
     DeclareLaunchArgument,
     IncludeLaunchDescription,
     RegisterEventHandler,
@@ -50,6 +51,11 @@ def generate_launch_description():
         FindPackageShare("amr_simulation"),
         "config",
         "bridge.yaml",
+    ])
+
+    models_path = PathJoinSubstitution([
+        FindPackageShare("amr_simulation"),
+        "models",
     ])
 
     world_file = PathJoinSubstitution([
@@ -227,6 +233,11 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "spawn_yaw",
             default_value="0.0",
+        ),
+
+        AppendEnvironmentVariable(
+            "GZ_SIM_RESOURCE_PATH",
+            models_path,
         ),
         
         robot_state_publisher,

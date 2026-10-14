@@ -288,6 +288,26 @@
       <pose>-12 15 0 0 0 0</pose>
     </include>
 
+    <!-- ======================================================= -->
+    <!-- STATION A APRILTAG                                      -->
+    <!-- ======================================================= -->
+
+    <include>
+
+        <uri>model://apriltag_station_a</uri>
+
+        <name>apriltag_station_a</name>
+
+        <!--
+        0.75 m forward of Station A final robot pose.
+        Raised 2 mm above floor to avoid z-fighting.
+        -->
+        <pose>
+            1.549 -0.175 0.002
+            0 0 -1.57079632679
+        </pose>
+
+    </include>
 
   </world>
 

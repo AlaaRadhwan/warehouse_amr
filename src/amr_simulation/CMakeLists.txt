@@ -8,6 +8,7 @@ install(
     launch
     worlds
     config
+    models
   DESTINATION share/${PROJECT_NAME}
 )
 

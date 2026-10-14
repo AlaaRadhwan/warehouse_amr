@@ -1,0 +1,45 @@
+apriltag:
+  ros__parameters:
+
+    use_sim_time: true
+
+    # Camera input
+    image_transport: raw
+    qos_profile: sensor_data
+
+    # AprilTag family
+    family: 36h11
+
+    # Default physical tag edge size
+    size: 0.18
+
+    # Pose estimation
+    pose_estimation_method: "pnp"
+
+    # Do not accept corrected-bit detections initially
+    max_hamming: 0
+
+    detector:
+
+      threads: 2
+
+      # Keep full resolution initially so we're validating geometry,
+      # not optimizing CPU usage.
+      decimate: 1.0
+
+      blur: 0.0
+      refine: true
+      sharpening: 0.25
+      debug: false
+
+    # Publish only our known Station A tag
+    tag:
+
+      ids:
+        - 1
+
+      frames:
+        - tag_station_a
+
+      sizes:
+        - 0.18

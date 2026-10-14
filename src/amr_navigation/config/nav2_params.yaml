@@ -398,58 +398,176 @@ collision_monitor:
       enabled: true
 
     enable_stamped_cmd_vel: true
+    
 docking_server:
   ros__parameters:
+
+    # =====================================================
+    # DOCKING SERVER
+    # =====================================================
+
+    enable_stamped_cmd_vel: true
+    
     controller_frequency: 50.0
+
     initial_perception_timeout: 5.0
     wait_charge_timeout: 5.0
     dock_approach_timeout: 30.0
+
     undock_linear_tolerance: 0.05
-    undock_angular_tolerance: 0.1
+    undock_angular_tolerance: 0.10
+
     max_retries: 3
+
+    # Smooth local frame used during the precision approach
     base_frame: "base_footprint"
     fixed_frame: "odom"
+
+    # We approach the station driving forward
     dock_backwards: false
-    dock_prestaging_tolerance: 0.5
 
-    # Types of docks
-    dock_plugins: ['simple_charging_dock']
-    simple_charging_dock:
-      plugin: 'opennav_docking::SimpleChargingDock'
+    # If already within this distance of the staging pose,
+    # skip the normal Nav2 staging navigation.
+    dock_prestaging_tolerance: 0.50
+
+
+    # =====================================================
+    # DOCK TYPE
+    # =====================================================
+
+    dock_plugins:
+      - "load_station_dock"
+
+    load_station_dock:
+
+      plugin: "opennav_docking::SimpleNonChargingDock"
+
+      # Robot is considered docked when its pose is within
+      # 5 cm of the refined final dock pose.
       docking_threshold: 0.05
-      staging_x_offset: -0.7
+
+
+      # ---------------------------------------------------
+      # STAGING
+      # ---------------------------------------------------
+
+      # Final dock pose for Station A:
+      #
+      #         AprilTag
+      #             |
+      #          0.75 m
+      #             |
+      #        final pose
+      #             |
+      #          0.70 m
+      #             |
+      #       staging pose
+      #
+      # staging_x_offset is relative to the final dock pose.
+      staging_x_offset: -0.70
+      staging_yaw_offset: 0.0
+
+
+      # ---------------------------------------------------
+      # APRILTAG REFINEMENT
+      # ---------------------------------------------------
+
       use_external_detection_pose: true
-      use_battery_status: false # true
-      use_stall_detection: false # true
 
+      # Our dock_pose_publisher publishes:
+      #
+      #   /detected_dock_pose
+      #
+      # already converted from the raw floor AprilTag pose
+      # into the desired final base_footprint pose.
       external_detection_timeout: 1.0
-      external_detection_translation_x: -0.18
-      external_detection_translation_y: 0.0
-      external_detection_rotation_roll: -1.57
-      external_detection_rotation_pitch: -1.57
-      external_detection_rotation_yaw: 0.0
-      filter_coef: 0.1
 
-    # Dock instances
-    # The following example illustrates configuring dock instances.
-    # docks: ['home_dock']  # Input your docks here
-    # home_dock:
-    #   type: 'simple_charging_dock'
-    #   frame: map
-    #   pose: [0.0, 0.0, 0.0]
+      # Therefore Nav2 must NOT apply an additional
+      # tag-to-dock transform.
+      external_detection_translation_x: 0.0
+      external_detection_translation_y: 0.0
+
+      external_detection_rotation_roll: 0.0
+      external_detection_rotation_pitch: 0.0
+      external_detection_rotation_yaw: 0.0
+
+      # Low-pass filtering of external dock-pose measurements
+      filter_coef: 0.10
+
+
+      # ---------------------------------------------------
+      # DOCK SUCCESS
+      # ---------------------------------------------------
+
+      # No physical contact / motor-stall detection for our
+      # operator loading station.
+      use_stall_detection: false
+
+
+    # =====================================================
+    # TEMPORARY DOCK DATABASE
+    #
+    # Only Station A for the first integration test.
+    # Later this will be generated / separated cleanly.
+    # =====================================================
+
+    docks:
+      - "station_a"
+
+    station_a:
+
+      type: "load_station_dock"
+
+      frame: "map"
+
+      # Nominal station pose from stations.yaml
+      pose:
+        - 0.799
+        - -0.175
+        - 0.0
+
+
+    # =====================================================
+    # PRECISION DOCKING CONTROLLER
+    # =====================================================
 
     controller:
+
       k_phi: 3.0
       k_delta: 2.0
-      v_linear_min: 0.15
+
+      # Slow precision approach
+      v_linear_min: 0.05
       v_linear_max: 0.15
+
+      v_angular_max: 0.75
+
+      # Begin reducing velocity near the dock
+      slowdown_radius: 0.25
+
+
+      # ---------------------------------------------------
+      # COLLISION CHECKING
+      # ---------------------------------------------------
+
       use_collision_detection: true
+
       costmap_topic: "local_costmap/costmap_raw"
       footprint_topic: "local_costmap/published_footprint"
+
       transform_tolerance: 0.1
-      projection_time: 5.0
-      simulation_step: 0.1
-      dock_collision_threshold: 0.3
+
+      projection_time: 1.0
+      simulation_time_step: 0.1
+
+      # IMPORTANT:
+      #
+      # Station A is NOT a contact dock.
+      # We want collision checking all the way to the target.
+      #
+      # Nav2 recommends 0.0 when physical contact with the
+      # dock is not intended.
+      dock_collision_threshold: 0.0
 
 loopback_simulator:
   ros__parameters:
