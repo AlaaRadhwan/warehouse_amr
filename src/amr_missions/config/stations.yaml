@@ -12,6 +12,18 @@ stations:
     y: -0.175
     yaw: 0.0
 
+    docking:
+      enabled: true
+      type: "load_station_dock"
+
+      tag_id: 1
+      tag_frame: "tag_station_a"
+      tag_size: 0.18
+
+      # AprilTag is this far ahead of the desired
+      # final base_footprint pose.
+      dock_offset: 0.75
+
   station_b:
     x: 8.716
     y: 2.705

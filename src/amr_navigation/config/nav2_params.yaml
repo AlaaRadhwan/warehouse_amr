@@ -407,7 +407,7 @@ docking_server:
     # =====================================================
 
     enable_stamped_cmd_vel: true
-    
+
     controller_frequency: 50.0
 
     initial_perception_timeout: 5.0
@@ -502,30 +502,6 @@ docking_server:
       # No physical contact / motor-stall detection for our
       # operator loading station.
       use_stall_detection: false
-
-
-    # =====================================================
-    # TEMPORARY DOCK DATABASE
-    #
-    # Only Station A for the first integration test.
-    # Later this will be generated / separated cleanly.
-    # =====================================================
-
-    docks:
-      - "station_a"
-
-    station_a:
-
-      type: "load_station_dock"
-
-      frame: "map"
-
-      # Nominal station pose from stations.yaml
-      pose:
-        - 0.799
-        - -0.175
-        - 0.0
-
 
     # =====================================================
     # PRECISION DOCKING CONTROLLER

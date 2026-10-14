@@ -1,5 +1,6 @@
 import os
 import yaml
+import tempfile
 
 from ament_index_python.packages import get_package_share_directory
 
@@ -9,6 +10,98 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from nav2_common.launch import RewrittenYaml
 
+def create_dock_database(station_data):
+
+    frame_id = station_data.get(
+        "frame_id",
+        "map",
+    )
+
+    stations = station_data.get(
+        "stations",
+        {},
+    )
+
+    docks = {}
+
+    for station_name, station in stations.items():
+
+        docking = station.get("docking")
+
+        if not docking:
+            continue
+
+        if not docking.get("enabled", False):
+            continue
+
+        if "type" not in docking:
+            raise RuntimeError(
+                f'Docking station "{station_name}" '
+                f'is missing docking.type'
+            )
+
+        required_pose_fields = {
+            "x",
+            "y",
+            "yaw",
+        }
+
+        missing = (
+            required_pose_fields
+            - station.keys()
+        )
+
+        if missing:
+            raise RuntimeError(
+                f'Docking station "{station_name}" '
+                f'is missing pose fields: {missing}'
+            )
+
+        docks[station_name] = {
+            "type": str(
+                docking["type"]
+            ),
+
+            "frame": str(
+                station.get(
+                    "frame",
+                    frame_id,
+                )
+            ),
+
+            "pose": [
+                float(station["x"]),
+                float(station["y"]),
+                float(station["yaw"]),
+            ],
+        }
+
+    if not docks:
+        raise RuntimeError(
+            "No enabled docking stations "
+            "were found in stations.yaml"
+        )
+
+    database = {
+        "docks": docks,
+    }
+
+    database_file = tempfile.NamedTemporaryFile(
+        mode="w",
+        prefix="warehouse_amr_docks_",
+        suffix=".yaml",
+        delete=False,
+    )
+
+    yaml.safe_dump(
+        database,
+        database_file,
+        sort_keys=False,
+    )
+
+    database_file.close()
+
+    return database_file.name
 
 def generate_launch_description():
 
@@ -42,6 +135,8 @@ def generate_launch_description():
         station_data = yaml.safe_load(file)
 
     stations = station_data.get("stations", {})
+
+    dock_database_file = create_dock_database(station_data)
 
     if "home" not in stations:
         raise RuntimeError(
@@ -77,12 +172,33 @@ def generate_launch_description():
         source_file=nav2_params_file,
         root_key="",
         param_rewrites={
-            "amcl.ros__parameters.set_initial_pose": "true",
 
-            "amcl.ros__parameters.initial_pose.x": str(home_x),
-            "amcl.ros__parameters.initial_pose.y": str(home_y),
-            "amcl.ros__parameters.initial_pose.z": "0.0",
-            "amcl.ros__parameters.initial_pose.yaw": str(home_yaw),
+            # ---------------------------------------------
+            # Initial AMCL pose
+            # ---------------------------------------------
+
+            "amcl.ros__parameters.set_initial_pose":
+                "true",
+
+            "amcl.ros__parameters.initial_pose.x":
+                str(home_x),
+
+            "amcl.ros__parameters.initial_pose.y":
+                str(home_y),
+
+            "amcl.ros__parameters.initial_pose.z":
+                "0.0",
+
+            "amcl.ros__parameters.initial_pose.yaw":
+                str(home_yaw),
+
+
+            # ---------------------------------------------
+            # Dock database generated from stations.yaml
+            # ---------------------------------------------
+
+            "docking_server.ros__parameters.dock_database":
+                dock_database_file,
         },
         convert_types=True,
     )
