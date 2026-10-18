@@ -16,7 +16,7 @@ from rclpy.executors import MultiThreadedExecutor
 from action_msgs.msg import GoalStatus
 from ament_index_python.packages import get_package_share_directory
 
-from nav2_msgs.action import NavigateToPose
+from nav2_msgs.action import NavigateToPose, DockRobot
 from amr_interfaces.action import GoToStation
 
 class RobotExecutor(Node):
@@ -54,6 +54,15 @@ class RobotExecutor(Node):
             callback_group=self.callback_group,
         )
 
+        self.dock_client = ActionClient(
+            self,
+            DockRobot,
+            'dock_robot',
+            callback_group=self.callback_group,
+        )
+
+        
+
         # High-level AMR action server
 
         self.action_server = ActionServer(
@@ -67,7 +76,7 @@ class RobotExecutor(Node):
         )
 
         self.busy = False
-        self.active_nav_goal = None
+        self.active_downstream_goal = None
 
 
     # Station Configuration
@@ -133,8 +142,8 @@ class RobotExecutor(Node):
             f'{goal_handle.request.station_name}'
         )
 
-        if self.active_nav_goal is not None:
-            self.active_nav_goal.cancel_goal_async()
+        if self.active_downstream_goal is not None:
+            self.active_downstream_goal.cancel_goal_async()
 
         return CancelResponse.ACCEPT
 
@@ -144,153 +153,390 @@ class RobotExecutor(Node):
 
         station_name = goal_handle.request.station_name
         station = self.stations[station_name]
-        
-        result = GoToStation.Result()
 
         try:
 
-            # Wait for Nav2
+            docking = station.get(
+                'docking',
+                {}
+            )
+
+            if docking.get('enabled', False):
+
+                self.get_logger().info(
+                    f'{station_name} requires precision docking'
+                )
+
+                return await self.execute_docking(
+                    goal_handle,
+                    station_name,
+                )
 
             self.get_logger().info(
-                'Waiting for Nav2 NavigateToPose action server...'
+                f'{station_name} uses normal navigation'
             )
 
-            if not self.nav_client.wait_for_server(timeout_sec=5.0):
-                result.success = False
-                result.message = 'Nav2 NavigateToPose server unavilable'
-                result.nav2_error_code = 0
-
-                goal_handle.abort()
-
-                return result
-
-            # Construct Nav2 goal
-
-            nav_goal = NavigateToPose.Goal()
-
-            nav_goal.pose.header.frame_id = self.frame_id
-            nav_goal.pose.header.stamp = self.get_clock().now().to_msg()
-
-            nav_goal.pose.pose.position.x = float(station['x'])
-            nav_goal.pose.pose.position.y = float(station['y'])
-            nav_goal.pose.pose.position.z = 0.0
-
-            yaw = float(station['yaw'])
-
-            nav_goal.pose.pose.orientation.x = 0.0
-            nav_goal.pose.pose.orientation.y = 0.0
-            nav_goal.pose.pose.orientation.z = math.sin(yaw / 2.0)
-            nav_goal.pose.pose.orientation.w = math.cos(yaw / 2.0)
-
-            self.get_logger().info(
-                f'Sending Nav2 goal for {station_name}: '
-                f'x={station["x"]}, y={station["y"]}, '
+            return await self.execute_navigation(
+                goal_handle,
+                station_name,
+                station,
             )
-
-            # Send goal
-
-            nav_goal_handle = await self.nav_client.send_goal_async(
-                nav_goal,
-                feedback_callback=lambda msg:
-                    self.nav_feedback_callback(goal_handle, msg)
-            )
-
-            self.active_nav_goal = nav_goal_handle
-
-            if not nav_goal_handle.accepted:
-
-                result.success = False
-                result.message = 'Nav2 rejected navigation goal'
-                result.nav2_error_code = 0
-
-                goal_handle.abort()
-
-                return result
-
-            # In case cancel happened while goal was being accepted
-            if goal_handle.is_cancel_requested:
-                await nav_goal_handle.cancel_goal_async()
-
-            # Wait for navigation result
-
-            wrapped_result = await nav_goal_handle.get_result_async()
-
-            status = wrapped_result.status
-            nav_result = wrapped_result.result
-
-            nav_error = int(getattr(nav_result, 'error_code', 0))
-            nav_error_msg = getattr(nav_result, 'error_msg', '')
-
-            result.nav2_error_code = nav_error
-
-            self.get_logger().info(
-                f'Nav2 finished: status={status}, '
-                f'error_code={nav_error}, '
-                f'error_msg="{nav_error_msg}"'
-            )
-
-            # Successful navigation
-
-            if status == GoalStatus.STATUS_SUCCEEDED:
-
-                result.success = True
-                result.message = f'Arrived at station: {station_name}'
-
-                goal_handle.succeed()
-
-                self.get_logger().info(result.message)
-
-                return result
-
-            # Cancelled
-
-            if status == GoalStatus.STATUS_CANCELED:
-
-                result.success = False
-                result.message = f'Navigation to {station_name} cancelled'
-
-                goal_handle.canceled()
-
-                self.get_logger().warning(result.message)
-
-                return result
-
-            # Nav2 Failure
-
-            result.success = False
-
-            result.message = (
-                f'Navigation to {station_name} failed'
-            )
-
-            if nav_error_msg:
-                result.message += f': {nav_error_msg}'
-
-            goal_handle.abort()
-
-            self.get_logger().error(
-                f'{result.message} (Nav2 error {nav_error})'
-            )
-
-            return result
 
         except Exception as exc:
 
+            result = GoToStation.Result()
+
             result.success = False
-            result.message = f'Navigation to {station_name} failed: {exc}'
+            result.message = (
+                f'GoToStation for {station_name} failed: {exc}'
+            )
+
             result.nav2_error_code = 0
 
             goal_handle.abort()
 
-            self.get_logger().error(result.message)
+            self.get_logger().error(
+                result.message
+            )
 
             return result
 
         finally:
 
-            self.active_nav_goal = None
+            self.active_downstream_goal = None
             self.busy = False
 
+    async def execute_navigation(
+            self,
+            goal_handle,
+            station_name,
+            station,
+    ):
+
+        result = GoToStation.Result()
+
+        self.get_logger().info(
+            'Waiting for Nav2 NavigateToPose action server...'
+        )
+
+        if not self.nav_client.wait_for_server(
+            timeout_sec=5.0
+        ):
+
+            result.success = False
+            result.message = (
+                'Nav2 NavigateToPose server unavailable'
+            )
+            result.nav2_error_code = 0
+
+            goal_handle.abort()
+
+            return result
+
+        # Construct Nav2 goal
+
+        nav_goal = NavigateToPose.Goal()
+
+        nav_goal.pose.header.frame_id = self.frame_id
+        nav_goal.pose.header.stamp = (
+            self.get_clock().now().to_msg()
+        )
+
+        nav_goal.pose.pose.position.x = float(
+            station['x']
+        )
+
+        nav_goal.pose.pose.position.y = float(
+            station['y']
+        )
+
+        nav_goal.pose.pose.position.z = 0.0
+
+        yaw = float(
+            station['yaw']
+        )
+
+        nav_goal.pose.pose.orientation.x = 0.0
+        nav_goal.pose.pose.orientation.y = 0.0
+
+        nav_goal.pose.pose.orientation.z = (
+            math.sin(yaw / 2.0)
+        )
+
+        nav_goal.pose.pose.orientation.w = (
+            math.cos(yaw / 2.0)
+        )
+
+        self.get_logger().info(
+            f'Sending NavigateToPose for {station_name}: '
+            f'x={station["x"]}, '
+            f'y={station["y"]}, '
+            f'yaw={station["yaw"]}'
+        )
+
+        nav_goal_handle = (
+            await self.nav_client.send_goal_async(
+                nav_goal,
+                feedback_callback=lambda msg:
+                    self.nav_feedback_callback(
+                        goal_handle,
+                        msg,
+                    )
+            )
+        )
+
+        self.active_downstream_goal = (
+            nav_goal_handle
+        )
+
+        if not nav_goal_handle.accepted:
+
+            result.success = False
+            result.message = (
+                'Nav2 rejected navigation goal'
+            )
+            result.nav2_error_code = 0
+
+            goal_handle.abort()
+
+            return result
+
+        # A cancellation may have arrived while
+        # Nav2 was accepting the goal.
+
+        if goal_handle.is_cancel_requested:
+
+            await nav_goal_handle.cancel_goal_async()
+
+        wrapped_result = (
+            await nav_goal_handle.get_result_async()
+        )
+
+        status = wrapped_result.status
+        nav_result = wrapped_result.result
+
+        nav_error = int(
+            getattr(
+                nav_result,
+                'error_code',
+                0,
+            )
+        )
+
+        nav_error_msg = getattr(
+            nav_result,
+            'error_msg',
+            '',
+        )
+
+        result.nav2_error_code = nav_error
+
+        self.get_logger().info(
+            f'NavigateToPose finished: '
+            f'status={status}, '
+            f'error_code={nav_error}, '
+            f'error_msg="{nav_error_msg}"'
+        )
+
+        if status == GoalStatus.STATUS_SUCCEEDED:
+
+            result.success = True
+            result.message = (
+                f'Arrived at station: {station_name}'
+            )
+
+            goal_handle.succeed()
+
+            return result
+
+        if status == GoalStatus.STATUS_CANCELED:
+
+            result.success = False
+            result.message = (
+                f'Navigation to {station_name} cancelled'
+            )
+
+            goal_handle.canceled()
+
+            return result
+
+        result.success = False
+
+        result.message = (
+            f'Navigation to {station_name} failed'
+        )
+
+        if nav_error_msg:
+            result.message += (
+                f': {nav_error_msg}'
+            )
+
+        goal_handle.abort()
+
+        return result
+
+    async def execute_docking(
+            self,
+            goal_handle,
+            station_name,
+    ):
+
+        result = GoToStation.Result()
+
+        self.get_logger().info(
+            'Waiting for Nav2 DockRobot action server...'
+        )
+
+        if not self.dock_client.wait_for_server(
+            timeout_sec=5.0
+        ):
+
+            result.success = False
+            result.message = (
+                'Nav2 DockRobot server unavailable'
+            )
+            result.nav2_error_code = 0
+
+            goal_handle.abort()
+
+            return result
+
+        # ---------------------------------------------
+        # Construct docking goal
+        # ---------------------------------------------
+
+        dock_goal = DockRobot.Goal()
+
+        dock_goal.use_dock_id = True
+        dock_goal.dock_id = station_name
+
+        # Let Docking Server use Nav2 to reach
+        # the staging pose first.
+        dock_goal.navigate_to_staging_pose = True
+
+        self.get_logger().info(
+            f'Sending DockRobot goal for '
+            f'{station_name}'
+        )
+
+        dock_goal_handle = (
+            await self.dock_client.send_goal_async(
+                dock_goal,
+                feedback_callback=lambda msg:
+                    self.dock_feedback_callback(
+                        goal_handle,
+                        msg,
+                    )
+            )
+        )
+
+        self.active_downstream_goal = (
+            dock_goal_handle
+        )
+
+        if not dock_goal_handle.accepted:
+
+            result.success = False
+            result.message = (
+                'Nav2 rejected docking goal'
+            )
+            result.nav2_error_code = 0
+
+            goal_handle.abort()
+
+            return result
+
+        # Handle cancellation that may have happened
+        # while Docking Server was accepting the goal.
+
+        if goal_handle.is_cancel_requested:
+
+            await dock_goal_handle.cancel_goal_async()
+
+        wrapped_result = (
+            await dock_goal_handle.get_result_async()
+        )
+
+        status = wrapped_result.status
+        dock_result = wrapped_result.result
+
+        dock_error = int(
+            getattr(
+                dock_result,
+                'error_code',
+                0,
+            )
+        )
+
+        dock_error_msg = getattr(
+            dock_result,
+            'error_msg',
+            '',
+        )
+
+        result.nav2_error_code = dock_error
+
+        self.get_logger().info(
+            f'DockRobot finished: '
+            f'status={status}, '
+            f'error_code={dock_error}, '
+            f'error_msg="{dock_error_msg}"'
+        )
+
+        # ---------------------------------------------
+        # Successful docking
+        # ---------------------------------------------
+
+        if (
+            status == GoalStatus.STATUS_SUCCEEDED
+            and dock_result.success
+        ):
+
+            result.success = True
+            result.message = (
+                f'Docked successfully at '
+                f'{station_name}'
+            )
+
+            goal_handle.succeed()
+
+            return result
+
+        # ---------------------------------------------
+        # Cancelled
+        # ---------------------------------------------
+
+        if status == GoalStatus.STATUS_CANCELED:
+
+            result.success = False
+            result.message = (
+                f'Docking at {station_name} cancelled'
+            )
+
+            goal_handle.canceled()
+
+            return result
+
+        # ---------------------------------------------
+        # Docking failure
+        # ---------------------------------------------
+
+        result.success = False
+
+        result.message = (
+            f'Docking at {station_name} failed'
+        )
+
+        if dock_error_msg:
+            result.message += (
+                f': {dock_error_msg}'
+            )
+
+        goal_handle.abort()
+
+        return result 
+
+    
     # Nav2 feedback -> mission feedback
 
     def nav_feedback_callback(
@@ -312,6 +558,59 @@ class RobotExecutor(Node):
         )
 
         mission_goal_handle.publish_feedback(mission_feedback)
+
+
+    def dock_feedback_callback(
+            self,
+            mission_goal_handle,
+            dock_feedback_msg,
+    ):
+
+        feedback = dock_feedback_msg.feedback
+
+        mission_feedback = GoToStation.Feedback()
+
+        state_names = {
+
+            DockRobot.Feedback.NONE:
+                'DOCKING',
+
+            DockRobot.Feedback.NAV_TO_STAGING_POSE:
+                'NAVIGATING_TO_STAGING',
+
+            DockRobot.Feedback.INITIAL_PERCEPTION:
+                'INITIAL_PERCEPTION',
+
+            DockRobot.Feedback.CONTROLLING:
+                'DOCKING',
+
+            DockRobot.Feedback.WAIT_FOR_CHARGE:
+                'WAITING_FOR_CHARGE',
+
+            DockRobot.Feedback.RETRY:
+                'DOCKING_RETRY',
+        }
+
+        mission_feedback.state = (
+            state_names.get(
+                feedback.state,
+                'DOCKING',
+            )
+        )
+
+        # DockRobot feedback does not provide
+        # distance_remaining.
+        mission_feedback.distance_remaining = 0.0
+
+        # Reuse this field temporarily for docking retries.
+        mission_feedback.number_of_recoveries = int(
+            feedback.num_retries
+        )
+
+        mission_goal_handle.publish_feedback(
+            mission_feedback
+        )
+
     
 def main(args=None):
 

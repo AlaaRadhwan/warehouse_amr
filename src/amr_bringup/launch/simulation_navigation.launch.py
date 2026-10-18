@@ -121,9 +121,25 @@ def generate_launch_description():
         "amr_navigation"
     )
 
+    nav2_bt_navigator_share = get_package_share_directory(
+        "nav2_bt_navigator"
+    )
+
     # ---------------------------------------------------------
     # Load station configuration
     # ---------------------------------------------------------
+
+    docking_navigator_bt = os.path.join(
+        nav2_bt_navigator_share,
+        "behavior_trees",
+        "navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml",
+    )
+
+    if not os.path.isfile(docking_navigator_bt):
+        raise RuntimeError(
+            "Docking navigation behavior tree not found: "
+            f"{docking_navigator_bt}"
+        )
 
     stations_file = os.path.join(
         missions_share,
@@ -199,6 +215,9 @@ def generate_launch_description():
 
             "docking_server.ros__parameters.dock_database":
                 dock_database_file,
+
+            "docking_server.ros__parameters.navigator_bt_xml":
+                docking_navigator_bt,
         },
         convert_types=True,
     )
