@@ -19,7 +19,7 @@
   <exec_depend>amr_simulation</exec_depend>
   <exec_depend>amr_navigation</exec_depend>
   <exec_depend>amr_missions</exec_depend>
-  <exec_depend>nav2_bt_navigator</exec_depend>
+  <exec_depend>nav2_smac_planner</exec_depend>
 
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>launch</exec_depend>
