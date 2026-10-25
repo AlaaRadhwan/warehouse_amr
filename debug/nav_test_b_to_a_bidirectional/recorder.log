@@ -1,0 +1,35 @@
+[WARN] [ros2bag]: Positional "topics" argument deprecated. Please use optional "--topics" argument instead.
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1792609949.361220679] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1792609949.361236954] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1792609949.367039297] [rosbag2_recorder]: Starting recording to '/home/alaa-radhwan/Projects/warehouse_amr/debug/nav_test_b_to_a_bidirectional/bag'
+[INFO] [1792609949.369293544] [rosbag2_recorder]: Listening for topics...
+[INFO] [1792609949.369363671] [rosbag2_recorder]: Recording...
+[INFO] [1792609949.369337478] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1792609950.236003934] [rosbag2_recorder]: Subscribed to topic '/diff_drive_controller/odom'
+[INFO] [1792609950.240046618] [rosbag2_recorder]: Subscribed to topic '/tf'
+[WARN] [1792609950.275601960] [rosbag2_recorder]: A new publisher for subscribed topic /tf was found offering RMW_QOS_POLICY_DURABILITY_VOLATILE, but rosbag2 already subscribed requesting RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL. Messages from this new publisher will not be recorded.
+[WARN] [1792609950.275609713] [rosbag2_recorder]: New publisher discovered on topic '/tf', offering incompatible QoS. No messages will be sent to it. Last incompatible policy: DURABILITY_QOS_POLICY
+[INFO] [1792609950.279256992] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1792609950.286596111] [rosbag2_recorder]: Subscribed to topic '/cmd_vel_smoothed'
+[WARN] [1792609950.287347806] [ROSBAG2_TRANSPORT]: Hidden topics are not recorded. Enable them with --include-hidden-topics
+[INFO] [1792609950.327845184] [rosbag2_recorder]: Subscribed to topic '/cmd_vel_nav'
+[WARN] [1792609950.395937076] [rosbag2_recorder]: New publisher discovered on topic '/tf', offering incompatible QoS. No messages will be sent to it. Last incompatible policy: DURABILITY_QOS_POLICY
+[INFO] [1792609950.399086205] [rosbag2_recorder]: Subscribed to topic '/odom'
+[INFO] [1792609950.408714564] [rosbag2_recorder]: Subscribed to topic '/cmd_vel'
+[WARN] [1792609950.412125131] [rosbag2_recorder]: New publisher discovered on topic '/tf', offering incompatible QoS. No messages will be sent to it. Last incompatible policy: DURABILITY_QOS_POLICY
+[INFO] [1792609950.414962741] [rosbag2_recorder]: Subscribed to topic '/plan'
+[INFO] [1792609950.416269861] [rosbag2_recorder]: Subscribed to topic '/unsmoothed_plan'
+[INFO] [1792609950.424338394] [rosbag2_recorder]: Subscribed to topic '/collision_monitor_state'
+[INFO] [1792609950.428964022] [rosbag2_recorder]: Subscribed to topic '/speed_limit'
+[INFO] [1792609950.434568417] [rosbag2_recorder]: Subscribed to topic '/plan_smoothed'
+[INFO] [1792609950.460683429] [rosbag2_recorder]: Subscribed to topic '/transformed_global_plan'
+[INFO] [1792609950.462437221] [rosbag2_recorder]: Subscribed to topic '/optimal_trajectory'
+[INFO] [1792609950.467248432] [rosbag2_recorder]: Subscribed to topic '/behavior_tree_log'
+[INFO] [1792609950.604601527] [rosbag2_recorder]: Subscribed to topic '/imu/data_raw'
+[INFO] [1792609950.607659994] [rosbag2_recorder]: Subscribed to topic '/clock'
+[INFO] [1792610256.842432312] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1792610256.842622989] [rosbag2_recorder]: Pausing recording.
+[INFO] [1792610256.842665385] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1792610256.855104104] [rosbag2_recorder]: Recording stopped
+[WARN] [1792610256.855170806] [rosbag2_recorder]: Number of messages lost on the transport layer: 1
+[INFO] [1792610256.875322033] [rosbag2_recorder]: Event publisher thread: Exited
