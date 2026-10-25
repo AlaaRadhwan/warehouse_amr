@@ -1,0 +1,25 @@
+# Online early-stop thresholds for the B->A variability investigation (used only to END a run once a failure is
+# well established; the run's OUTCOME is classified offline from ground truth, see classification_criteria.yaml).
+# Identical to calibration/nav_validation/nav_watchdog.yaml except:
+#   stall_window 45 -> 30 s : a stall must be observed long enough to classify but we do not want 45 s of idle sim per run
+# The overall timeout is disabled here (1e9): the client enforces a SIM-time limit and a wall-clock safety limit itself.
+wz_max: 1.0
+sat_wz_frac: 0.9
+sat_window: 8.0
+sat_fraction: 0.8
+sat_min_m_per_turn: 2.0
+rot_window: 20.0
+rot_max_turns: 1.0
+rot_min_m_per_turn: 2.0
+dither_wz: 0.3
+dither_window: 20.0
+dither_reversals: 6
+dither_min_progress: 0.3
+stall_window: 30.0
+stall_min_progress: 0.3
+goal_xy_tol: 0.25
+settle_timeout: 30.0
+max_recoveries: 4
+timeout: 1000000000.0   # NB: PyYAML parses '1.0e9' as a string
+grace: 3.0
+min_dt: 0.1

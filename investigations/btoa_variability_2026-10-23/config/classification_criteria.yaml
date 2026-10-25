@@ -1,0 +1,26 @@
+# Offline outcome classification. Applied to Gazebo GROUND TRUTH (not to Nav2's belief) and to Nav2's own action result.
+# Written BEFORE the pilot runs were analysed; the thresholds are taken from earlier observations, not fitted to the pilot:
+#   - spin:  Oct 22/23 spins had true yaw rate 1.058-1.08 rad/s (pinned wz_max=1.0 x plant gain); legitimate in-place
+#            corrections never exceeded 0.38 rad/s GT (calibrated runs) and 0.60 rad/s (uncalibrated successes).
+#   - stall: Oct 23 stall (run B2): 0.54 m short of the goal, |wz| mean 0.033 rad/s, net displacement < 0.15 m over 20 s.
+goal: {x: 0.099, y: -0.175, yaw: 0.0}          # B->A staging pose, map frame
+tolerance: {xy_m: 0.25, yaw_rad: 0.20}         # StoppedGoalChecker in nav2_params.yaml
+derivative_window_s: 0.5                       # GT speed / yaw-rate = finite difference over this sim-time window
+spin:
+  window_s: 15.0                               # sliding window length (sim s), step 1 s
+  min_abs_mean_wz_rad_s: 0.8                   # |mean signed GT yaw rate| in the window
+  max_mean_speed_m_s: 0.25                     # and it is going nowhere
+  terminal_if_min_dist_to_goal_m: 0.5          # subtype: 'terminal' if the robot was within this distance during the spin, else 'far_field'
+stall:
+  window_s: 20.0
+  max_net_displacement_m: 0.25                 # |p(end)-p(start)| of the window
+  max_mean_abs_wz_rad_s: 0.15
+  requires: [goal_active_at_window_end, not_within_goal_tolerance]   # xy > tolerance OR |yaw error| > tolerance
+  subtype: {short_of_goal: "xy error > tolerance", yaw_not_converged: "xy within tolerance, yaw error > tolerance"}
+classes:
+  SUCCESS: "Nav2 result SUCCEEDED. Flag gt_outside_tolerance if GT final pose violates the tolerance above."
+  SPIN: "Nav2 did not succeed AND a spin window exists (terminal / far_field subtype)."
+  STALL: "Nav2 did not succeed, no spin window, AND a stall window exists (short_of_goal / yaw_not_converged subtype)."
+  OTHER_FAILURE: "Nav2 returned ABORTED/FAILED/CANCELED without spin or stall evidence, or hit the sim/wall limit without either pattern (subtype recorded)."
+  INCONCLUSIVE: "Infrastructure failure (not ready, no GT, no result) or too little data to evaluate the criteria."
+evaluation_end: "end of goal activity = goal sent + client sim duration (so post-cancel settling is not counted)"
