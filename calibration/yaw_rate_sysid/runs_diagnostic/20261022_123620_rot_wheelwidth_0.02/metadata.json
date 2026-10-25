@@ -1,0 +1,130 @@
+{
+  "status": "completed",
+  "args": {
+    "mode": "rotation",
+    "steps": [
+      0.7,
+      -0.7
+    ],
+    "hold": 10.0,
+    "baseline": 3.0,
+    "rest": 3.0,
+    "max_accel": 0.8,
+    "rate": 50.0,
+    "world": "warehouse_world",
+    "model_name": "warehouse_amr",
+    "gt_topic": "/world/warehouse_world/pose/info",
+    "max_drift": 0.5,
+    "out": "calibration/yaw_rate_sysid/runs_diagnostic",
+    "label": "rot_wheelwidth_0.02",
+    "dry_run": false
+  },
+  "schedule": [
+    [
+      0.0,
+      3.0,
+      "baseline",
+      -1,
+      0.0
+    ],
+    [
+      3.0,
+      5.0,
+      "ramp_up",
+      0,
+      0.7
+    ],
+    [
+      5.0,
+      15.0,
+      "hold",
+      0,
+      0.7
+    ],
+    [
+      15.0,
+      17.0,
+      "ramp_down",
+      0,
+      0.7
+    ],
+    [
+      17.0,
+      20.0,
+      "rest",
+      0,
+      0.0
+    ],
+    [
+      20.0,
+      22.0,
+      "ramp_up",
+      1,
+      -0.7
+    ],
+    [
+      22.0,
+      32.0,
+      "hold",
+      1,
+      -0.7
+    ],
+    [
+      32.0,
+      34.0,
+      "ramp_down",
+      1,
+      -0.7
+    ],
+    [
+      34.0,
+      37.0,
+      "rest",
+      1,
+      0.0
+    ]
+  ],
+  "controller_params": {
+    "open_loop": false,
+    "position_feedback": true,
+    "wheel_separation": 0.69,
+    "wheel_separation_multiplier": 1.0,
+    "wheel_radius": 0.1,
+    "left_wheel_radius_multiplier": 1.0,
+    "right_wheel_radius_multiplier": 1.0,
+    "cmd_vel_timeout": 0.5,
+    "publish_limited_velocity": true,
+    "angular.z.max_acceleration": 1.5,
+    "angular.z.max_velocity": 1.2
+  },
+  "preflight": {
+    "nav2_nodes_present": []
+  },
+  "sources": {
+    "cmd": "/cmd_vel",
+    "cmd_out": "/diff_drive_controller/cmd_vel_out",
+    "gt": "/world/warehouse_world/pose/info",
+    "odom_raw": "/diff_drive_controller/odom",
+    "joints": "/joint_states",
+    "imu": "/imu/data_raw",
+    "odom_fused": "/odom"
+  },
+  "sample_counts": {
+    "cmd": 1850,
+    "cmd_out": 5202,
+    "gt": 4370,
+    "odom_raw": 2967,
+    "joints": 5200,
+    "imu": 5284,
+    "odom_fused": 3009
+  },
+  "sha256": {
+    "src/amr_control/config/controllers.yaml": "18fc7dc5418f31e033eb16526bd0c40fe9a7bd1fc789e1730628508f36175997",
+    "src/amr_localization/config/ekf.yaml": "0f875203f239ca82c0bfe412297ebe55dcf26fb6d7daa6d1d42e43be6169d048",
+    "src/amr_navigation/config/nav2_params.yaml": "8e4ac952a526104e272c81c44b694a4f9e45151cc1e9a5494ec1c8201fed0cf4",
+    "src/amr_description/urdf/amr.urdf.xacro": "dd2321f8fd77c2a4f466b2c4ec0b7c0d2638a4eac0f849dbd94a313a794039ab"
+  },
+  "git_rev": "c57e6bda60cfdbadac7d4152e6eebcd503284c21",
+  "time_base": "all t_recv/t_stamp/t columns are Gazebo sim time [s]",
+  "wall_time": "2026-10-22T12:37:34.582250"
+}

@@ -1,0 +1,245 @@
+{
+  "status": "completed",
+  "args": {
+    "steps": [
+      0.4,
+      -0.4,
+      0.7,
+      -0.7,
+      1.0,
+      -1.0
+    ],
+    "hold": 12.0,
+    "baseline": 3.0,
+    "rest": 3.0,
+    "max_accel": 0.8,
+    "rate": 50.0,
+    "world": "warehouse_world",
+    "model_name": "warehouse_amr",
+    "gt_topic": "/world/warehouse_world/pose/info",
+    "max_drift": 0.5,
+    "out": "/home/alaa-radhwan/Projects/warehouse_amr/calibration/yaw_rate_sysid/runs",
+    "label": "baseline",
+    "dry_run": false
+  },
+  "schedule": [
+    [
+      0.0,
+      3.0,
+      "baseline",
+      -1,
+      0.0
+    ],
+    [
+      3.0,
+      5.0,
+      "ramp_up",
+      0,
+      0.4
+    ],
+    [
+      5.0,
+      17.0,
+      "hold",
+      0,
+      0.4
+    ],
+    [
+      17.0,
+      19.0,
+      "ramp_down",
+      0,
+      0.4
+    ],
+    [
+      19.0,
+      22.0,
+      "rest",
+      0,
+      0.0
+    ],
+    [
+      22.0,
+      24.0,
+      "ramp_up",
+      1,
+      -0.4
+    ],
+    [
+      24.0,
+      36.0,
+      "hold",
+      1,
+      -0.4
+    ],
+    [
+      36.0,
+      38.0,
+      "ramp_down",
+      1,
+      -0.4
+    ],
+    [
+      38.0,
+      41.0,
+      "rest",
+      1,
+      0.0
+    ],
+    [
+      41.0,
+      43.0,
+      "ramp_up",
+      2,
+      0.7
+    ],
+    [
+      43.0,
+      55.0,
+      "hold",
+      2,
+      0.7
+    ],
+    [
+      55.0,
+      57.0,
+      "ramp_down",
+      2,
+      0.7
+    ],
+    [
+      57.0,
+      60.0,
+      "rest",
+      2,
+      0.0
+    ],
+    [
+      60.0,
+      62.0,
+      "ramp_up",
+      3,
+      -0.7
+    ],
+    [
+      62.0,
+      74.0,
+      "hold",
+      3,
+      -0.7
+    ],
+    [
+      74.0,
+      76.0,
+      "ramp_down",
+      3,
+      -0.7
+    ],
+    [
+      76.0,
+      79.0,
+      "rest",
+      3,
+      0.0
+    ],
+    [
+      79.0,
+      81.34375,
+      "ramp_up",
+      4,
+      1.0
+    ],
+    [
+      81.34375,
+      93.34375,
+      "hold",
+      4,
+      1.0
+    ],
+    [
+      93.34375,
+      95.6875,
+      "ramp_down",
+      4,
+      1.0
+    ],
+    [
+      95.6875,
+      98.6875,
+      "rest",
+      4,
+      0.0
+    ],
+    [
+      98.6875,
+      101.03125,
+      "ramp_up",
+      5,
+      -1.0
+    ],
+    [
+      101.03125,
+      113.03125,
+      "hold",
+      5,
+      -1.0
+    ],
+    [
+      113.03125,
+      115.375,
+      "ramp_down",
+      5,
+      -1.0
+    ],
+    [
+      115.375,
+      118.375,
+      "rest",
+      5,
+      0.0
+    ]
+  ],
+  "controller_params": {
+    "open_loop": false,
+    "position_feedback": true,
+    "wheel_separation": 0.69,
+    "wheel_separation_multiplier": 1.0,
+    "wheel_radius": 0.1,
+    "left_wheel_radius_multiplier": 1.0,
+    "right_wheel_radius_multiplier": 1.0,
+    "cmd_vel_timeout": 0.5,
+    "publish_limited_velocity": true,
+    "angular.z.max_acceleration": 1.5,
+    "angular.z.max_velocity": 1.2
+  },
+  "preflight": {
+    "nav2_nodes_present": []
+  },
+  "sources": {
+    "cmd": "/cmd_vel",
+    "cmd_out": "/diff_drive_controller/cmd_vel_out",
+    "gt": "/world/warehouse_world/pose/info",
+    "odom_raw": "/diff_drive_controller/odom",
+    "joints": "/joint_states",
+    "imu": "/imu/data_raw",
+    "odom_fused": "/odom"
+  },
+  "sample_counts": {
+    "cmd": 5919,
+    "cmd_out": 13284,
+    "gt": 10783,
+    "odom_raw": 7082,
+    "joints": 13283,
+    "imu": 13389,
+    "odom_fused": 7130
+  },
+  "sha256": {
+    "src/amr_control/config/controllers.yaml": "18fc7dc5418f31e033eb16526bd0c40fe9a7bd1fc789e1730628508f36175997",
+    "src/amr_localization/config/ekf.yaml": "0f875203f239ca82c0bfe412297ebe55dcf26fb6d7daa6d1d42e43be6169d048",
+    "src/amr_navigation/config/nav2_params.yaml": "8e4ac952a526104e272c81c44b694a4f9e45151cc1e9a5494ec1c8201fed0cf4",
+    "src/amr_description/urdf/amr.urdf.xacro": "dd2321f8fd77c2a4f466b2c4ec0b7c0d2638a4eac0f849dbd94a313a794039ab"
+  },
+  "git_rev": "c57e6bda60cfdbadac7d4152e6eebcd503284c21",
+  "time_base": "all t_recv/t_stamp/t columns are Gazebo sim time [s]",
+  "wall_time": "2026-10-22T10:24:24.492560"
+}

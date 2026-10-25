@@ -1,0 +1,188 @@
+{
+  "status": "completed",
+  "args": {
+    "mode": "linear",
+    "steps": [
+      0.3,
+      -0.3,
+      0.6,
+      -0.6
+    ],
+    "hold": 8.0,
+    "baseline": 3.0,
+    "rest": 3.0,
+    "max_accel": 0.5,
+    "rate": 50.0,
+    "world": "warehouse_world",
+    "model_name": "warehouse_amr",
+    "gt_topic": "/world/warehouse_world/pose/info",
+    "max_drift": 7.5,
+    "out": "calibration/yaw_rate_sysid/runs_after",
+    "label": "linear_after",
+    "dry_run": false
+  },
+  "schedule": [
+    [
+      0.0,
+      3.0,
+      "baseline",
+      -1,
+      0.0
+    ],
+    [
+      3.0,
+      5.0,
+      "ramp_up",
+      0,
+      0.3
+    ],
+    [
+      5.0,
+      13.0,
+      "hold",
+      0,
+      0.3
+    ],
+    [
+      13.0,
+      15.0,
+      "ramp_down",
+      0,
+      0.3
+    ],
+    [
+      15.0,
+      18.0,
+      "rest",
+      0,
+      0.0
+    ],
+    [
+      18.0,
+      20.0,
+      "ramp_up",
+      1,
+      -0.3
+    ],
+    [
+      20.0,
+      28.0,
+      "hold",
+      1,
+      -0.3
+    ],
+    [
+      28.0,
+      30.0,
+      "ramp_down",
+      1,
+      -0.3
+    ],
+    [
+      30.0,
+      33.0,
+      "rest",
+      1,
+      0.0
+    ],
+    [
+      33.0,
+      35.25,
+      "ramp_up",
+      2,
+      0.6
+    ],
+    [
+      35.25,
+      43.25,
+      "hold",
+      2,
+      0.6
+    ],
+    [
+      43.25,
+      45.5,
+      "ramp_down",
+      2,
+      0.6
+    ],
+    [
+      45.5,
+      48.5,
+      "rest",
+      2,
+      0.0
+    ],
+    [
+      48.5,
+      50.75,
+      "ramp_up",
+      3,
+      -0.6
+    ],
+    [
+      50.75,
+      58.75,
+      "hold",
+      3,
+      -0.6
+    ],
+    [
+      58.75,
+      61.0,
+      "ramp_down",
+      3,
+      -0.6
+    ],
+    [
+      61.0,
+      64.0,
+      "rest",
+      3,
+      0.0
+    ]
+  ],
+  "controller_params": {
+    "open_loop": false,
+    "position_feedback": true,
+    "wheel_separation": 0.69,
+    "wheel_separation_multiplier": 0.92754,
+    "wheel_radius": 0.1,
+    "left_wheel_radius_multiplier": 1.0,
+    "right_wheel_radius_multiplier": 1.0,
+    "cmd_vel_timeout": 0.5,
+    "publish_limited_velocity": true,
+    "angular.z.max_acceleration": 1.5,
+    "angular.z.max_velocity": 1.2
+  },
+  "preflight": {
+    "nav2_nodes_present": []
+  },
+  "sources": {
+    "cmd": "/cmd_vel",
+    "cmd_out": "/diff_drive_controller/cmd_vel_out",
+    "gt": "/world/warehouse_world/pose/info",
+    "odom_raw": "/diff_drive_controller/odom",
+    "joints": "/joint_states",
+    "imu": "/imu/data_raw",
+    "odom_fused": "/odom"
+  },
+  "sample_counts": {
+    "cmd": 3200,
+    "cmd_out": 7901,
+    "gt": 6202,
+    "odom_raw": 4259,
+    "joints": 7900,
+    "imu": 7982,
+    "odom_fused": 4295
+  },
+  "sha256": {
+    "src/amr_control/config/controllers.yaml": "2cdb5b0f9ef5f713e85d63ac9fd4b44ee5bda073078ea44be501ef116f2c0a56",
+    "src/amr_localization/config/ekf.yaml": "0f875203f239ca82c0bfe412297ebe55dcf26fb6d7daa6d1d42e43be6169d048",
+    "src/amr_navigation/config/nav2_params.yaml": "8e4ac952a526104e272c81c44b694a4f9e45151cc1e9a5494ec1c8201fed0cf4",
+    "src/amr_description/urdf/amr.urdf.xacro": "dd2321f8fd77c2a4f466b2c4ec0b7c0d2638a4eac0f849dbd94a313a794039ab"
+  },
+  "git_rev": "c57e6bda60cfdbadac7d4152e6eebcd503284c21",
+  "time_base": "all t_recv/t_stamp/t columns are Gazebo sim time [s]",
+  "wall_time": "2026-10-22T12:51:16.780098"
+}
