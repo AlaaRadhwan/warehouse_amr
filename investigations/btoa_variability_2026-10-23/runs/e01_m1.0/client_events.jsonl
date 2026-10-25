@@ -1,0 +1,5 @@
+{"kind": "goal_sent", "wall": 1792753465.507481, "sim": 63.205000000000005}
+{"kind": "goal_accepted", "wall": 1792753465.5091045, "sim": 63.2085}
+{"kind": "watchdog_trigger", "wall": 1792753531.8244627, "rule": "rotation_no_progress", "reason": "1.96 turns in 20s, 3.80 m progress (1.94 m/turn)", "t_goal_sim": 41.24900000000001}
+{"kind": "cancel_sent", "wall": 1792753547.9811554, "reason": "watchdog:rotation_no_progress", "t_goal_sim": 51.24900000000001}
+{"kind": "finished", "wall": 1792753548.017241, "status": "STATUS_CANCELED", "reason": "watchdog:rotation_no_progress"}

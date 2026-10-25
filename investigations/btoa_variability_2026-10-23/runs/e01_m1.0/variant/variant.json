@@ -1,0 +1,19 @@
+{
+  "multiplier": 1.0,
+  "start_pose_station_b": {
+    "x": 8.716,
+    "y": 2.705,
+    "yaw": 0.0
+  },
+  "controllers_diff": [
+    {
+      "repo": "wheel_separation_multiplier: 0.92754",
+      "variant": "wheel_separation_multiplier: 1.0"
+    }
+  ],
+  "sha256_16": {
+    "controllers.yaml": "18fc7dc5418f31e0",
+    "simulation.launch.py": "4caedd844ee99338",
+    "bringup.launch.py": "d4c208fa46584fa8"
+  }
+}

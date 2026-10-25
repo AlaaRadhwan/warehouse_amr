@@ -1,0 +1,4 @@
+{"kind": "goal_sent", "wall": 1792749661.2417471, "sim": 112.7595}
+{"kind": "goal_accepted", "wall": 1792749661.2434382, "sim": 112.7655}
+{"kind": "cancel_sent", "wall": 1792749702.6902049, "reason": "sim_limit", "t_goal_sim": 25.0}
+{"kind": "finished", "wall": 1792749702.7290008, "status": "STATUS_CANCELED", "reason": "sim_limit"}

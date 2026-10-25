@@ -1,0 +1,26 @@
+run_id=p04_m0.92754 multiplier=0.92754
+git_head=c57e6bd branch=feature/bidirectional-navigation-baseline
+--- git status --short
+ M src/amr_control/config/controllers.yaml
+ M src/amr_navigation/config/nav2_params.yaml
+ M src/amr_navigation/package.xml
+?? CLAUDE.md
+?? Findings/Warehouse_AMR_BtoA_Behaviour_Variability_2026-10-23/
+?? Findings/Warehouse_AMR_Investigation_Report_and_Figures.zip
+?? Findings/Warehouse_AMR_Investigation_Report_and_Figures/
+?? Findings/Warehouse_AMR_Navigation_Investigation_Status_2026-10-20.md
+?? calibration/
+?? debug/
+?? investigations/
+--- sha256 (first 16)
+2cdb5b0f9ef5f713  /home/alaa-radhwan/Projects/warehouse_amr/src/amr_control/config/controllers.yaml
+8e4ac952a526104e  /home/alaa-radhwan/Projects/warehouse_amr/src/amr_navigation/config/nav2_params.yaml
+8ccfd210eccd5fa1  /home/alaa-radhwan/Projects/warehouse_amr/src/amr_missions/config/stations.yaml
+--- uname
+Linux 7.0.0-38-generic x86_64
+--- nproc
+16
+--- loadavg at start
+8.22 11.46 10.74 2/1838 44098
+--- nav2_mppi
+ros-jazzy-nav2-mppi-controller 1.3.12-1noble.20260615.165555

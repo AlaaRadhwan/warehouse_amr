@@ -1,0 +1,59 @@
+/ros_gz_bridge:
+  ros__parameters:
+    bridge_names: []
+    config_file: /home/alaa-radhwan/Projects/warehouse_amr/install/amr_simulation/share/amr_simulation/config/bridge.yaml
+    expand_gz_topic_names: false
+    lazy: false
+    override_frame_id: ''
+    override_timestamps_with_wall_time: false
+    qos_overrides:
+      /camera/camera_info:
+        publisher:
+          deadline: 0
+          depth: 5
+          durability: volatile
+          history: keep_last
+          liveliness: system_default
+          reliability: best_effort
+      /camera/image_raw:
+        publisher:
+          deadline: 0
+          depth: 5
+          durability: volatile
+          history: keep_last
+          liveliness: system_default
+          reliability: best_effort
+      /clock:
+        publisher:
+          deadline: 0
+          depth: 1
+          durability: volatile
+          history: keep_last
+          liveliness: system_default
+          reliability: best_effort
+      /imu/data_raw:
+        publisher:
+          deadline: 0
+          depth: 5
+          durability: volatile
+          history: keep_last
+          liveliness: system_default
+          reliability: best_effort
+      /parameter_events:
+        publisher:
+          depth: 1000
+          durability: volatile
+          history: keep_last
+          reliability: reliable
+      /scan:
+        publisher:
+          deadline: 0
+          depth: 5
+          durability: volatile
+          history: keep_last
+          liveliness: system_default
+          reliability: best_effort
+    start_type_description_service: true
+    subscription_heartbeat: 1000
+    use_sim_time: false
+

@@ -1,0 +1,49 @@
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1792749650.426509483] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1792749650.426530156] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1792749650.440362036] [rosbag2_recorder]: Starting recording to '/home/alaa-radhwan/Projects/warehouse_amr/investigations/btoa_variability_2026-10-23/runs/smoke02_m1.0/bag'
+[INFO] [1792749650.444849788] [rosbag2_recorder]: Subscribed to topic '/rosout'
+[INFO] [1792749650.445727908] [rosbag2_recorder]: Listening for topics...
+[INFO] [1792749650.445782175] [rosbag2_recorder]: Recording...
+[INFO] [1792749650.445828271] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1792749651.385334121] [rosbag2_recorder]: Subscribed to topic '/diagnostics'
+[WARN] [1792749651.387013047] [rosbag2_cpp]: Message definition for topic '/navigate_to_pose/_action/feedback' with type 'nav2_msgs/action/NavigateToPose_FeedbackMessage' not found. Message definition will be left empty in bag.
+[INFO] [1792749651.397788024] [rosbag2_recorder]: Subscribed to topic '/navigate_to_pose/_action/feedback'
+[WARN] [1792749651.397979041] [rosbag2_cpp]: Message definition for topic '/navigate_to_pose/_action/status' with type 'action_msgs/msg/GoalStatusArray' not found. Message definition will be left empty in bag.
+[INFO] [1792749651.401895487] [rosbag2_recorder]: Subscribed to topic '/navigate_to_pose/_action/status'
+[INFO] [1792749651.406724625] [rosbag2_recorder]: Subscribed to topic '/plan_smoothed'
+[INFO] [1792749651.488529925] [rosbag2_recorder]: Subscribed to topic '/behavior_tree_log'
+[INFO] [1792749651.561183091] [rosbag2_recorder]: Subscribed to topic '/diff_drive_controller/odom'
+[INFO] [1792749651.566374498] [rosbag2_recorder]: Subscribed to topic '/joint_states'
+[INFO] [1792749651.568730680] [rosbag2_recorder]: Overriding subscription profile for /tf
+[INFO] [1792749651.572193573] [rosbag2_recorder]: Subscribed to topic '/tf'
+[INFO] [1792749651.577283291] [rosbag2_recorder]: Subscribed to topic '/diff_drive_controller/cmd_vel_out'
+[INFO] [1792749652.219825000] [rosbag2_recorder]: Subscribed to topic '/scan'
+[INFO] [1792749652.232186712] [rosbag2_recorder]: Subscribed to topic '/imu/data_raw'
+[INFO] [1792749652.310730611] [rosbag2_recorder]: Subscribed to topic '/cmd_vel_smoothed'
+[INFO] [1792749652.321416888] [rosbag2_recorder]: Overriding subscription profile for /tf_static
+[INFO] [1792749652.325104882] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1792749652.342836097] [rosbag2_recorder]: Subscribed to topic '/cmd_vel'
+[INFO] [1792749652.358151906] [rosbag2_recorder]: Subscribed to topic '/local_costmap/published_footprint'
+[INFO] [1792749652.362378379] [rosbag2_recorder]: Subscribed to topic '/local_costmap/costmap'
+[INFO] [1792749652.365215421] [rosbag2_recorder]: Subscribed to topic '/collision_monitor_state'
+[INFO] [1792749652.368391126] [rosbag2_recorder]: Subscribed to topic '/plan'
+[INFO] [1792749652.371097773] [rosbag2_recorder]: Subscribed to topic '/speed_limit'
+[WARN] [1792749652.460130437] [rosbag2_cpp]: Message definition for topic '/follow_path/_action/feedback' with type 'nav2_msgs/action/FollowPath_FeedbackMessage' not found. Message definition will be left empty in bag.
+[INFO] [1792749652.464913410] [rosbag2_recorder]: Subscribed to topic '/follow_path/_action/feedback'
+[INFO] [1792749652.468037223] [rosbag2_recorder]: Subscribed to topic '/odom'
+[INFO] [1792749652.476950427] [rosbag2_recorder]: Subscribed to topic '/optimal_trajectory'
+[INFO] [1792749652.481014799] [rosbag2_recorder]: Subscribed to topic '/cmd_vel_nav'
+[WARN] [1792749652.481233194] [rosbag2_cpp]: Message definition for topic '/follow_path/_action/status' with type 'action_msgs/msg/GoalStatusArray' not found. Message definition will be left empty in bag.
+[INFO] [1792749652.484219488] [rosbag2_recorder]: Subscribed to topic '/follow_path/_action/status'
+[INFO] [1792749652.486891843] [rosbag2_recorder]: Subscribed to topic '/transformed_global_plan'
+[INFO] [1792749652.533153066] [rosbag2_recorder]: Subscribed to topic '/amcl_pose'
+[WARN] [1792749652.568156218] [rosbag2_cpp]: Message definition for topic '/compute_path_to_pose/_action/status' with type 'action_msgs/msg/GoalStatusArray' not found. Message definition will be left empty in bag.
+[INFO] [1792749652.570750350] [rosbag2_recorder]: Subscribed to topic '/compute_path_to_pose/_action/status'
+[INFO] [1792749652.573729590] [rosbag2_recorder]: Subscribed to topic '/unsmoothed_plan'
+[INFO] [1792749652.573852651] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1792749652.573882124] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1792749709.100648886] [rosbag2_recorder]: Pausing recording.
+[INFO] [1792749709.100797440] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1792749709.121568030] [rosbag2_recorder]: Recording stopped
+[WARN] [1792749709.121641783] [rosbag2_recorder]: Number of messages lost on the transport layer: 1
+[INFO] [1792749709.172899768] [rosbag2_recorder]: Event publisher thread: Exited

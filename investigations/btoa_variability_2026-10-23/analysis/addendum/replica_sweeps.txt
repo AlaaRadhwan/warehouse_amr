@@ -1,0 +1,41 @@
+Sweep A (reduced yaw-only replica): pinned start (sequence +1.0, pose +27 deg, goal needs CW), final command after 12.4 sim-s vs plant gain; measured wz = gain*1.0
+  gain 0.920: final cmd median -0.21  (min -0.24 max -0.18)  -> releases
+  gain 0.950: final cmd median +0.31  (min -0.26 max +0.33)  -> releases
+  gain 0.980: final cmd median +0.08  (min +0.04 max +0.11)  -> releases
+  gain 1.000: final cmd median +0.29  (min +0.14 max +0.55)  -> releases
+  gain 1.010: final cmd median +0.83  (min +0.60 max +0.88)  -> STAYS PINNED
+  gain 1.020: final cmd median +0.94  (min +0.90 max +0.95)  -> STAYS PINNED
+  gain 1.030: final cmd median +0.96  (min +0.93 max +0.98)  -> STAYS PINNED
+  gain 1.050: final cmd median +1.00  (min +0.98 max +1.00)  -> STAYS PINNED
+  gain 1.076: final cmd median +1.00  (min +1.00 max +1.00)  -> STAYS PINNED
+  gain 1.100: final cmd median +1.00  (min +1.00 max +1.00)  -> STAYS PINNED
+
+Sweep B: gain 1.076 (uncalibrated); initial sequence level c (measured wz = 1.076*c), pose +27 deg: final command after 12.4 sim-s
+  start command 0.50 (measured 0.54): final cmd median +1.00  -> locks to the bound
+  start command 0.60 (measured 0.65): final cmd median +1.00  -> locks to the bound
+  start command 0.70 (measured 0.75): final cmd median +1.00  -> locks to the bound
+  start command 0.80 (measured 0.86): final cmd median +1.00  -> locks to the bound
+  start command 0.85 (measured 0.91): final cmd median +1.00  -> locks to the bound
+  start command 0.90 (measured 0.97): final cmd median +1.00  -> locks to the bound
+  start command 0.93 (measured 1.00): final cmd median +1.00  -> locks to the bound
+  start command 0.95 (measured 1.02): final cmd median +1.00  -> locks to the bound
+  start command 1.00 (measured 1.08): final cmd median +1.00  -> locks to the bound
+
+Sweep C: 'rotating away' entry (pose +27 deg i.e. -27 deg error, sequence starts at +c, measured = gain*c), final command after 12.4 sim-s; locks = stays >0.8
+          real data at 0.5 m ring entry: e01 cmd +0.58 (locked), p01 cmd +0.14 (recovered), both with e=-18 deg, gain ~1.05-1.076
+  gain 1.076 start cmd 0.00: locked in 0/8 seeds; final cmd median +0.10
+  gain 1.076 start cmd 0.05: locked in 0/8 seeds; final cmd median +0.15
+  gain 1.076 start cmd 0.10: locked in 0/8 seeds; final cmd median +0.09
+  gain 1.076 start cmd 0.15: locked in 0/8 seeds; final cmd median -0.10
+  gain 1.076 start cmd 0.20: locked in 0/8 seeds; final cmd median -0.30
+  gain 1.076 start cmd 0.30: locked in 0/8 seeds; final cmd median -0.36
+  gain 1.076 start cmd 0.40: locked in 8/8 seeds; final cmd median +1.00
+  gain 1.076 start cmd 0.50: locked in 8/8 seeds; final cmd median +1.00
+  gain 0.980 start cmd 0.00: locked in 0/8 seeds; final cmd median +0.01
+  gain 0.980 start cmd 0.05: locked in 0/8 seeds; final cmd median +0.03
+  gain 0.980 start cmd 0.10: locked in 0/8 seeds; final cmd median +0.04
+  gain 0.980 start cmd 0.15: locked in 0/8 seeds; final cmd median +0.05
+  gain 0.980 start cmd 0.20: locked in 0/8 seeds; final cmd median +0.04
+  gain 0.980 start cmd 0.30: locked in 0/8 seeds; final cmd median -0.04
+  gain 0.980 start cmd 0.40: locked in 0/8 seeds; final cmd median -0.18
+  gain 0.980 start cmd 0.50: locked in 0/8 seeds; final cmd median -0.29

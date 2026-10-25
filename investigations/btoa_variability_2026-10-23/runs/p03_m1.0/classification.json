@@ -1,0 +1,26 @@
+{
+  "run": "p03_m1.0",
+  "criteria_file": "config/classification_criteria.yaml",
+  "run_status": "COMPLETED",
+  "nav2_status": "STATUS_SUCCEEDED",
+  "end_reason": "nav2_result",
+  "gt_final": {
+    "x": 0.0904222792780524,
+    "y": -0.14204601933717673,
+    "yaw": 0.017219588061797995,
+    "dist_xy_m": 0.03405205036865561,
+    "abs_yaw_err_rad": 0.017219588061797995
+  },
+  "gt_min_dist_m": 0.032684713961781055,
+  "flags": {
+    "spin_windows": 0,
+    "stall_windows": 0,
+    "spin_onset_t_goal_s": null,
+    "stall_onset_t_goal_s": null,
+    "max_abs_gt_wz_rad_s": 0.563
+  },
+  "watchdog_trigger": null,
+  "outcome": "SUCCESS",
+  "subtype": "gt_inside_tolerance",
+  "reason": "Nav2 SUCCEEDED"
+}

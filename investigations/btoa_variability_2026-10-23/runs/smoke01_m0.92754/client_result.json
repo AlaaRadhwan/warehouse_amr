@@ -1,0 +1,18 @@
+{
+  "goal": "staging_a",
+  "goal_xy_yaw": [
+    0.099,
+    -0.175,
+    0.0
+  ],
+  "sim_limit_s": 25.0,
+  "wall_limit_s": 330.0,
+  "post_trigger_s": 10.0,
+  "end_reason": "client_exception:TypeError",
+  "status": null,
+  "watchdog_trigger": null,
+  "sim_goal_sent": 104.33800000000001,
+  "wall_goal_sent": 1792749390.3356485,
+  "exception": "TypeError(\"'>=' not supported between instances of 'float' and 'str'\")",
+  "wall_finished": 1792749395.391718
+}

@@ -1,0 +1,11 @@
+--- top CPU at end
+%CPU %MEM COMMAND
+ 200  0.0 ps -eo pcpu,pmem,args --sort=-pcpu
+ 167  3.7 gz sim server
+ 124  1.5 /opt/ros/jazzy/lib/rviz2/rviz2 --ros-args --params-file /tmp/launch_params_y_o2dgb4
+91.1  0.4 /usr/bin/python3 /opt/ros/jazzy/bin/ros2 lifecycle get /planner_server
+37.2  0.4 /opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge --ros-args --params-file /tmp/launch_params_ovxqhr
+30.2  0.4 /opt/ros/jazzy/lib/nav2_planner/planner_server --ros-args --log-level info --ros-args -r __node:=pla
+26.7  0.4 /opt/ros/jazzy/lib/nav2_bt_navigator/bt_navigator --ros-args --log-level info --ros-args -r __node:=
+20.8  0.3 /opt/ros/jazzy/lib/nav2_behaviors/behavior_server --ros-args --log-level info --ros-args -r __node:=
+12.20 10.90 11.42 20/2373 50523

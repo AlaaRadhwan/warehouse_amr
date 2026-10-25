@@ -1,0 +1,30 @@
+{
+  "run": "e01_m1.0",
+  "criteria_file": "config/classification_criteria.yaml",
+  "run_status": "COMPLETED",
+  "nav2_status": "STATUS_CANCELED",
+  "end_reason": "watchdog:rotation_no_progress",
+  "gt_final": {
+    "x": 0.10968911349314865,
+    "y": -0.12963344320067358,
+    "yaw": 0.9512410894182527,
+    "dist_xy_m": 0.046608814864743366,
+    "abs_yaw_err_rad": 0.9512410894182527
+  },
+  "gt_min_dist_m": 0.006381290158020631,
+  "flags": {
+    "spin_windows": 10,
+    "stall_windows": 0,
+    "spin_onset_t_goal_s": 27.1,
+    "stall_onset_t_goal_s": null,
+    "max_abs_gt_wz_rad_s": 1.08
+  },
+  "watchdog_trigger": {
+    "rule": "rotation_no_progress",
+    "reason": "1.96 turns in 20s, 3.80 m progress (1.94 m/turn)",
+    "t_goal_sim": 41.24900000000001
+  },
+  "outcome": "SPIN",
+  "subtype": "terminal",
+  "reason": "10 window(s) with |mean wz| >= 0.8 rad/s; first onset 27.1 s after goal; mean wz +0.84 rad/s, min dist to goal in spin 0.01 m"
+}

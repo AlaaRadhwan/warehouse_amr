@@ -1,0 +1,13 @@
+--- top CPU at start (desktop/other load is a timing confounder)
+%CPU %MEM COMMAND
+ 100  0.0 ps -eo pcpu,pmem,args --sort=-pcpu
+12.8  1.8 /usr/bin/gnome-shell
+ 4.2  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 3.9  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 3.3  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 3.3  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 3.2  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 2.8  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+23.90 23.46 17.92 1/1185 69126
+               total        used        free      shared  buff/cache   available
+Mem:           15837        3237       10394          55        2588       12599

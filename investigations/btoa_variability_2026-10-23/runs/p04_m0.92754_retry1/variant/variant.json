@@ -1,0 +1,14 @@
+{
+  "multiplier": 0.92754,
+  "start_pose_station_b": {
+    "x": 8.716,
+    "y": 2.705,
+    "yaw": 0.0
+  },
+  "controllers_diff": [],
+  "sha256_16": {
+    "controllers.yaml": "2cdb5b0f9ef5f713",
+    "simulation.launch.py": "c9b5c4577e1120b5",
+    "bringup.launch.py": "de053e4274681c64"
+  }
+}

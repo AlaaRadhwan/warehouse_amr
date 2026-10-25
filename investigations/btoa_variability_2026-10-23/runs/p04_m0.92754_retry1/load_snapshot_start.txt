@@ -1,0 +1,13 @@
+--- top CPU at start (desktop/other load is a timing confounder)
+%CPU %MEM COMMAND
+14.5 18.2 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+11.3 15.4 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+10.7  1.7 /usr/bin/gnome-shell
+ 8.3  3.7 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+ 8.2  3.1 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+ 4.7  2.9 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+ 4.6  1.0 /opt/brave.com/brave/brave --type=gpu-process --ozone-platform=wayland --render-node-override=/dev/d
+ 4.5  3.3 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+8.12 10.14 11.15 1/1878 50739
+               total        used        free      shared  buff/cache   available
+Mem:           15837       11326        2751         149        2236        4510

@@ -1,0 +1,1 @@
+{"status":"INFRA_NAV2_BRINGUP_FAILED","detail":"lifecycle_manager_navigation: Failed to change state for node planner_server; bringup aborted; driver readiness probe hung (no timeout) for ~28 min; terminated manually"}

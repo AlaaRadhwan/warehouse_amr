@@ -1,0 +1,20 @@
+State at the first moment the robot is within 0.5 m of the goal (GoalAngleCritic switches ON), ground truth + MPPI command, all 10 valid runs.
+e = goal yaw - robot yaw (deg, + means CCW needed). 'rotating away' = sign(cmd wz) != sign(e) with |e|>15 deg and |cmd|>0.15.
+run                   arm      outcome  |  t(s)     e  cmd_wz  gt_wz    vx | max|cmd wz| in the next 15 s | zero-crossing of e BEFORE ring? (dist at crossing) | rotating away at entry
+e01_m1.0              1.0      SPIN     |  31.4   -18   +0.58  +0.59 -0.27 |  1.00                       | yes (0.64 m)                                  | YES
+p01_m1.0              1.0      SUCCESS  |  36.7   -18   +0.14  +0.20 -0.28 |  0.27                       | yes (0.80 m)                                  | no
+p03_m1.0              1.0      SUCCESS  |  35.0    36   +0.44  +0.45 -0.13 |  0.44                       | no                                            | no
+e05_m1.0              1.0      SUCCESS  |  37.0     2   +0.37  +0.44 -0.24 |  0.37                       | no                                            | no
+e03_m1.0_retry1       1.0      SUCCESS  |  37.1    -5   -0.12  -0.13 -0.32 |  0.12                       | no                                            | no
+p02_m0.92754          0.92754  SUCCESS  |  44.0    -5   +0.24  +0.29 -0.26 |  0.24                       | yes (0.57 m)                                  | no
+p04_m0.92754_retry1   0.92754  SUCCESS  |  54.0    -3   -0.23  -0.26 -0.32 |  0.23                       | no                                            | no
+p06_m0.92754          0.92754  SUCCESS  |  54.2   -22   -0.29  -0.31 -0.30 |  0.29                       | no                                            | no
+e02_m0.92754          0.92754  SUCCESS  |  54.6    -4   -0.17  -0.19 -0.33 |  0.16                       | no                                            | no
+e04_m0.92754          0.92754  SUCCESS  |  40.9   -10   +0.03  +0.09 -0.31 |  0.21                       | yes (0.91 m)                                  | no
+
+Footprint vs recorded local costmap at the spin pose (CostCritic only penalises near-collision/collision once within 1.0 m of the goal; OccupancyGrid value 100 = lethal, ~99 = inscribed):
+  t=38 s: max costmap value under the footprint over 72 yaw angles = 74 (of 100)
+  t=42 s: max costmap value under the footprint over 72 yaw angles = 63 (of 100)
+  t=45 s: max costmap value under the footprint over 72 yaw angles = 67 (of 100)
+  t=48 s: max costmap value under the footprint over 72 yaw angles = 62 (of 100)
+  t=51 s: max costmap value under the footprint over 72 yaw angles = 55 (of 100)

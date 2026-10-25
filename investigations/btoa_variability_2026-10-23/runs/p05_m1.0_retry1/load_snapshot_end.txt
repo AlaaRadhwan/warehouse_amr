@@ -1,0 +1,11 @@
+--- top CPU at end
+%CPU %MEM COMMAND
+16.9  1.2 /opt/ros/jazzy/lib/rviz2/rviz2 --ros-args --params-file /tmp/launch_params_8hrpryub
+14.2 14.9 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+11.2  1.8 /usr/bin/gnome-shell
+10.9 15.6 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+ 8.0  3.2 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+ 8.0  3.8 /opt/brave.com/brave/brave --type=renderer --crashpad-handler-pid=3834 --enable-crash-reporter=c93ee
+ 5.4  0.4 /opt/ros/jazzy/lib/nav2_planner/planner_server --ros-args --log-level info --ros-args -r __node:=pla
+ 4.6  1.1 /opt/brave.com/brave/brave --type=gpu-process --ozone-platform=wayland --render-node-override=/dev/d
+1.50 7.76 10.60 5/2074 55950

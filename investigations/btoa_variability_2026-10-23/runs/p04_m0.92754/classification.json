@@ -1,0 +1,10 @@
+{
+  "run": "p04_m0.92754",
+  "criteria_file": "config/classification_criteria.yaml",
+  "run_status": "INFRA_NAV2_BRINGUP_FAILED",
+  "nav2_status": null,
+  "end_reason": null,
+  "outcome": "INCONCLUSIVE",
+  "subtype": "infrastructure:INFRA_NAV2_BRINGUP_FAILED",
+  "reason": "run did not reach a recorded goal"
+}

@@ -1,0 +1,77 @@
+/diff_drive_controller:
+  ros__parameters:
+    angular:
+      z:
+        has_acceleration_limits: true
+        has_jerk_limits: true
+        has_velocity_limits: true
+        max_acceleration: 1.5
+        max_acceleration_reverse: .nan
+        max_deceleration: .nan
+        max_deceleration_reverse: .nan
+        max_jerk: .nan
+        max_velocity: 1.2
+        min_acceleration: -1.5
+        min_jerk: .nan
+        min_velocity: -1.2
+    base_frame_id: base_footprint
+    cmd_vel_timeout: 0.5
+    enable_odom_tf: false
+    is_async: false
+    left_wheel_names:
+    - left_wheel_joint
+    left_wheel_radius_multiplier: 1.0
+    linear:
+      x:
+        has_acceleration_limits: true
+        has_jerk_limits: true
+        has_velocity_limits: true
+        max_acceleration: 0.8
+        max_acceleration_reverse: .nan
+        max_deceleration: .nan
+        max_deceleration_reverse: .nan
+        max_jerk: .nan
+        max_velocity: 1.0
+        min_acceleration: .nan
+        min_jerk: .nan
+        min_velocity: -1.0
+    odom_frame_id: odom
+    open_loop: false
+    pose_covariance_diagonal:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    position_feedback: true
+    publish_limited_velocity: true
+    publish_rate: 50.0
+    qos_overrides:
+      /clock:
+        subscription:
+          depth: 1
+          durability: volatile
+          history: keep_last
+          reliability: best_effort
+    right_wheel_names:
+    - right_wheel_joint
+    right_wheel_radius_multiplier: 1.0
+    start_type_description_service: true
+    tf_frame_prefix: ''
+    tf_frame_prefix_enable: true
+    thread_priority: -100
+    twist_covariance_diagonal:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    update_rate: 100
+    use_sim_time: true
+    velocity_rolling_window_size: 10
+    wheel_radius: 0.1
+    wheel_separation: 0.69
+    wheel_separation_multiplier: 1.0
+

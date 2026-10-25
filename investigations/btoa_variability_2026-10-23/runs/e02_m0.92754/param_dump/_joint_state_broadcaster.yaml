@@ -1,0 +1,26 @@
+/joint_state_broadcaster:
+  ros__parameters:
+    extra_joints: []
+    frame_id: base_link
+    interfaces: []
+    is_async: false
+    joints: []
+    map_interface_to_joint_state:
+      effort: effort
+      position: position
+      velocity: velocity
+    publish_dynamic_joint_states: true
+    qos_overrides:
+      /clock:
+        subscription:
+          depth: 1
+          durability: volatile
+          history: keep_last
+          reliability: best_effort
+    start_type_description_service: true
+    thread_priority: -100
+    update_rate: 100
+    use_local_topics: false
+    use_sim_time: true
+    use_urdf_to_filter: true
+

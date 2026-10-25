@@ -1,0 +1,6 @@
+free on /home: 9 GB
+ready after ~40 s wall
+['wheel_separation_multiplier: 0.92754']
+client exit: 0
+sim processes: clean
+/home/alaa-radhwan/Projects/warehouse_amr/investigations/btoa_variability_2026-10-23/scripts/run_experiment.sh: line 17: 60943 Killed                  setsid nohup ros2 launch "$RUN/variant/bringup.launch.py" > "$RUN/launch.log" 2>&1

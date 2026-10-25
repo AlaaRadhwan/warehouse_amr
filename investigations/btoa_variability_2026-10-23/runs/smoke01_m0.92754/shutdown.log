@@ -1,0 +1,6 @@
+bag metadata missing -> reindex
+[INFO] [1792749442.227706612] [rosbag2_cpp]: Beginning reindexing bag in directory: "/home/alaa-radhwan/Projects/warehouse_amr/investigations/btoa_variability_2026-10-23/runs/smoke01_m0.92754/bag"
+[WARN] [1792749442.236492842] [rosbag2_storage_mcap]: attempted to read in receive timestamp order with no message index
+[WARN] [1792749442.236526715] [rosbag2_cpp]: Could not set read order on open(), falling back to file order
+[INFO] [1792749442.246998156] [rosbag2_cpp]: Reindexing complete.
+sim processes: clean

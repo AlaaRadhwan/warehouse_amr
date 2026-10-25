@@ -1,0 +1,10 @@
+{
+  "run": "p05_m1.0_retry1",
+  "criteria_file": "config/classification_criteria.yaml",
+  "run_status": "INFRA_NOT_READY",
+  "nav2_status": null,
+  "end_reason": null,
+  "outcome": "INCONCLUSIVE",
+  "subtype": "infrastructure:INFRA_NOT_READY",
+  "reason": "run did not reach a recorded goal"
+}

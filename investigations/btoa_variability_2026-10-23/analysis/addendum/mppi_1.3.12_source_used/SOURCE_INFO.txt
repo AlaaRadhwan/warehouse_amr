@@ -1,0 +1,4 @@
+commit 6be3614013ec586051b86c97b919b293281490fe (tag 1.3.12)
+Upstream: https://github.com/ros-navigation/navigation2  tag 1.3.12 (commit 6be3614013ec586051b86c97b919b293281490fe), package nav2_mppi_controller.
+Installed locally: ros-jazzy-nav2-mppi-controller 1.3.12-1noble.20260615.165555 (binaries only).  Files here are read-only reference copies (Apache-2.0, upstream); nothing was built or executed.
+Also checked: /usr/include/xtensor/xrandom.hpp (libxtensor-dev 0.25.0): get_default_random_engine() returns `static default_engine_type mt;` (std::mt19937, default-constructed => fixed seed); MPPI never calls xt::random::seed.

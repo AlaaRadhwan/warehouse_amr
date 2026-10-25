@@ -1,0 +1,3 @@
+{"kind": "goal_sent", "wall": 1792749923.4470518, "sim": 115.992}
+{"kind": "goal_accepted", "wall": 1792749923.4485862, "sim": 115.99350000000001}
+{"kind": "finished", "wall": 1792750005.1523564, "status": "STATUS_SUCCEEDED", "reason": "nav2_result"}

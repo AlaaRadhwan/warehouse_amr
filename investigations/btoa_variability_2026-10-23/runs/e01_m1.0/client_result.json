@@ -1,0 +1,32 @@
+{
+  "goal": "staging_a",
+  "goal_xy_yaw": [
+    0.099,
+    -0.175,
+    0.0
+  ],
+  "sim_limit_s": 120.0,
+  "wall_limit_s": 330.0,
+  "post_trigger_s": 10.0,
+  "end_reason": "watchdog:rotation_no_progress",
+  "status": "STATUS_CANCELED",
+  "watchdog_trigger": {
+    "rule": "rotation_no_progress",
+    "reason": "1.96 turns in 20s, 3.80 m progress (1.94 m/turn)",
+    "t_goal_sim": 41.24900000000001
+  },
+  "sim_goal_sent": 63.205000000000005,
+  "wall_goal_sent": 1792753465.5074701,
+  "error_code": 0,
+  "error_msg": "",
+  "sim_duration_s": 51.271,
+  "wall_duration_s": 82.50792479515076,
+  "last_feedback": {
+    "x": 0.11290447567060902,
+    "y": -0.1436378391534623,
+    "yaw": 0.9016200264663464,
+    "distance_remaining": 0.0,
+    "recoveries": 0
+  },
+  "wall_finished": 1792753548.0173166
+}

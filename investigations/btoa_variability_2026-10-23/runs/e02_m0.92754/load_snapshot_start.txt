@@ -1,0 +1,13 @@
+--- top CPU at start (desktop/other load is a timing confounder)
+%CPU %MEM COMMAND
+ 100  0.0 ps -eo pcpu,pmem,args --sort=-pcpu
+11.8  1.7 /usr/bin/gnome-shell
+ 3.3  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 2.4  0.3 /usr/bin/Xwayland :0 -rootless -noreset -accessx -core -auth /run/user/1000/.mutter-Xwaylandauth.HXF
+ 2.2  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 2.0  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+ 2.0  0.0 /bin/bash /home/alaa-radhwan/Projects/warehouse_amr/investigations/btoa_variability_2026-10-23/scrip
+ 2.0  0.5 /usr/bin/python3 /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/lib/amr_missions/mis
+14.83 14.09 12.48 1/1119 60919
+               total        used        free      shared  buff/cache   available
+Mem:           15837        2930       10815          50        2470       12906

@@ -1,0 +1,11 @@
+--- top CPU at end
+%CPU %MEM COMMAND
+ 158  3.7 gz sim server
+ 134  4.4 gz sim gui
+34.5  1.3 /opt/ros/jazzy/lib/rviz2/rviz2 --ros-args --params-file /tmp/launch_params_jrovlvzx
+34.2  0.4 /opt/ros/jazzy/lib/nav2_controller/controller_server --ros-args --log-level info --ros-args -p use_s
+33.8  0.4 /opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge --ros-args --params-file /tmp/launch_params_5x4a_n
+33.3  0.5 /opt/ros/jazzy/lib/nav2_planner/planner_server --ros-args --log-level info --ros-args -r __node:=pla
+32.3  0.5 /opt/ros/jazzy/lib/nav2_bt_navigator/bt_navigator --ros-args --log-level info --ros-args -r __node:=
+26.0  0.3 /opt/ros/jazzy/lib/nav2_lifecycle_manager/lifecycle_manager --ros-args --log-level info --ros-args -
+21.06 16.70 10.31 18/2341 39994

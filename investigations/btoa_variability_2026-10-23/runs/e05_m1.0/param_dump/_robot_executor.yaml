@@ -1,0 +1,6 @@
+/robot_executor:
+  ros__parameters:
+    start_type_description_service: true
+    stations_file: /home/alaa-radhwan/Projects/warehouse_amr/install/amr_missions/share/amr_missions/config/stations.yaml
+    use_sim_time: false
+

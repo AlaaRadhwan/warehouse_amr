@@ -1,0 +1,28 @@
+{
+  "goal": "staging_a",
+  "goal_xy_yaw": [
+    0.099,
+    -0.175,
+    0.0
+  ],
+  "sim_limit_s": 120.0,
+  "wall_limit_s": 330.0,
+  "post_trigger_s": 10.0,
+  "end_reason": "nav2_result",
+  "status": "STATUS_SUCCEEDED",
+  "watchdog_trigger": null,
+  "sim_goal_sent": 124.668,
+  "wall_goal_sent": 1792750202.3071957,
+  "error_code": 0,
+  "error_msg": "",
+  "sim_duration_s": 50.657,
+  "wall_duration_s": 72.79233694076538,
+  "last_feedback": {
+    "x": 0.03149781665299578,
+    "y": -0.13000005194340059,
+    "yaw": 0.05372621414997448,
+    "distance_remaining": 0.3699365556240082,
+    "recoveries": 0
+  },
+  "wall_finished": 1792750275.1012788
+}
