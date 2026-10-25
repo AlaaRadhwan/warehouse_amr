@@ -27,3 +27,21 @@ rosbag2_*/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Secrets safety net
+.env
+*.pem
+*.key
+
+# Investigation data kept locally but not versioned (see docs/DATA_MANIFEST.md)
+# Derived from the local bags by investigations/*/scripts/extract.py and analyze_run.py
+investigations/*/runs/*/extracted.pkl.gz
+investigations/*/analysis/addendum/series.pkl
+investigations/*/analysis/*/metrics.json
+# Superseded scratch calibration runs (documented in the calibration reports)
+calibration/**/*_SUPERSEDED_*/
+# Duplicate archives of directories that are committed
+Findings/Warehouse_AMR_Investigation_Report_and_Figures.zip
+calibration/yaw_rate_sysid/runs/*.zip
+# Verbose repetitive action-client feedback log
+debug/*/action_client.log
