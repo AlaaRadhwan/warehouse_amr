@@ -1,0 +1,1 @@
+multiplier: Double value is: 0.92754

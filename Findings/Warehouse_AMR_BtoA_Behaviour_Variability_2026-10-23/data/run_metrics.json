@@ -1,0 +1,100 @@
+{
+  "A": {
+    "gt_span_s": 88.3,
+    "samples": 9216,
+    "t_dist_lt_1m": 37.5,
+    "t_dist_lt_0.25m": 40.1,
+    "t_dist_lt_0.10m": 41.1,
+    "min_dist_m": 0.002,
+    "t_min_dist": 60.6,
+    "final_xy": [
+      0.103,
+      -0.127
+    ],
+    "final_dist_m": 0.048,
+    "final_yaw_deg": 115.6,
+    "total_rotation_deg": 3356,
+    "path_len_m": 10.5,
+    "max_abs_wz_rad_s": 1.08,
+    "last20s_mean_abs_wz": 1.079,
+    "last20s_signed_mean_wz": 1.079,
+    "last20s_xy_range_m": 0.042,
+    "last20s_yaw_change_deg": 1236,
+    "passing_new_path": 147,
+    "control_loop_missed_rate": 0,
+    "failed_to_make_progress": 0,
+    "local_costmap_clear_requests": 0,
+    "dir": "B1_atB_mult1.0_A_spin",
+    "label": "A  mult 1.0, spin",
+    "client": "no result json (client killed by 150 s wall-clock cap)"
+  },
+  "B": {
+    "gt_span_s": 85.9,
+    "samples": 9211,
+    "t_dist_lt_1m": 36.6,
+    "t_dist_lt_0.25m": null,
+    "t_dist_lt_0.10m": null,
+    "min_dist_m": 0.513,
+    "t_min_dist": 82.3,
+    "final_xy": [
+      0.496,
+      -0.543
+    ],
+    "final_dist_m": 0.541,
+    "final_yaw_deg": -116.5,
+    "total_rotation_deg": 244,
+    "path_len_m": 10.3,
+    "max_abs_wz_rad_s": 0.363,
+    "last20s_mean_abs_wz": 0.033,
+    "last20s_signed_mean_wz": 0.001,
+    "last20s_xy_range_m": 0.147,
+    "last20s_yaw_change_deg": 1,
+    "passing_new_path": 149,
+    "control_loop_missed_rate": 1,
+    "failed_to_make_progress": 1,
+    "local_costmap_clear_requests": 1,
+    "dir": "B2_atB_mult0.92754_B_stall",
+    "label": "B  mult 0.92754, stall",
+    "client": "no result json (client killed by 150 s wall-clock cap)"
+  },
+  "C": {
+    "gt_span_s": 47.7,
+    "samples": 4853,
+    "t_dist_lt_1m": 35.7,
+    "t_dist_lt_0.25m": 41.6,
+    "t_dist_lt_0.10m": 42.5,
+    "min_dist_m": 0.005,
+    "t_min_dist": 43.4,
+    "final_xy": [
+      0.064,
+      -0.171
+    ],
+    "final_dist_m": 0.035,
+    "final_yaw_deg": -4.2,
+    "total_rotation_deg": 356,
+    "path_len_m": 9.7,
+    "max_abs_wz_rad_s": 0.602,
+    "last20s_mean_abs_wz": 0.199,
+    "last20s_signed_mean_wz": 0.132,
+    "last20s_xy_range_m": 4.306,
+    "last20s_yaw_change_deg": 147,
+    "passing_new_path": 67,
+    "control_loop_missed_rate": 0,
+    "failed_to_make_progress": 0,
+    "local_costmap_clear_requests": 0,
+    "dir": "B3_atB_mult1.0_C_success",
+    "label": "C  mult 1.0, success",
+    "client": {
+      "status": "STATUS_SUCCEEDED",
+      "sim_duration_s": 40.3605,
+      "min_dist_to_goal_xy": 0.06007368966027549,
+      "last_feedback": {
+        "x": 0.058907133519660704,
+        "y": -0.24317506893154217,
+        "yaw": -0.0637341850319867,
+        "distance_remaining": 0.3696739673614502,
+        "recoveries": 0
+      }
+    }
+  }
+}
