@@ -1,0 +1,203 @@
+# B -> A navigation analysis: 20261022_130027_control_runtime_multiplier_1.0
+
+Result: **STATUS_SUCCEEDED** after 61.8 sim-s (112 wall-s); watchdog abort: None
+
+```json
+{
+ "result": {
+  "status": "STATUS_SUCCEEDED",
+  "abort_reason": null,
+  "sim_duration_s": 61.75749999999999,
+  "wall_duration_s": 112.03745555877686,
+  "min_dist_to_goal_xy": 0.07821064348464436,
+  "error_code": 0,
+  "error_msg": ""
+ },
+ "frame_check": {
+  "nav2_estimate_minus_ground_truth_xy": {
+   "mean_m": 0.05005580206186897,
+   "max_m": 0.16608069925761235,
+   "final_m": 0.049638727770517144
+  },
+  "feedback_xy": [
+   0.23169239477067105,
+   -0.1470901122068844
+  ],
+  "gt_xy": [
+   0.22889125831680524,
+   -0.0968572848839455
+  ],
+  "feedback_yaw": -0.05333310184501104,
+  "gt_yaw": -0.058323121668294675
+ },
+ "first_within_1m_s_after_goal": 31.176000000000002,
+ "near_goal": {
+  "time_in_zone_s": 34.48899999999999,
+  "max_abs_gt_wz": 0.40201245069876795,
+  "time_abs_wz_gt_0p5_s": 0.0,
+  "total_rotation_deg": 256.5315591547544,
+  "signed_net_rotation_deg": 144.79799475735405
+ },
+ "near_goal_cmd_vx_sign_changes": 5,
+ "near_goal_cmd_vx_min_max": [
+  -0.22324660420417786,
+  0.13389599323272705
+ ],
+ "near_goal_cmd_wz_min_max": [
+  -0.20976677536964417,
+  0.41019707918167114
+ ],
+ "near_goal_cmd_wz_mean_abs": 0.14413571997610697,
+ "final_gt": {
+  "x": 0.2280439016390446,
+  "y": -0.09681095379321755,
+  "dist_xy": 0.1508835825958337,
+  "yaw_err_deg": -3.151119704226438,
+  "v": 0.0,
+  "wz": 0.0
+ },
+ "checker_conditions_first_met_s_after_goal": 61.59899999999999,
+ "checker_conditions_met_fraction_after_first": 1.0,
+ "at_result": {
+  "gt_v": 0.01631570726872051,
+  "gt_wz": 0.058754000260187164,
+  "dist_xy": 0.15167951240024885,
+  "yaw_err_deg": -3.3607365310869644
+ },
+ "yaw_rate_ratio_to_gt_when_|wz|>0.2": {
+  "raw_wheel_odom": 1.0133874993722678,
+  "fused_odom": 1.011156088455319,
+  "imu": 1.011116490274232,
+  "cmd_vel": 1.0170565873928878,
+  "cmd_vel_nav": 1.0170781240862772
+ },
+ "cmd_wz_abs_max": {
+  "cmd_vel_nav": 0.4356476664543152,
+  "cmd_vel_smoothed": 0.4356476664543152,
+  "cmd_vel": 0.4356476664543152,
+  "controller_out": 0.4356476664543152
+ },
+ "plans": {
+  "/unsmoothed_plan": {
+   "count": 109,
+   "first": {
+    "t": 0.007499999999993179,
+    "n": 187,
+    "length": 9.589345774851719,
+    "cusps": 2,
+    "rot_only": 16,
+    "reverse_frac": 0.23529411764705882,
+    "end": [
+     0.09899944151936779,
+     -0.17500077104568845
+    ],
+    "end_yaw": 0.0
+   },
+   "last": {
+    "t": 61.31100000000001,
+    "n": 7,
+    "length": 0.3798001116854667,
+    "cusps": 1,
+    "rot_only": 0,
+    "reverse_frac": 0.5,
+    "end": [
+     0.14179271608281852,
+     -0.16760025824009972
+    ],
+    "end_yaw": 0.0
+   },
+   "max_length": 10.006107688310014,
+   "max_cusps": 2,
+   "msgs_with_cusp": 102,
+   "msgs_with_reverse": 109,
+   "max_rot_only_poses": 18,
+   "single_pose_msgs": 0
+  },
+  "/plan": {
+   "count": 109,
+   "first": {
+    "t": 0.009000000000000341,
+    "n": 187,
+    "length": 9.641819857599952,
+    "cusps": 2,
+    "rot_only": 14,
+    "reverse_frac": 0.23837209302325582,
+    "end": [
+     0.09899944151936779,
+     -0.17500077104568845
+    ],
+    "end_yaw": 0.0
+   },
+   "last": {
+    "t": 61.31100000000001,
+    "n": 7,
+    "length": 0.3798001116854667,
+    "cusps": 1,
+    "rot_only": 0,
+    "reverse_frac": 0.5,
+    "end": [
+     0.14179271608281852,
+     -0.16760025824009972
+    ],
+    "end_yaw": 0.0
+   },
+   "max_length": 9.97986708372995,
+   "max_cusps": 2,
+   "msgs_with_cusp": 102,
+   "msgs_with_reverse": 109,
+   "max_rot_only_poses": 16,
+   "single_pose_msgs": 0
+  },
+  "/transformed_global_plan": {
+   "count": 2240,
+   "first": {
+    "t": 0.018000000000000682,
+    "n": 58,
+    "length": 2.4559469116281405,
+    "cusps": 1,
+    "rot_only": 7,
+    "reverse_frac": 0.26,
+    "end": [
+     14.090676042593362,
+     1.303856903827724
+    ],
+    "end_yaw": -2.851767256198295
+   },
+   "last": {
+    "t": 61.72900000000001,
+    "n": 2,
+    "length": 0.04778321333770963,
+    "cusps": 0,
+    "rot_only": 0,
+    "reverse_frac": 1.0,
+    "end": [
+     7.776177145106945,
+     -1.546465299802254
+    ],
+    "end_yaw": 0.04221538275183223
+   },
+   "max_length": 2.4995203428937898,
+   "max_cusps": 1,
+   "msgs_with_cusp": 375,
+   "msgs_with_reverse": 1033,
+   "max_rot_only_poses": 11,
+   "single_pose_msgs": 0
+  }
+ },
+ "transformed_plan": {
+  "frame": "odom (goal mapped via end-of-run /odom minus feedback offset)",
+  "end_within_015m_frac_all": 0.184375,
+  "end_within_015m_frac_in_1m_zone": 0.3566243194192377,
+  "end_dist_to_goal_max_in_zone": 1.0720126843592426,
+  "single_pose_frac_in_zone": 0.0,
+  "msgs_with_cusp_in_zone": 83,
+  "msgs_in_zone": 1102
+ },
+ "optimal_trajectory_pred_yaw_change_deg": {
+  "n": 2240,
+  "mean_abs": 28.84654425879935,
+  "last10_mean_abs": 7.948368123514345
+ },
+ "feedback_trace_samples": 62
+}
+```

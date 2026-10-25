@@ -1,0 +1,24 @@
+# Test-harness watchdog thresholds (nav_watchdog.py).  Observation only: no Nav2/MPPI parameter is read or written.
+# Justification data: calibrated B->A runs (n=3) peak |cmd wz| 0.43 rad/s, worst in-place correction 171 deg
+# (0.48 turn) in ~15 s at <=0.36 rad/s; uncalibrated control pinned wz at 1.00 for ~55 s, 9.7 turns, 5-7.7 m from goal.
+# See reports/watchdog_design.md.
+wz_max: 1.0              # MPPI wz_max (nav2_params.yaml). Keep equal to it.
+sat_wz_frac: 0.9         # "saturated" = |wz| >= 0.9*wz_max = 0.9 rad/s; legit runs never exceeded 0.45
+sat_window: 8.0          # s. A legit in-place turn at saturation (pi rad at 1 rad/s) takes ~3.2 s; 8 s is >2x that
+sat_fraction: 0.8        # fraction of the window that must be saturated with the same sign
+sat_min_m_per_turn: 2.0  # m of net goal progress per turn of rotation below which saturation is "going nowhere"
+rot_window: 20.0         # s
+rot_max_turns: 1.0       # accumulated |yaw change| in the window. Legit worst case 0.48 turn; two pi-turns back to back = 1.0
+rot_min_m_per_turn: 2.0 # m/turn. Control spun 0.3-1.0 m/turn; nominal driving is >>2 m per turn of rotation
+dither_wz: 0.3           # only count wz excursions larger than this
+dither_window: 20.0
+dither_reversals: 6      # >=6 left/right reversals in 20 s with no progress = oscillation (a cusp turn is 1-2)
+dither_min_progress: 0.3
+stall_window: 45.0       # s. Longest legit no-progress phase seen: Nav2 spin/backup recovery, <15 s
+stall_min_progress: 0.3  # m
+goal_xy_tol: 0.25        # m = StoppedGoalChecker xy_goal_tolerance (do not change independently)
+settle_timeout: 30.0     # s inside xy tolerance without success. Calibrated runs settled in <=15 s from entering 1 m
+max_recoveries: 4
+timeout: 240.0           # s overall
+grace: 3.0               # s after goal acceptance (planner/controller start-up)
+min_dt: 0.1

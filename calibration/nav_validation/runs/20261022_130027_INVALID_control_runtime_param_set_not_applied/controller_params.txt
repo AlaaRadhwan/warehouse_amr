@@ -1,0 +1,5 @@
+wheel_separation: Double value is: 0.69
+wheel_separation_multiplier: Double value is: 0.92754
+wheel_radius: Double value is: 0.1
+Set parameter successful
+RUNTIME OVERRIDE wheel_separation_multiplier=1.0 -> Double value is: 1.0

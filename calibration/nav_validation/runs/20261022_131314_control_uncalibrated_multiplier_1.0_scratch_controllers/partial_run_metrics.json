@@ -1,0 +1,40 @@
+{
+  "sim_s_recorded_after_goal": 68.94449999999999,
+  "min_dist_to_goal": 5.033296673223789,
+  "final_dist": 5.033296673223789,
+  "final_yaw_err_deg": -159.53727477262188,
+  "yaw_rate_ratio_to_gt": {
+    "raw_wheel_odom": 0.9449640403487455,
+    "fused": 1.0005887722337337,
+    "imu": 1.0013616557113347,
+    "cmd_vel": 0.9466502339409634
+  },
+  "cmd_wz_abs_max": 1.003669023513794,
+  "nav_wz_abs_max": 1.003669023513794,
+  "within_1.0m": {
+    "time_s": 0.0,
+    "total_rotation_deg": 0.0,
+    "max_abs_gt_wz": 0.0
+  },
+  "within_1.5m": {
+    "time_s": 0.0,
+    "total_rotation_deg": 0.0,
+    "max_abs_gt_wz": 0.0
+  },
+  "within_3.0m": {
+    "time_s": 0.0,
+    "total_rotation_deg": 0.0,
+    "max_abs_gt_wz": 0.0
+  },
+  "longest_continuous_|gt_wz|>0.5_s": 57.292749999999984,
+  "time_|cmd_wz|>0.9_s": 54.976,
+  "total_rotation_deg_whole_run": 3491.311702947691,
+  "last_30s": {
+    "mean_gt_wz": 1.0584758316546912,
+    "mean_abs_cmd_wz": 0.9961074558725984,
+    "dist_range_m": [
+      5.033296673223789,
+      6.253162337839149
+    ]
+  }
+}
