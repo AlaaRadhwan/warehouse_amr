@@ -1,0 +1,14 @@
+# EXPERIMENTAL overlay (branch experiment/navfn-mppi-evaluation): NavFn global planner.
+# Selected with  planner:=navfn  in amr_bringup/simulation_navigation.launch.py.
+# Deep-merged over nav2_params.yaml; the baseline file is not modified.
+# NavFn facts (Nav2 1.3.12 source): circular-robot assumption (footprint ignored in the
+# potential field), intermediate path poses carry yaw 0, only the last pose carries the
+# goal orientation (use_final_approach_orientation=false).
+planner_server:
+  ros__parameters:
+    GridBased:
+      plugin: "nav2_navfn_planner::NavfnPlanner"
+      tolerance: 0.10          # same as the lattice setting
+      use_astar: false         # Dijkstra expansion (NavFn default)
+      allow_unknown: true      # same as the lattice setting
+      use_final_approach_orientation: false

@@ -5,9 +5,13 @@ import tempfile
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import (
+    DeclareLaunchArgument,
+    IncludeLaunchDescription,
+    OpaqueFunction,
+)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.substitutions import LaunchConfiguration
 
 from nav2_common.launch import RewrittenYaml
 
@@ -104,7 +108,7 @@ def create_dock_database(station_data):
 
     return database_file.name
 
-def generate_launch_description():
+def _launch_setup(context):
 
     # ---------------------------------------------------------
     # Package paths
@@ -142,7 +146,7 @@ def generate_launch_description():
 
     # structured_routing:=true makes the robot executor send its station
     # goals with the route-following behavior tree (default: unchanged).
-    structured_routing = LaunchConfiguration("structured_routing")
+    structured_routing = LaunchConfiguration("structured_routing").perform(context)
 
     lattice_file = os.path.join(
         navigation_share,
@@ -203,6 +207,55 @@ def generate_launch_description():
         "config",
         "nav2_params.yaml",
     )
+
+    # ---------------------------------------------------------
+    # Experimental profiles (defaults reproduce the baseline exactly)
+    #   planner:=lattice|navfn
+    #   mppi_path_interpretation:=baseline|2d
+    # ---------------------------------------------------------
+    planner_profile = LaunchConfiguration("planner").perform(context)
+    mppi_profile = LaunchConfiguration(
+        "mppi_path_interpretation").perform(context)
+
+    overlays = {
+        ("planner", "lattice"): None,
+        ("planner", "navfn"): "planner_navfn.yaml",
+        ("mppi_path_interpretation", "baseline"): None,
+        ("mppi_path_interpretation", "2d"): "mppi_2d_paths.yaml",
+        ("mppi_path_interpretation", "2d_forward_only"):
+            ["mppi_2d_paths.yaml", "mppi_forward_only.yaml"],
+    }
+
+    for key in (("planner", planner_profile),
+                ("mppi_path_interpretation", mppi_profile)):
+        if key not in overlays:
+            raise RuntimeError(f"Invalid launch option {key[0]}:={key[1]}")
+
+    with open(nav2_params_file, "r") as file:
+        merged_params = yaml.safe_load(file)
+
+    for key in (("planner", planner_profile),
+                ("mppi_path_interpretation", mppi_profile)):
+        overlay = overlays[key]
+        if isinstance(overlay, str):
+            overlay = [overlay]
+        for overlay_file in overlay or []:
+            with open(os.path.join(
+                    navigation_share, "config", "profiles",
+                    overlay_file)) as f:
+                _deep_merge(merged_params, yaml.safe_load(f))
+
+    if planner_profile != "lattice" or mppi_profile != "baseline":
+        merged_file = tempfile.NamedTemporaryFile(
+            mode="w", prefix="warehouse_amr_nav2_params_",
+            suffix=".yaml", delete=False)
+        yaml.safe_dump(merged_params, merged_file, sort_keys=False)
+        merged_file.close()
+        nav2_params_file = merged_file.name
+        print(f"[simulation_navigation] EXPERIMENTAL profile: "
+              f"planner={planner_profile}, "
+              f"mppi_path_interpretation={mppi_profile}, "
+              f"params={nav2_params_file}")
 
     configured_nav2_params = RewrittenYaml(
         source_file=nav2_params_file,
@@ -291,20 +344,43 @@ def generate_launch_description():
             )
         ),
         launch_arguments={
-            "navigation_behavior_tree": PythonExpression([
-                "'", route_bt_file, "' if '",
-                structured_routing, "' == 'true' else ''",
-            ]),
+            "navigation_behavior_tree":
+                route_bt_file if structured_routing == "true" else "",
         }.items(),
     )
 
+    return [
+        simulation,
+        navigation,
+        robot_executor,
+    ]
+
+
+def _deep_merge(base, overlay):
+    for key, value in overlay.items():
+        if isinstance(value, dict) and isinstance(base.get(key), dict):
+            _deep_merge(base[key], value)
+        else:
+            base[key] = value
+
+
+def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
             "structured_routing",
             default_value="false",
             description="Use the warehouse route graph for station navigation",
         ),
-        simulation,
-        navigation,
-        robot_executor,
+        DeclareLaunchArgument(
+            "planner",
+            default_value="lattice",
+            description="EXPERIMENTAL: global planner profile (lattice|navfn)",
+        ),
+        DeclareLaunchArgument(
+            "mppi_path_interpretation",
+            default_value="baseline",
+            description="EXPERIMENTAL: MPPI path-orientation settings "
+                        "(baseline|2d|2d_forward_only)",
+        ),
+        OpaqueFunction(function=_launch_setup),
     ])

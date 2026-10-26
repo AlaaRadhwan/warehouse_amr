@@ -12,7 +12,9 @@
   Apache-2.0) adapted to the node set available in Nav2 Jazzy 1.3.12.
 
   Blackboard distances: first mile <= 0.3 m is skipped (robot is on the node);
-  first/last mile between 0.3 m and 1.5 m uses the lattice planner; beyond 1.5 m fails.
+  first mile between 0.3 m and 2.5 m (the Route Server prunes a start node the robot has already passed,
+  so the first path pose can be up to one robot-length-plus beyond the nearest node) and last mile between 0.1 m and 1.5 m
+  use the configured global planner (GridBased); beyond that the tree fails.
 -->
 <root BTCPP_format="4" main_tree_to_execute="NavigateOnWarehouseRoute">
   <BehaviorTree ID="NavigateOnWarehouseRoute">
@@ -41,7 +43,7 @@
                   <ArePosesNear ref_pose="{current_pose}" target_pose="{route_start_pose}" tolerance="0.3"/>
                 </Sequence>
                 <Sequence>
-                  <ArePosesNear ref_pose="{current_pose}" target_pose="{route_start_pose}" tolerance="1.5"/>
+                  <ArePosesNear ref_pose="{current_pose}" target_pose="{route_start_pose}" tolerance="2.5"/>
                   <ComputePathToPose goal="{route_start_pose}" path="{first_mile_path}" planner_id="{selected_planner}" error_code_id="{compute_path_error_code}"/>
                   <ConcatenatePaths input_path1="{first_mile_path}" input_path2="{route_path}" output_path="{route_path}"/>
                 </Sequence>
