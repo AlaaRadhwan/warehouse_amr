@@ -18,6 +18,7 @@ def generate_launch_description():
     )
 
     stations_file = LaunchConfiguration("stations_file")
+    navigation_behavior_tree = LaunchConfiguration("navigation_behavior_tree")
 
     robot_executor = Node(
         package="amr_missions",
@@ -27,6 +28,7 @@ def generate_launch_description():
         parameters=[
             {
                 "stations_file": stations_file,
+                "navigation_behavior_tree": navigation_behavior_tree,
             }
         ],
     )
@@ -43,6 +45,13 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "stations_file",
             default_value=default_stations_file,
+        ),
+
+        # Empty = Nav2 default BT. Absolute path of a NavigateToPose BT to
+        # use for stations that do not require precision docking.
+        DeclareLaunchArgument(
+            "navigation_behavior_tree",
+            default_value="",
         ),
 
         robot_executor,

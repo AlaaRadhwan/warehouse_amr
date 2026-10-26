@@ -34,6 +34,14 @@ class RobotExecutor(Node):
 
         self.declare_parameter('stations_file', default_file)
 
+        # Optional NavigateToPose behavior tree (absolute path). Empty keeps
+        # the Nav2 default tree (free-space planning); set it to
+        # navigate_on_warehouse_route.xml for structured warehouse routing.
+        self.declare_parameter('navigation_behavior_tree', '')
+        self.navigation_behavior_tree = self.get_parameter(
+            'navigation_behavior_tree'
+        ).get_parameter_value().string_value
+
         stations_file = self.get_parameter(
             'stations_file'
         ).get_parameter_value().string_value
@@ -236,6 +244,7 @@ class RobotExecutor(Node):
         # Construct Nav2 goal
 
         nav_goal = NavigateToPose.Goal()
+        nav_goal.behavior_tree = self.navigation_behavior_tree
 
         nav_goal.pose.header.frame_id = self.frame_id
         nav_goal.pose.header.stamp = (

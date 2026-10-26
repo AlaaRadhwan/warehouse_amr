@@ -5,8 +5,9 @@ import tempfile
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration, PythonExpression
 
 from nav2_common.launch import RewrittenYaml
 
@@ -121,6 +122,28 @@ def generate_launch_description():
         "amr_navigation"
     )
 
+    route_graph_file = os.path.join(
+        navigation_share,
+        "route_graph",
+        "warehouse_route_graph.geojson",
+    )
+
+    if not os.path.isfile(route_graph_file):
+        raise RuntimeError(
+            "Route graph not found: "
+            f"{route_graph_file}"
+        )
+
+    route_bt_file = os.path.join(
+        navigation_share,
+        "behavior_trees",
+        "navigate_on_warehouse_route.xml",
+    )
+
+    # structured_routing:=true makes the robot executor send its station
+    # goals with the route-following behavior tree (default: unchanged).
+    structured_routing = LaunchConfiguration("structured_routing")
+
     lattice_file = os.path.join(
         navigation_share,
         "config",
@@ -216,6 +239,9 @@ def generate_launch_description():
             "planner_server.ros__parameters.GridBased.lattice_filepath":
                 lattice_file,
 
+            "route_server.ros__parameters.graph_filepath":
+                route_graph_file,
+
         },
         convert_types=True,
     )
@@ -264,9 +290,20 @@ def generate_launch_description():
                 "robot_executor.launch.py",
             )
         ),
+        launch_arguments={
+            "navigation_behavior_tree": PythonExpression([
+                "'", route_bt_file, "' if '",
+                structured_routing, "' == 'true' else ''",
+            ]),
+        }.items(),
     )
 
     return LaunchDescription([
+        DeclareLaunchArgument(
+            "structured_routing",
+            default_value="false",
+            description="Use the warehouse route graph for station navigation",
+        ),
         simulation,
         navigation,
         robot_executor,
