@@ -1,0 +1,19 @@
+[
+ {
+  "station": "station_b",
+  "accepted": true,
+  "timeout_s": 60.0,
+  "timed_out_and_cancelled": false,
+  "status": "6",
+  "success": false,
+  "message": "Navigation to station_b failed",
+  "nav2_error_code": 405,
+  "sim_duration_s": 0.1,
+  "wall_duration_s": 0.2,
+  "rtf": 0.5,
+  "plan_points": 0,
+  "plans_received": 0,
+  "sim_stamp_end": 17.84,
+  "plan_xy": []
+ }
+]

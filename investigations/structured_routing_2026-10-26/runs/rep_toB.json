@@ -1,0 +1,19 @@
+[
+ {
+  "station": "station_b",
+  "accepted": true,
+  "timeout_s": 240.0,
+  "timed_out_and_cancelled": false,
+  "status": "SUCCEEDED",
+  "success": true,
+  "message": "Arrived at station: station_b",
+  "nav2_error_code": 0,
+  "sim_duration_s": 33.72,
+  "wall_duration_s": 54.22,
+  "rtf": 0.622,
+  "plan_points": 0,
+  "plans_received": 0,
+  "sim_stamp_end": 48.23,
+  "plan_xy": []
+ }
+]

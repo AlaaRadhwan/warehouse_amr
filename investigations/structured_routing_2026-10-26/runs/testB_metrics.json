@@ -1,0 +1,17 @@
+{
+ "route_length_m": 16.79,
+ "travelled_length_m": 16.77,
+ "motion_start_sim_s": 68.38,
+ "last_sample_sim_s": 102.89,
+ "lateral_deviation_from_route_m": {
+  "max": 0.157,
+  "p95": 0.142,
+  "mean": 0.04
+ },
+ "final_gt_xy": [
+  8.739,
+  2.739
+ ],
+ "final_position_error_m": 0.041,
+ "final_yaw_error_deg": 1.1
+}

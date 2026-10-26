@@ -1,0 +1,16 @@
+edge clearance (m, min along edge; robot circumscribed radius 0.62):
+  e101 HOME->LANE_W               len   2.57  min clearance  0.85  OK  two-way
+  e102 LANE_W->HOME               len   2.57  min clearance  0.85  OK  two-way
+  e103 LANE_W->LANE_A_JCT         len   2.50  min clearance  2.90  OK  two-way
+  e104 LANE_A_JCT->LANE_W         len   2.50  min clearance  2.90  OK  two-way
+  e105 LANE_A_JCT->STATION_B      len  11.72  min clearance  1.45  OK  two-way
+  e106 STATION_B->LANE_A_JCT      len  11.72  min clearance  1.45  OK  two-way
+  e107 LANE_A_JCT->A_APPROACH     len   2.88  min clearance  1.86  OK  ONE-WAY
+  e108 A_APPROACH->A_STAGING      len   3.10  min clearance  1.13  OK  ONE-WAY
+  n1  HOME           ( -7.589,  1.200) clearance 0.85
+  n2  LANE_W         ( -5.500,  2.705) clearance 2.90
+  n3  LANE_A_JCT     ( -3.000,  2.705) clearance 4.49
+  n4  A_APPROACH     ( -3.000, -0.175) clearance 1.86
+  n5  A_STAGING      (  0.099, -0.175) clearance 1.13
+  n6  STATION_B      (  8.716,  2.705) clearance 1.45
+wrote docs/figures/route_graph.png

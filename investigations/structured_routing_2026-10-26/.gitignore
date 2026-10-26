@@ -1,0 +1,3 @@
+# raw ground-truth CSVs and launch logs stay local (regenerate with the scripts); metrics/trajectory summaries are committed
+runs/*_gt.csv
+runs/launch_*/

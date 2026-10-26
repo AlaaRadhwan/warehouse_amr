@@ -73,6 +73,7 @@ checkpoint, hardware calibration, recovery policy review, and the planned **Rota
 | `calibration/nav_validation/` | B → A validation harness (`run_b_to_a.sh`, watchdog, analysis scripts), reports and run records (incl. a run labelled INVALID). |
 | `debug/` | Pre-calibration spin analysis (`REPORT.md`), scripts, figures, runtime audit. |
 | `investigations/btoa_variability_2026-10-23/` | Instrumented B → A variability study: README, scripts, config, technical report, addendum (MPPI 1.3.12 source check), per-run records and figures. |
+| `docs/STRUCTURED_ROUTING.md` | Structured warehouse routing (Nav2 Route Server + route graph + BT): architecture, tests, limitations. Branch `feature/structured-warehouse-routing`. |
 | `docs/DATA_MANIFEST.md` | Large/derived data kept **out of Git** (rosbags, pickles, metrics): paths, sizes, SHA-256, regeneration steps. |
 
 Raw rosbags (`*.mcap`, ~0.7 GB) are intentionally not in Git and need an independent backup — see the manifest.

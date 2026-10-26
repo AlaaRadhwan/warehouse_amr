@@ -1,0 +1,242 @@
+[
+ {
+  "label": "A1 id HOME->STATION_B",
+  "error_code": 0,
+  "error": "NONE",
+  "nodes": [
+   1,
+   2,
+   3,
+   6
+  ],
+  "edges": [
+   101,
+   103,
+   105
+  ],
+  "route_cost": 16.79,
+  "path_points": 338,
+  "path_length_m": 16.79,
+  "planning_time_ms": 0.0,
+  "path_start_xy": [
+   -7.589,
+   1.2
+  ],
+  "path_end_xy": [
+   8.716,
+   2.705
+  ],
+  "path_end_yaw_deg": 0.0
+ },
+ {
+  "label": "A2 id STATION_B->A_STAGING",
+  "error_code": 0,
+  "error": "NONE",
+  "nodes": [
+   6,
+   3,
+   4,
+   5
+  ],
+  "edges": [
+   106,
+   107,
+   108
+  ],
+  "route_cost": 17.69,
+  "path_points": 356,
+  "path_length_m": 17.69,
+  "planning_time_ms": 0.0,
+  "path_start_xy": [
+   8.716,
+   2.705
+  ],
+  "path_end_xy": [
+   0.099,
+   -0.175
+  ],
+  "path_end_yaw_deg": 0.0
+ },
+ {
+  "label": "A3 id HOME->A_STAGING",
+  "error_code": 0,
+  "error": "NONE",
+  "nodes": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "edges": [
+   101,
+   103,
+   107,
+   108
+  ],
+  "route_cost": 11.05,
+  "path_points": 223,
+  "path_length_m": 11.05,
+  "planning_time_ms": 0.0,
+  "path_start_xy": [
+   -7.589,
+   1.2
+  ],
+  "path_end_xy": [
+   0.099,
+   -0.175
+  ],
+  "path_end_yaw_deg": 0.0
+ },
+ {
+  "label": "A4 id STATION_B->HOME (reverse lane direction)",
+  "error_code": 0,
+  "error": "NONE",
+  "nodes": [
+   6,
+   3,
+   2,
+   1
+  ],
+  "edges": [
+   106,
+   104,
+   102
+  ],
+  "route_cost": 16.79,
+  "path_points": 338,
+  "path_length_m": 16.79,
+  "planning_time_ms": 0.0,
+  "path_start_xy": [
+   8.716,
+   2.705
+  ],
+  "path_end_xy": [
+   -7.589,
+   1.2
+  ],
+  "path_end_yaw_deg": -144.2
+ },
+ {
+  "label": "A5 id A_STAGING->STATION_B (no outbound edge: structurally forbidden)",
+  "error_code": 405,
+  "error": "NO_VALID_ROUTE",
+  "nodes": [],
+  "edges": [],
+  "route_cost": 0.0,
+  "path_points": 0,
+  "path_length_m": 0.0,
+  "planning_time_ms": 0.0
+ },
+ {
+  "label": "A6 id A_APPROACH->LANE_A_JCT (spur is one-way inbound)",
+  "error_code": 405,
+  "error": "NO_VALID_ROUTE",
+  "nodes": [],
+  "edges": [],
+  "route_cost": 0.0,
+  "path_points": 0,
+  "path_length_m": 0.0,
+  "planning_time_ms": 0.0
+ },
+ {
+  "label": "A7 id unknown goal node 99",
+  "error_code": 400,
+  "error": "UNKNOWN",
+  "nodes": [],
+  "edges": [],
+  "route_cost": 0.0,
+  "path_points": 0,
+  "path_length_m": 0.0,
+  "planning_time_ms": 0.0
+ },
+ {
+  "label": "A8 pose HOME->STATION_B",
+  "error_code": 0,
+  "error": "NONE",
+  "nodes": [
+   1,
+   2,
+   3,
+   6
+  ],
+  "edges": [
+   101,
+   103,
+   105
+  ],
+  "route_cost": 16.79,
+  "path_points": 338,
+  "path_length_m": 16.79,
+  "planning_time_ms": 0.0,
+  "path_start_xy": [
+   -7.589,
+   1.2
+  ],
+  "path_end_xy": [
+   8.716,
+   2.705
+  ],
+  "path_end_yaw_deg": 0.0
+ },
+ {
+  "label": "A9 pose HOME->A_STAGING",
+  "error_code": 0,
+  "error": "NONE",
+  "nodes": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "edges": [
+   101,
+   103,
+   107,
+   108
+  ],
+  "route_cost": 11.05,
+  "path_points": 223,
+  "path_length_m": 11.05,
+  "planning_time_ms": 0.0,
+  "path_start_xy": [
+   -7.589,
+   1.2
+  ],
+  "path_end_xy": [
+   0.099,
+   -0.175
+  ],
+  "path_end_yaw_deg": 0.0
+ },
+ {
+  "label": "A10 pose HOME-> off-graph point (-1.5,-3.8) inside rack",
+  "error_code": 0,
+  "error": "NONE",
+  "nodes": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "edges": [
+   101,
+   103,
+   107
+  ],
+  "route_cost": 7.95,
+  "path_points": 161,
+  "path_length_m": 7.95,
+  "planning_time_ms": 1.5,
+  "path_start_xy": [
+   -7.589,
+   1.2
+  ],
+  "path_end_xy": [
+   -3.0,
+   -0.175
+  ],
+  "path_end_yaw_deg": -90.0
+ }
+]
