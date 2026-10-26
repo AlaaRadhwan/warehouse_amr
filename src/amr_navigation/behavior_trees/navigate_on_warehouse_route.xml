@@ -1,0 +1,84 @@
+<!--
+  NavigateToPose behavior tree that follows the warehouse route graph.
+
+  The Route Server's dense path (graph edges only) is sent to the controller
+  (MPPI). Smac State Lattice is NOT used for the body of the trip: it is only
+  used for a short "first mile" (robot pose -> route start node) and "last mile"
+  (route end node -> requested goal pose), each limited to a maximum distance.
+  If the robot or the goal is farther from the graph than that limit, the tree
+  FAILS instead of silently planning a free-space shortcut.
+
+  Based on nav2_bt_navigator/navigate_on_route_graph_w_recovery.xml (Nav2 main,
+  Apache-2.0) adapted to the node set available in Nav2 Jazzy 1.3.12.
+
+  Blackboard distances: first mile <= 0.3 m is skipped (robot is on the node);
+  first/last mile between 0.3 m and 1.5 m uses the lattice planner; beyond 1.5 m fails.
+-->
+<root BTCPP_format="4" main_tree_to_execute="NavigateOnWarehouseRoute">
+  <BehaviorTree ID="NavigateOnWarehouseRoute">
+    <RecoveryNode number_of_retries="2" name="NavigateRecovery">
+      <PipelineSequence name="RouteThenFollow">
+        <ControllerSelector selected_controller="{selected_controller}" default_controller="FollowPath" topic_name="controller_selector"/>
+        <PlannerSelector selected_planner="{selected_planner}" default_planner="GridBased" topic_name="planner_selector"/>
+
+        <RateController hz="0.5" name="ComputeRouteRateController">
+          <Fallback name="RouteIfNeeded">
+            <!-- Keep the current path while the goal is unchanged and the path is still valid -->
+            <ReactiveSequence>
+              <Inverter>
+                <GlobalUpdatedGoal/>
+              </Inverter>
+              <IsPathValid path="{path}"/>
+            </ReactiveSequence>
+            <Sequence name="ComputeRouteWithMiles">
+              <ComputeRoute goal="{goal}" use_poses="true" path="{route_path}" route="{route}" error_code_id="{compute_route_error_code}"/>
+
+              <!-- First mile: robot pose -> route start node (short, guarded) -->
+              <Fallback name="FirstMile">
+                <Sequence>
+                  <GetCurrentPose current_pose="{current_pose}"/>
+                  <GetPoseFromPath path="{route_path}" index="0" pose="{route_start_pose}"/>
+                  <ArePosesNear ref_pose="{current_pose}" target_pose="{route_start_pose}" tolerance="0.3"/>
+                </Sequence>
+                <Sequence>
+                  <ArePosesNear ref_pose="{current_pose}" target_pose="{route_start_pose}" tolerance="1.5"/>
+                  <ComputePathToPose goal="{route_start_pose}" path="{first_mile_path}" planner_id="{selected_planner}" error_code_id="{compute_path_error_code}"/>
+                  <ConcatenatePaths input_path1="{first_mile_path}" input_path2="{route_path}" output_path="{route_path}"/>
+                </Sequence>
+              </Fallback>
+
+              <!-- Last mile: route end node -> requested goal pose (short, guarded) -->
+              <Fallback name="LastMile">
+                <Sequence>
+                  <GetPoseFromPath path="{route_path}" index="-1" pose="{route_end_pose}"/>
+                  <ArePosesNear ref_pose="{goal}" target_pose="{route_end_pose}" tolerance="0.1"/>
+                </Sequence>
+                <Sequence>
+                  <ArePosesNear ref_pose="{goal}" target_pose="{route_end_pose}" tolerance="1.5"/>
+                  <ComputePathToPose start="{route_end_pose}" goal="{goal}" path="{last_mile_path}" planner_id="{selected_planner}" error_code_id="{compute_path_error_code}"/>
+                  <ConcatenatePaths input_path1="{route_path}" input_path2="{last_mile_path}" output_path="{route_path}"/>
+                </Sequence>
+              </Fallback>
+
+              <!-- Route Server paths are already ordered; hand over unchanged -->
+              <SetBlackboard output_key="path" value="{route_path}"/>
+            </Sequence>
+          </Fallback>
+        </RateController>
+
+        <RecoveryNode number_of_retries="1" name="FollowPath">
+          <FollowPath path="{path}" controller_id="{selected_controller}" error_code_id="{follow_path_error_code}"/>
+          <Sequence>
+            <WouldAControllerRecoveryHelp error_code="{follow_path_error_code}"/>
+            <ClearEntireCostmap name="ClearLocalCostmap-Context" service_name="local_costmap/clear_entirely_local_costmap"/>
+          </Sequence>
+        </RecoveryNode>
+      </PipelineSequence>
+      <!-- Bounded recovery: clear costmaps and retry (max 2 retries). No route-leaving recovery. -->
+      <Sequence name="RecoveryActions">
+        <ClearEntireCostmap name="ClearLocalCostmap-Subtree" service_name="local_costmap/clear_entirely_local_costmap"/>
+        <ClearEntireCostmap name="ClearGlobalCostmap-Subtree" service_name="global_costmap/clear_entirely_global_costmap"/>
+      </Sequence>
+    </RecoveryNode>
+  </BehaviorTree>
+</root>

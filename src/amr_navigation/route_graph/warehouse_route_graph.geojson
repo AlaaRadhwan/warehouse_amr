@@ -1,0 +1,360 @@
+{
+ "type": "FeatureCollection",
+ "name": "warehouse_route_graph",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::3857"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 1,
+    "frame": "map",
+    "metadata": {
+     "name": "HOME",
+     "class": "station"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -7.589,
+     1.2
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 2,
+    "frame": "map",
+    "metadata": {
+     "name": "LANE_W",
+     "class": "junction"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -5.5,
+     2.705
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 3,
+    "frame": "map",
+    "metadata": {
+     "name": "LANE_A_JCT",
+     "class": "junction"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -3.0,
+     2.705
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 4,
+    "frame": "map",
+    "metadata": {
+     "name": "A_APPROACH",
+     "class": "junction"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -3.0,
+     -0.175
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 5,
+    "frame": "map",
+    "metadata": {
+     "name": "A_STAGING",
+     "class": "station_staging"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     0.099,
+     -0.175
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 6,
+    "frame": "map",
+    "metadata": {
+     "name": "STATION_B",
+     "class": "station"
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     8.716,
+     2.705
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 101,
+    "startid": 1,
+    "endid": 2,
+    "overridable": true,
+    "metadata": {
+     "name": "HOME->LANE_W",
+     "class": "lane",
+     "length_m": 2.575,
+     "heading_deg": 35.8
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -7.589,
+       1.2
+      ],
+      [
+       -5.5,
+       2.705
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 102,
+    "startid": 2,
+    "endid": 1,
+    "overridable": true,
+    "metadata": {
+     "name": "LANE_W->HOME",
+     "class": "lane",
+     "length_m": 2.575,
+     "heading_deg": -144.2
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -5.5,
+       2.705
+      ],
+      [
+       -7.589,
+       1.2
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 103,
+    "startid": 2,
+    "endid": 3,
+    "overridable": true,
+    "metadata": {
+     "name": "LANE_W->LANE_A_JCT",
+     "class": "lane",
+     "length_m": 2.5,
+     "heading_deg": 0.0
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -5.5,
+       2.705
+      ],
+      [
+       -3.0,
+       2.705
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 104,
+    "startid": 3,
+    "endid": 2,
+    "overridable": true,
+    "metadata": {
+     "name": "LANE_A_JCT->LANE_W",
+     "class": "lane",
+     "length_m": 2.5,
+     "heading_deg": 180.0
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -3.0,
+       2.705
+      ],
+      [
+       -5.5,
+       2.705
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 105,
+    "startid": 3,
+    "endid": 6,
+    "overridable": true,
+    "metadata": {
+     "name": "LANE_A_JCT->STATION_B",
+     "class": "lane",
+     "length_m": 11.716,
+     "heading_deg": 0.0
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -3.0,
+       2.705
+      ],
+      [
+       8.716,
+       2.705
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 106,
+    "startid": 6,
+    "endid": 3,
+    "overridable": true,
+    "metadata": {
+     "name": "STATION_B->LANE_A_JCT",
+     "class": "lane",
+     "length_m": 11.716,
+     "heading_deg": 180.0
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       8.716,
+       2.705
+      ],
+      [
+       -3.0,
+       2.705
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 107,
+    "startid": 3,
+    "endid": 4,
+    "overridable": true,
+    "metadata": {
+     "name": "LANE_A_JCT->A_APPROACH",
+     "class": "a_spur_inbound",
+     "length_m": 2.88,
+     "heading_deg": -90.0
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -3.0,
+       2.705
+      ],
+      [
+       -3.0,
+       -0.175
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 108,
+    "startid": 4,
+    "endid": 5,
+    "overridable": true,
+    "metadata": {
+     "name": "A_APPROACH->A_STAGING",
+     "class": "a_spur_inbound",
+     "length_m": 3.099,
+     "heading_deg": 0.0
+    }
+   },
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -3.0,
+       -0.175
+      ],
+      [
+       0.099,
+       -0.175
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}
