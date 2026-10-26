@@ -1,0 +1,8 @@
+# EXPERIMENTAL overlay: State Lattice without reverse expansion (planner:=lattice_forward).
+# The lattice file contains only forward-moving (80) and in-place rotation (32) primitives, so
+# disabling reverse expansion removes every reverse segment from the plans while keeping
+# rotate-in-place. Primitive set, penalties and other planner settings are unchanged.
+planner_server:
+  ros__parameters:
+    GridBased:
+      allow_reverse_expansion: false

@@ -3,8 +3,9 @@
 import glob, json, os, re, subprocess, sys
 H = os.path.dirname(os.path.abspath(__file__)); RUNS = os.path.join(H, '..', 'runs'); ROOT = os.path.join(H, '..', '..', '..')
 G = os.path.join(ROOT, 'src/amr_navigation/route_graph/warehouse_route_graph.geojson'); A = os.path.join(H, 'analyze_goal.py')
-EDGES = {'R1': '101,103,105', 'R2': '106,107,108'}
-for d in sorted(glob.glob(os.path.join(RUNS, '*_[AR][0-9]_*'))):
+EDGES = {'R1': '101,103,105', 'R2': '106,107,108', 'Ryaw': '101,103,105'}
+for d in sorted(glob.glob(os.path.join(RUNS, '*_[AR]*_*'))):
+    if 'INVALID' in d or not os.path.exists(os.path.join(d, 'result.json')): continue
     res = json.load(open(os.path.join(d, 'result.json')))[0]
     m = re.match(r'nav@([-\d.]+)@([-\d.]+)@([-\d.]+)', res['station']); gx, gy, gyaw = m.groups()
     e = EDGES.get(os.path.basename(d).split('_')[1])

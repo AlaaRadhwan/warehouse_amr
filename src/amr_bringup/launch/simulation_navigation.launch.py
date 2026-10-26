@@ -220,6 +220,7 @@ def _launch_setup(context):
     overlays = {
         ("planner", "lattice"): None,
         ("planner", "navfn"): "planner_navfn.yaml",
+        ("planner", "lattice_forward"): "planner_lattice_forward.yaml",
         ("mppi_path_interpretation", "baseline"): None,
         ("mppi_path_interpretation", "2d"): "mppi_2d_paths.yaml",
         ("mppi_path_interpretation", "2d_forward_only"):
@@ -374,7 +375,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "planner",
             default_value="lattice",
-            description="EXPERIMENTAL: global planner profile (lattice|navfn)",
+            description="EXPERIMENTAL: global planner profile (lattice|lattice_forward|navfn)",
         ),
         DeclareLaunchArgument(
             "mppi_path_interpretation",

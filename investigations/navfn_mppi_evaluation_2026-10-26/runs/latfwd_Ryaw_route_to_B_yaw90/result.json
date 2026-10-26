@@ -1,0 +1,19 @@
+[
+ {
+  "station": "nav@8.716@2.705@1.5708@bt",
+  "accepted": true,
+  "timeout_s": 240.0,
+  "behavior_tree": "/home/alaa-radhwan/Projects/warehouse_amr/.worktrees/routing/install/amr_navigation/share/amr_navigation/behavior_trees/navigate_on_warehouse_route.xml",
+  "timed_out_and_cancelled": false,
+  "status": "SUCCEEDED",
+  "success": true,
+  "nav2_error_code": 0,
+  "message": "",
+  "sim_duration_s": 33.2,
+  "wall_duration_s": 54.66,
+  "rtf": 0.607,
+  "plan_points": 0,
+  "plans_received": 0,
+  "plan_xy": []
+ }
+]

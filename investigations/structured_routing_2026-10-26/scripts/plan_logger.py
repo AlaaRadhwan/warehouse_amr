@@ -17,7 +17,18 @@ def mk(topic):
     def cb(m):
         if not m.poses: return
         a, b = m.poses[0], m.poses[-1]
+        # plan geometry: reverse = step opposite to the pose heading; cusps = direction reversals between steps
+        rev_len = fwd_len = 0.0; cusps = 0; inplace = 0; prev = None
+        for p0, p1 in zip(m.poses[:-1], m.poses[1:]):
+            dx = p1.pose.position.x - p0.pose.position.x; dy = p1.pose.position.y - p0.pose.position.y; d = math.hypot(dx, dy)
+            h = 2 * math.atan2(p0.pose.orientation.z, p0.pose.orientation.w)
+            if d < 1e-4: inplace += 1; continue
+            fw = (dx * math.cos(h) + dy * math.sin(h)) > 0
+            rev_len += 0.0 if fw else d; fwd_len += d if fw else 0.0
+            if prev is not None and prev != fw: cusps += 1
+            prev = fw
         f.write(json.dumps({'t': round(sim[0], 2), 'topic': topic, 'n': len(m.poses),
+          'plan_fwd_m': round(fwd_len, 2), 'plan_rev_m': round(rev_len, 2), 'plan_cusps': cusps, 'plan_inplace_poses': inplace,
           'first': [round(a.pose.position.x, 2), round(a.pose.position.y, 2), yaw(a)],
           'last': [round(b.pose.position.x, 2), round(b.pose.position.y, 2), yaw(b)]}) + '\n'); f.flush()
     return cb

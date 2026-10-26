@@ -1,0 +1,19 @@
+[
+ {
+  "station": "nav@-6.5@1.2@1.5708@default",
+  "accepted": true,
+  "timeout_s": 120.0,
+  "behavior_tree": "",
+  "timed_out_and_cancelled": true,
+  "status": "5",
+  "success": false,
+  "nav2_error_code": 0,
+  "message": "",
+  "sim_duration_s": 73.78,
+  "wall_duration_s": 120.02,
+  "rtf": 0.615,
+  "plan_points": 0,
+  "plans_received": 0,
+  "plan_xy": []
+ }
+]

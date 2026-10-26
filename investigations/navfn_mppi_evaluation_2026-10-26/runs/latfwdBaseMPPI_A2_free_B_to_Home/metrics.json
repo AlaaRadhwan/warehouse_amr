@@ -1,0 +1,16 @@
+{
+ "travelled_m": 19.57,
+ "duration_s": 112.9,
+ "final_xy": [
+  -7.588,
+  1.115
+ ],
+ "final_position_error_m": 0.085,
+ "final_yaw_error_deg": -9.5,
+ "reverse_gt_m": 1.5,
+ "inplace_rot_deg": 259.0,
+ "total_rot_deg": 623.0,
+ "near_goal_time_s": 8.3,
+ "reverse_cmd_s": 9.1,
+ "cmd_vx_min": -0.31
+}
