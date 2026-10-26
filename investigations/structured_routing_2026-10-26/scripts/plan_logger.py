@@ -25,7 +25,7 @@ for t in ('/plan', '/transformed_global_plan'):
     n.create_subscription(Path, t, mk(t), q)
 last = [0]
 def cmd(m):
-    if sim[0] - last[0] >= 0.5:
+    if sim[0] - last[0] >= 0.05:
         last[0] = sim[0]; f.write(json.dumps({'t': round(sim[0], 2), 'topic': 'cmd_vel_nav', 'vx': round(m.twist.linear.x, 3), 'wz': round(m.twist.angular.z, 3)}) + '\n'); f.flush()
 n.create_subscription(TwistStamped, '/cmd_vel_nav', cmd, q)
 try: rclpy.spin(n)

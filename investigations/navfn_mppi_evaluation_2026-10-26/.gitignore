@@ -1,0 +1,4 @@
+# raw ground-truth CSVs, plan/cmd logs and launch logs stay local (regenerate with the scripts); metrics/result JSON are committed
+runs/*/gt.csv
+runs/*/plog.jsonl
+runs/launch_*/
