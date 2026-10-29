@@ -1,0 +1,17 @@
+{
+ "forward_m": 16.91,
+ "reverse_m": 0.13,
+ "reverse_segments": 1,
+ "reverse_segments_ge_0.3m": 0,
+ "max_continuous_reverse_m": 0.13,
+ "segment_lengths_m": [
+  0.13
+ ],
+ "segment_start_s_xy": [
+  [
+   33.3,
+   8.79,
+   2.8
+  ]
+ ]
+}

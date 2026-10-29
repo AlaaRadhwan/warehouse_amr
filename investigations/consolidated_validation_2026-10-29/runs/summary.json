@@ -1,0 +1,235 @@
+{
+ "T1_routed_B_to_Astaging": {
+  "status": "SUCCEEDED",
+  "nav2_error_code": 0,
+  "accepted": true,
+  "timed_out_and_cancelled": false,
+  "metrics": {
+   "travelled_m": 17.59,
+   "duration_s": 48.4,
+   "final_xy": [
+    0.152,
+    -0.135
+   ],
+   "final_position_error_m": 0.066,
+   "final_yaw_error_deg": -0.6,
+   "reverse_gt_m": 0.24,
+   "inplace_rot_deg": 49.0,
+   "total_rot_deg": 404.0,
+   "near_goal_time_s": 6.6,
+   "reverse_cmd_s": 3.1,
+   "cmd_vx_min": -0.096,
+   "max_dev_route_m": 0.14,
+   "mean_dev_route_m": 0.05
+  },
+  "reverse": {
+   "forward_m": 17.34,
+   "reverse_m": 0.24,
+   "reverse_segments": 1,
+   "reverse_segments_ge_0.3m": 0,
+   "max_continuous_reverse_m": 0.24,
+   "segment_lengths_m": [
+    0.24
+   ]
+  },
+  "clearance": {
+   "min_footprint_clearance_m": 0.559,
+   "at_sim_s": 111.5,
+   "at_xy_yaw_deg": [
+    0.15,
+    -0.14,
+    -0.6
+   ],
+   "obstacles": "static map",
+   "resolution_note": "5 cm raster"
+  },
+  "initial_rotation": {
+   "start_yaw_deg": 1.2,
+   "yaw_at_0.3m_deg": 146.1,
+   "rotation_before_0.3m_deg": 143.0,
+   "time_motion_start_to_0.3m_s": 5.9,
+   "plan_msgs": 2,
+   "plan_rev_m_max": 0.0,
+   "plan_cusps_max": 0
+  }
+ },
+ "T2_free_B_to_Home": {
+  "status": "SUCCEEDED",
+  "nav2_error_code": 0,
+  "accepted": true,
+  "timed_out_and_cancelled": false,
+  "metrics": {
+   "travelled_m": 16.84,
+   "duration_s": 48.2,
+   "final_xy": [
+    -7.644,
+    1.162
+   ],
+   "final_position_error_m": 0.067,
+   "final_yaw_error_deg": -2.5,
+   "reverse_gt_m": 0.71,
+   "inplace_rot_deg": 177.0,
+   "total_rot_deg": 364.0,
+   "near_goal_time_s": 11.3,
+   "reverse_cmd_s": 7.6,
+   "cmd_vx_min": -0.123
+  },
+  "reverse": {
+   "forward_m": 16.05,
+   "reverse_m": 0.71,
+   "reverse_segments": 1,
+   "reverse_segments_ge_0.3m": 1,
+   "max_continuous_reverse_m": 0.71,
+   "segment_lengths_m": [
+    0.71
+   ]
+  },
+  "clearance": {
+   "min_footprint_clearance_m": 0.2,
+   "at_sim_s": 190.1,
+   "at_xy_yaw_deg": [
+    -7.64,
+    1.14,
+    233.5
+   ],
+   "obstacles": "static map",
+   "resolution_note": "5 cm raster"
+  },
+  "initial_rotation": {
+   "start_yaw_deg": 3.4,
+   "yaw_at_0.3m_deg": 32.8,
+   "rotation_before_0.3m_deg": 27.0,
+   "time_motion_start_to_0.3m_s": 3.3,
+   "plan_msgs": 76,
+   "plan_rev_m_max": 16.54,
+   "plan_cusps_max": 1
+  }
+ },
+ "T3_rear_obstacle": {
+  "status": "SUCCEEDED",
+  "nav2_error_code": 0,
+  "accepted": true,
+  "timed_out_and_cancelled": false,
+  "metrics": {
+   "travelled_m": 4.01,
+   "duration_s": 24.3,
+   "final_xy": [
+    -7.424,
+    3.293
+   ],
+   "final_position_error_m": 0.107,
+   "final_yaw_error_deg": -1.1,
+   "reverse_gt_m": 0.34,
+   "inplace_rot_deg": 101.0,
+   "total_rot_deg": 363.0,
+   "near_goal_time_s": 8.4,
+   "reverse_cmd_s": 4.0,
+   "cmd_vx_min": -0.146
+  },
+  "reverse": {
+   "forward_m": 3.61,
+   "reverse_m": 0.34,
+   "reverse_segments": 1,
+   "reverse_segments_ge_0.3m": 1,
+   "max_continuous_reverse_m": 0.34,
+   "segment_lengths_m": [
+    0.34
+   ]
+  },
+  "clearance": {
+   "min_footprint_clearance_m": 0.05,
+   "at_sim_s": 220.5,
+   "at_xy_yaw_deg": [
+    -7.4,
+    0.84,
+    -88.9
+   ],
+   "obstacles": "static map + box",
+   "resolution_note": "5 cm raster"
+  },
+  "initial_rotation": {
+   "start_yaw_deg": -88.9,
+   "yaw_at_0.3m_deg": -84.1,
+   "rotation_before_0.3m_deg": 4.0,
+   "time_motion_start_to_0.3m_s": 2.4,
+   "plan_msgs": 37,
+   "plan_rev_m_max": 2.05,
+   "plan_cusps_max": 13
+  },
+  "rear": {
+   "scan_rear_min_range_m_first_last_min": [
+    1.508,
+    4.307,
+    1.036
+   ],
+   "costmap_box_max_cost_max": 100,
+   "costmap_box_centre_cost_max": 99,
+   "collision_monitor_states": [
+    [
+     0,
+     ""
+    ],
+    [
+     3,
+     "FootprintApproach"
+    ]
+   ],
+   "cmd_vel_nav_vx_min": -0.144,
+   "cmd_vel_final_vx_min": -0.144
+  }
+ },
+ "T4_routed_Home_to_B_yaw90": {
+  "status": "SUCCEEDED",
+  "nav2_error_code": 0,
+  "accepted": true,
+  "timed_out_and_cancelled": false,
+  "metrics": {
+   "travelled_m": 17.06,
+   "duration_s": 39.8,
+   "final_xy": [
+    8.741,
+    2.673
+   ],
+   "final_position_error_m": 0.041,
+   "final_yaw_error_deg": -3.5,
+   "reverse_gt_m": 0.13,
+   "inplace_rot_deg": 27.0,
+   "total_rot_deg": 197.0,
+   "near_goal_time_s": 9.4,
+   "reverse_cmd_s": 2.4,
+   "cmd_vx_min": -0.069,
+   "max_dev_route_m": 0.16,
+   "mean_dev_route_m": 0.05
+  },
+  "reverse": {
+   "forward_m": 16.91,
+   "reverse_m": 0.13,
+   "reverse_segments": 1,
+   "reverse_segments_ge_0.3m": 0,
+   "max_continuous_reverse_m": 0.13,
+   "segment_lengths_m": [
+    0.13
+   ]
+  },
+  "clearance": {
+   "min_footprint_clearance_m": 0.35,
+   "at_sim_s": 285.8,
+   "at_xy_yaw_deg": [
+    -7.35,
+    1.19,
+    22.5
+   ],
+   "obstacles": "static map",
+   "resolution_note": "5 cm raster"
+  },
+  "initial_rotation": {
+   "start_yaw_deg": -6.0,
+   "yaw_at_0.3m_deg": 23.9,
+   "rotation_before_0.3m_deg": 28.0,
+   "time_motion_start_to_0.3m_s": 2.5,
+   "plan_msgs": 2,
+   "plan_rev_m_max": 0.0,
+   "plan_cusps_max": 0
+  }
+ }
+}

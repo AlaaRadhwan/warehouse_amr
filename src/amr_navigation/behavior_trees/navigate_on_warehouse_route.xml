@@ -11,9 +11,9 @@
   Based on nav2_bt_navigator/navigate_on_route_graph_w_recovery.xml (Nav2 main,
   Apache-2.0) adapted to the node set available in Nav2 Jazzy 1.3.12.
 
-  Blackboard distances: first mile <= 0.3 m is skipped (robot is on the node);
+  Blackboard distances: first mile <= 0.3 m is skipped (robot is on the node); the last mile is never skipped (carries the requested goal yaw);
   first mile between 0.3 m and 2.5 m (the Route Server prunes a start node the robot has already passed,
-  so the first path pose can be up to one robot-length-plus beyond the nearest node) and last mile between 0.1 m and 1.5 m
+  so the first path pose can be up to one robot-length-plus beyond the nearest node) and last mile within 1.5 m
   use the configured global planner (GridBased); beyond that the tree fails.
 -->
 <root BTCPP_format="4" main_tree_to_execute="NavigateOnWarehouseRoute">
@@ -49,18 +49,17 @@
                 </Sequence>
               </Fallback>
 
-              <!-- Last mile: route end node -> requested goal pose (short, guarded) -->
-              <Fallback name="LastMile">
-                <Sequence>
-                  <GetPoseFromPath path="{route_path}" index="-1" pose="{route_end_pose}"/>
-                  <ArePosesNear ref_pose="{goal}" target_pose="{route_end_pose}" tolerance="0.1"/>
-                </Sequence>
-                <Sequence>
-                  <ArePosesNear ref_pose="{goal}" target_pose="{route_end_pose}" tolerance="1.5"/>
-                  <ComputePathToPose start="{route_end_pose}" goal="{goal}" path="{last_mile_path}" planner_id="{selected_planner}" error_code_id="{compute_path_error_code}"/>
-                  <ConcatenatePaths input_path1="{route_path}" input_path2="{last_mile_path}" output_path="{route_path}"/>
-                </Sequence>
-              </Fallback>
+              <!-- Last mile: route end pose -> requested goal pose (short, guarded).
+                   ALWAYS planned when the goal is within 1.5 m of the route end, including when it is at the same
+                   position: the Route Server path ends with the last edge's heading, so skipping the planner here
+                   silently replaced the requested goal yaw by the edge heading (goal checker compares against the
+                   path's last pose). The planner path ends with the requested goal pose (position AND yaw). -->
+              <Sequence name="LastMile">
+                <GetPoseFromPath path="{route_path}" index="-1" pose="{route_end_pose}"/>
+                <ArePosesNear ref_pose="{goal}" target_pose="{route_end_pose}" tolerance="1.5"/>
+                <ComputePathToPose start="{route_end_pose}" use_start="true" goal="{goal}" path="{last_mile_path}" planner_id="{selected_planner}" error_code_id="{compute_path_error_code}"/>
+                <ConcatenatePaths input_path1="{route_path}" input_path2="{last_mile_path}" output_path="{route_path}"/>
+              </Sequence>
 
               <!-- Route Server paths are already ordered; hand over unchanged -->
               <SetBlackboard output_key="path" value="{route_path}"/>

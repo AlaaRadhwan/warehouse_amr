@@ -1,0 +1,4 @@
+runs/*/gt.csv
+runs/*/plog.jsonl
+runs/*/rear.jsonl.full
+runs/launch*/
