@@ -225,6 +225,8 @@ def _launch_setup(context):
         ("mppi_path_interpretation", "2d"): "mppi_2d_paths.yaml",
         ("mppi_path_interpretation", "2d_forward_only"):
             ["mppi_2d_paths.yaml", "mppi_forward_only.yaml"],
+        ("mppi_path_interpretation", "2d_prefer_forward"):
+            ["mppi_2d_paths.yaml", "mppi_prefer_forward.yaml"],
     }
 
     for key in (("planner", planner_profile),
@@ -381,7 +383,7 @@ def generate_launch_description():
             "mppi_path_interpretation",
             default_value="baseline",
             description="EXPERIMENTAL: MPPI path-orientation settings "
-                        "(baseline|2d|2d_forward_only)",
+                        "(baseline|2d|2d_forward_only|2d_prefer_forward)",
         ),
         OpaqueFunction(function=_launch_setup),
     ])

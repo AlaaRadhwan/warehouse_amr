@@ -1,0 +1,8 @@
+[
+ {
+  "station": "nav@-7.42@2.5@-1.5708@default",
+  "accepted": false,
+  "timeout_s": 150.0,
+  "behavior_tree": ""
+ }
+]

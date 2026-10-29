@@ -28,3 +28,9 @@
 | lattice(no-rev)+2D MPPI forward-only, Ryaw_route_to_B_yaw90 | SUCCEEDED | 36.7 | 16.04 | 0.024 | -90.1 | 0.0 | 35 | 0.52 |
 | lattice(no-rev)+baseline MPPI, A1_free_Home_to_B | SUCCEEDED | 35.5 | 16.48 | 0.033 | 4.3 | 0.0 | 1 | – |
 | lattice(no-rev)+baseline MPPI, A2_free_B_to_Home | SUCCEEDED | 112.9 | 19.57 | 0.085 | -9.5 | 1.5 | 259 | – |
+| NavFn+2D MPPI + PreferForwardCritic(5.0) vx_min −0.35, TestA routed B→A staging | SUCCEEDED | 49.0 | 17.63 | 0.097 | -0.6 | 0.24 | 47 | 0.15 |
+| NavFn+2D MPPI + PreferForwardCritic(5.0), TestB free B→Home | SUCCEEDED | 46.3 | 16.91 | 0.114 | -3.6 | 0.62 | 169 | – |
+| NavFn+2D MPPI + PreferForwardCritic(5.0), TestC back out from pillar (free) | SUCCEEDED | 14.3 | 1.65 | 0.083 | -1.9 | 1.64 | 7 | – |
+| NavFn+2D MPPI forward-only (control), TestC back out from pillar (free) | SUCCEEDED | 21.9 | 1.70 | 0.107 | 10.3 | 0.0 | 277 | – |
+| NavFn+2D MPPI + PreferForwardCritic(5.0), R1 routed Home→B | SUCCEEDED | 34.9 | 16.78 | 0.033 | 1.0 | 0.0 | 0 | 0.16 |
+| NavFn+2D MPPI + PreferForwardCritic(5.0), X1 free A staging→B | SUCCEEDED | 24.1 | 9.08 | 0.026 | 2.8 | 0.0 | 0 | – |
