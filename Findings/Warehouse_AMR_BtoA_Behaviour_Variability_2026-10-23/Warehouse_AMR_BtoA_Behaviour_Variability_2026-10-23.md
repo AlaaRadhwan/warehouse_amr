@@ -1,6 +1,6 @@
 # Warehouse AMR — B → A terminal behaviour: spin / stall / success variability (2026-10-23)
 
-**Project:** MTS_AMR / `warehouse_amr`  **Branch:** `feature/bidirectional-navigation-baseline` (HEAD `c57e6bd`, working tree dirty, nothing committed)
+**Project:** Warehouse AMR / `warehouse_amr` (written under the earlier working name "MTS_AMR")  **Branch:** `feature/bidirectional-navigation-baseline` (HEAD `c57e6bd`, working tree dirty, nothing committed)
 **Scope:** Re-running the Oct 22 "wheel-separation calibration" B → A comparison for documentation video, and what the repeated runs showed.
 **Status of this document:** measurements and logs from 7 simulation runs. No fix was attempted and no configuration was changed.
 

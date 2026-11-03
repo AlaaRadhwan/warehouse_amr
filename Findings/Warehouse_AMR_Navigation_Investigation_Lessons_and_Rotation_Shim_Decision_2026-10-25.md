@@ -1,6 +1,6 @@
-# MTS_AMR — Navigation Investigation, Lessons Learned, and Rotation Shim Decision
+# Warehouse AMR — Navigation Investigation, Lessons Learned, and Rotation Shim Decision
 
-**Project:** `warehouse_amr` / MTS_AMR  
+**Project:** Warehouse AMR / `warehouse_amr` (written under the earlier working name "MTS_AMR")  
 **Status date:** 25 October 2026  
 **Investigation covered:** September–24 October 2026, with major measured work on 20–24 October  
 **Stack investigated:** ROS 2 Jazzy, Nav2 Jazzy MPPI 1.3.12, Smac State Lattice, Gazebo, differential-drive control  

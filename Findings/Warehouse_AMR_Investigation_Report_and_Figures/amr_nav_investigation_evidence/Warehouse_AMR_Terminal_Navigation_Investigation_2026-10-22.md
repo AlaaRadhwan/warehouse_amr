@@ -1,6 +1,6 @@
 # Warehouse AMR Navigation Investigation: Terminal Spinning, Path Association, and Kinematic Calibration
 
-**Project:** MTS_AMR / `warehouse_amr`  
+**Project:** Warehouse AMR / `warehouse_amr` (written under the earlier working name "MTS_AMR")  
 **Investigation period:** September–22 October 2026 (principal instrumented tests: 20–22 October)  
 **Software:** ROS 2 Jazzy; Nav2 Jazzy 1.3.12 (reported installed version); Gazebo simulation  
 **Status:** Kinematic mismatch corrected and the original B→A route succeeded in three calibrated trials. Broader navigation reliability and the MPPI failure mechanism remain under investigation.  

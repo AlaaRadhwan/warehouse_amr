@@ -1,6 +1,6 @@
 # Warehouse AMR Project — Comprehensive Technical Documentation
 
-**Project:** MTS_AMR / `warehouse_amr`  
+**Project:** Warehouse AMR / `warehouse_amr` (written under the earlier working name "MTS_AMR")  
 **Repository:** `AlaaRadhwan/warehouse_amr`  
 **Primary OS:** Ubuntu 24.04  
 **ROS distribution:** ROS 2 Jazzy  

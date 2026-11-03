@@ -77,7 +77,7 @@ in one uninstrumented run with the calibrated multiplier was not reproduced and 
 
 **Not established / not done:** deployment-level reliability of navigation, docking end-to-end validation in this
 checkpoint, hardware calibration, recovery policy review, and the planned **Rotation Shim** controller evaluation
-(decided in `Findings/MTS_AMR_Navigation_Investigation_Lessons_and_Rotation_Shim_Decision_2026-10-25.md`; **not started**).
+(decided in `Findings/Warehouse_AMR_Navigation_Investigation_Lessons_and_Rotation_Shim_Decision_2026-10-25.md`; **not started**).
 `visualize: true` in the MPPI parameters is a diagnostic setting that has not been reverted.
 
 ## Where to find the investigations

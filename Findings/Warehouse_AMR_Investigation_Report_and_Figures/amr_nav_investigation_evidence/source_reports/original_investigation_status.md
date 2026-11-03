@@ -1,6 +1,6 @@
 # Warehouse AMR Navigation Investigation — Current Findings and Next Direction
 
-**Project:** MTS_AMR / `warehouse_amr`  
+**Project:** Warehouse AMR / `warehouse_amr` (written under the earlier working name "MTS_AMR")  
 **Date:** 2026-10-20  
 **Scope:** Navigation failure investigation around Smac State Lattice + MPPI, especially terminal orbiting, looping global plans, and failure to converge to final yaw.
 
