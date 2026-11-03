@@ -1,0 +1,5 @@
+--- repo nav2_params.yaml
++++ /home/alaa-radhwan/Projects/warehouse_amr/investigations/rotation_shim_integration_2026-10-26/runs/s04_thr3p2/nav2_params.run.yaml
+@@ -133 +133 @@
+-      angular_dist_threshold: 0.785
++      angular_dist_threshold: 3.2

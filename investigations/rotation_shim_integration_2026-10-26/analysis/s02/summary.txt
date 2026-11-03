@@ -1,0 +1,42 @@
+## B_staging_A: SUCCEEDED  (goal 0.099,-0.175,yaw 0.000; sim 42.2 s; error_code 0)
+- GT final: dist 0.212 m, yaw err -0.5 deg; odom wz -0.227 vx -0.000 (last 0.3 s)
+- plans in window: 84; distinct last poses: 3 [(np.float64(0.099), np.float64(-0.175), 0.0), (np.float64(0.1265), np.float64(-0.1801), 0.0), (np.float64(0.136), np.float64(-0.1798), 0.0)]; first plan reverse 2.66 m, cusps 2
+- cmd_vel_nav samples 1731: MPPI 1398, SHIM 333; terminal: {"t_enter_xy_tol_s": 40.782000000000004, "mppi_to_shim_handoffs_after_entry": 1, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.24902562736487446, "phases_after_entry": [["SHIM", 41.36, 42.16]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.03-  5.31 s  dyaw +3.19  dist 9.09->9.09  |wz|<=0.80 |vx|<=0.00 n=220
+    MPPI   5.34- 36.52 s  dyaw +1.60  dist 9.09->0.54  |wz|<=0.83 |vx|<=0.54 n=1282
+    SHIM  36.54- 38.49 s  dyaw +1.03  dist 0.54->0.53  |wz|<=0.80 |vx|<=0.00 n=79
+    MPPI  38.52- 41.34 s  dyaw +0.60  dist 0.53->0.22  |wz|<=0.79 |vx|<=0.18 n=116
+    SHIM  41.36- 42.16 s  dyaw -0.20  dist 0.22->0.21  |wz|<=0.40 |vx|<=0.00 n=34
+- shim segments: 3; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 183 deg
+
+## C_reverse_1m: SUCCEEDED  (goal -0.900,-0.175,yaw 0.000; sim 5.2 s; error_code 0)
+- GT final: dist 0.221 m, yaw err +1.7 deg; odom wz +0.004 vx -0.038 (last 0.3 s)
+- plans in window: 12; distinct last poses: 6 [(np.float64(-0.9), np.float64(-0.175), 0.0), (np.float64(-0.8825), np.float64(-0.1783), 0.0), (np.float64(-0.8771), np.float64(-0.1787), 0.0)]; first plan reverse 1.20 m, cusps 0
+- cmd_vel_nav samples 233: MPPI 195, SHIM 38; terminal: {"t_enter_xy_tol_s": 3.9694999999999965, "mppi_to_shim_handoffs_after_entry": 1, "shim_to_mppi_handoffs_after_entry": 1, "max_dist_after_entry_m": 0.24778470155403004, "phases_after_entry": [["MPPI", 4.67, 5.18], ["SHIM", 5.2, 5.2]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    MPPI   0.02-  3.83 s  dyaw -0.11  dist 1.19->0.27  |wz|<=0.06 |vx|<=0.32 n=170
+    SHIM   3.85-  4.64 s  dyaw +0.14  dist 0.27->0.24  |wz|<=0.32 |vx|<=0.00 n=36
+    MPPI   4.67-  5.18 s  dyaw +0.01  dist 0.24->0.22  |wz|<=0.07 |vx|<=0.08 n=25
+    SHIM   5.20-  5.20 s  dyaw +0.00  dist 0.22->0.22  |wz|<=0.06 |vx|<=0.00 n=2
+- shim segments: 2; max |wz| in shim = 0.32 (config 0.8); max |dyaw| in a shim segment = 8 deg
+
+## A1_fwd_turn90: SUCCEEDED  (goal -0.300,-0.175,yaw 1.571; sim 15.7 s; error_code 0)
+- GT final: dist 0.212 m, yaw err +11.0 deg; odom wz +0.092 vx -0.066 (last 0.3 s)
+- plans in window: 32; distinct last poses: 8 [(np.float64(-0.3), np.float64(-0.175), 1.5708), (np.float64(-0.2974), np.float64(-0.1762), 1.5708), (np.float64(-0.2755), np.float64(-0.161), 1.5708)]; first plan reverse 0.21 m, cusps 2
+- cmd_vel_nav samples 639: MPPI 481, SHIM 158; terminal: {"t_enter_xy_tol_s": 10.665999999999997, "mppi_to_shim_handoffs_after_entry": 1, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.27424857087874055, "phases_after_entry": [["SHIM", 15.6, 15.72]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.01-  2.01 s  dyaw +0.81  dist 0.38->0.38  |wz|<=0.80 |vx|<=0.00 n=82
+    MPPI   2.03-  6.24 s  dyaw +1.44  dist 0.38->0.29  |wz|<=0.81 |vx|<=0.12 n=172
+    SHIM   6.26-  7.97 s  dyaw -0.42  dist 0.29->0.28  |wz|<=0.70 |vx|<=0.00 n=69
+    MPPI   8.00- 15.58 s  dyaw -0.11  dist 0.28->0.22  |wz|<=0.69 |vx|<=0.11 n=309
+    SHIM  15.60- 15.72 s  dyaw +0.01  dist 0.22->0.21  |wz|<=0.06 |vx|<=0.00 n=7
+- shim segments: 3; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 47 deg
+
+## A2_inplace_turn180: SUCCEEDED  (goal -0.300,-0.175,yaw -1.571; sim 4.8 s; error_code 0)
+- GT final: dist 0.212 m, yaw err +0.0 deg; odom wz +0.245 vx -0.000 (last 0.3 s)
+- plans in window: 10; distinct last poses: 2 [(np.float64(-0.3065), np.float64(-0.131), -1.5708), (np.float64(-0.3), np.float64(-0.175), -1.5708)]; first plan reverse 0.11 m, cusps 2
+- cmd_vel_nav samples 199: MPPI 0, SHIM 199; terminal: {"t_enter_xy_tol_s": 0.009499999999988518, "mppi_to_shim_handoffs_after_entry": 0, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.21167984594286526, "phases_after_entry": [["SHIM", 0.01, 4.83]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.01-  4.83 s  dyaw +2.95  dist 0.21->0.21  |wz|<=0.80 |vx|<=0.00 n=199
+- shim segments: 1; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 169 deg

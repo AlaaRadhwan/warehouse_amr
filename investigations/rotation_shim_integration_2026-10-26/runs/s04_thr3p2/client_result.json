@@ -1,0 +1,129 @@
+{
+  "goals": [
+    {
+      "name": "B_staging_A",
+      "goal": [
+        0.099,
+        -0.175,
+        0.0
+      ],
+      "sim_limit_s": 120,
+      "sim_sent": 51.597500000000004,
+      "wall_sent": 1793000348.426306,
+      "sim_accepted": 51.598000000000006,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 110.01750000000001,
+      "sim_duration_s": 58.419500000000006,
+      "wall_duration_s": 128.25003457069397,
+      "last_feedback": {
+        "x": 0.3002359126068548,
+        "y": -0.26548012791853726,
+        "yaw": -0.18464069121890164,
+        "distance_remaining": 0.502341091632843,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "C_reverse_1m",
+      "goal": [
+        -0.9,
+        -0.175,
+        0.0
+      ],
+      "sim_limit_s": 60,
+      "sim_sent": 113.01750000000001,
+      "wall_sent": 1793000483.2499666,
+      "sim_accepted": 113.018,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 117.1975,
+      "sim_duration_s": 4.179500000000004,
+      "wall_duration_s": 9.820392370223999,
+      "last_feedback": {
+        "x": -0.6969813494933863,
+        "y": -0.16197857689402184,
+        "yaw": 0.01904611272486477,
+        "distance_remaining": 0.1933923363685608,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "A1_fwd_turn90",
+      "goal": [
+        -0.3,
+        -0.175,
+        1.5707963267948966
+      ],
+      "sim_limit_s": 60,
+      "sim_sent": 120.1975,
+      "wall_sent": 1793000499.5262184,
+      "sim_accepted": 120.1975,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 124.3485,
+      "sim_duration_s": 4.150999999999996,
+      "wall_duration_s": 9.567339181900024,
+      "last_feedback": {
+        "x": -0.5030916066356443,
+        "y": -0.14597815237508183,
+        "yaw": 1.5788458919496995,
+        "distance_remaining": 0.7757217884063721,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "A2_inplace_turn180",
+      "goal": [
+        -0.3,
+        -0.175,
+        -1.5707963267948966
+      ],
+      "sim_limit_s": 40,
+      "sim_sent": 127.3485,
+      "wall_sent": 1793000515.7027152,
+      "sim_accepted": 127.349,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 132.4615,
+      "sim_duration_s": 5.112499999999997,
+      "wall_duration_s": 10.816773176193237,
+      "last_feedback": {
+        "x": -0.48454080393354104,
+        "y": -0.16357712673876978,
+        "yaw": -1.5639260665729215,
+        "distance_remaining": 0.7207522988319397,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "N1_nonbin_yaw",
+      "goal": [
+        -0.3,
+        -0.175,
+        0.2318
+      ],
+      "sim_limit_s": 45,
+      "sim_sent": 135.4615,
+      "wall_sent": 1793000532.520813,
+      "sim_accepted": 135.4615,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 138.6155,
+      "sim_duration_s": 3.1539999999999964,
+      "wall_duration_s": 6.7207746505737305,
+      "last_feedback": {
+        "x": -0.4296334222166234,
+        "y": -0.14014015652942824,
+        "yaw": 0.007619613688121215,
+        "distance_remaining": 0.14356115460395813,
+        "recoveries": 0
+      }
+    }
+  ]
+}

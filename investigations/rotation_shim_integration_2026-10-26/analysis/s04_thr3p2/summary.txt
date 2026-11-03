@@ -1,0 +1,61 @@
+## B_staging_A: SUCCEEDED  (goal 0.099,-0.175,yaw 0.000; sim 58.4 s; error_code 0)
+- GT final: dist 0.234 m, yaw err -10.7 deg; odom wz -0.102 vx -0.078 (last 0.3 s)
+- plans in window: 124; distinct last poses: 8 [(np.float64(0.0954), np.float64(-0.1471), 0.0), (np.float64(0.099), np.float64(-0.175), 0.0), (np.float64(0.1005), np.float64(-0.1313), 0.0)]; first plan reverse 2.66 m, cusps 2
+- cmd_vel_nav samples 2565: MPPI 2549, SHIM 16; terminal: {"t_enter_xy_tol_s": 58.18, "mppi_to_shim_handoffs_after_entry": 1, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.24884896436745008, "phases_after_entry": [["SHIM", 58.22, 58.4]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    MPPI   0.02- 57.94 s  dyaw -0.13  dist 9.09->0.28  |wz|<=0.43 |vx|<=0.40 n=2542
+    SHIM  57.95- 58.05 s  dyaw -0.02  dist 0.28->0.26  |wz|<=0.16 |vx|<=0.00 n=6
+    MPPI  58.07- 58.20 s  dyaw -0.02  dist 0.26->0.25  |wz|<=0.18 |vx|<=0.20 n=7
+    SHIM  58.22- 58.40 s  dyaw -0.01  dist 0.24->0.23  |wz|<=0.09 |vx|<=0.00 n=10
+- PRE-TERMINAL shim segments (start dist > xy_tol+0.06 m): 0, total |dyaw| 0 deg; xy_tol used 0.25
+- shim segments: 2; max |wz| in shim = 0.16 (config 0.8); max |dyaw| in a shim segment = 1 deg
+
+- at success (AMCL estimate): to REQUESTED goal dist 0.260 m, yaw -8.3 deg | to PLAN END POSE (0.095,-0.147,0.0 deg) dist 0.275 m, yaw -8.3 deg | est-GT yaw +2.4 deg
+
+## C_reverse_1m: SUCCEEDED  (goal -0.900,-0.175,yaw 0.000; sim 4.2 s; error_code 0)
+- GT final: dist 0.265 m, yaw err +0.7 deg; odom wz +0.121 vx -0.057 (last 0.3 s)
+- plans in window: 10; distinct last poses: 2 [(np.float64(-0.9), np.float64(-0.175), 0.0), (np.float64(-0.8581), np.float64(-0.1703), 0.0)]; first plan reverse 1.21 m, cusps 0
+- cmd_vel_nav samples 197: MPPI 176, SHIM 21; terminal: {}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    MPPI   0.01-  3.76 s  dyaw +0.15  dist 1.22->0.30  |wz|<=0.06 |vx|<=0.33 n=176
+    SHIM   3.78-  4.16 s  dyaw +0.04  dist 0.29->0.26  |wz|<=0.19 |vx|<=0.00 n=21
+- PRE-TERMINAL shim segments (start dist > xy_tol+0.06 m): 0, total |dyaw| 0 deg; xy_tol used 0.25
+- shim segments: 1; max |wz| in shim = 0.19 (config 0.8); max |dyaw| in a shim segment = 2 deg
+
+- at success (AMCL estimate): to REQUESTED goal dist 0.231 m, yaw -0.8 deg | to PLAN END POSE (-0.858,-0.170,0.0 deg) dist 0.188 m, yaw -0.8 deg | est-GT yaw -1.5 deg
+
+## A1_fwd_turn90: SUCCEEDED  (goal -0.300,-0.175,yaw 1.571; sim 4.2 s; error_code 0)
+- GT final: dist 0.188 m, yaw err +0.6 deg; odom wz +0.230 vx -0.000 (last 0.3 s)
+- plans in window: 10; distinct last poses: 7 [(np.float64(-0.3076), np.float64(-0.1469), 1.5708), (np.float64(-0.3), np.float64(-0.175), 1.5708), (np.float64(-0.2759), np.float64(-0.1748), 1.5708)]; first plan reverse 0.22 m, cusps 1
+- cmd_vel_nav samples 192: MPPI 86, SHIM 106; terminal: {"t_enter_xy_tol_s": 1.1624999999999943, "mppi_to_shim_handoffs_after_entry": 2, "shim_to_mppi_handoffs_after_entry": 1, "max_dist_after_entry_m": 0.24893282428828278, "phases_after_entry": [["SHIM", 1.4, 2.2], ["MPPI", 2.23, 2.64], ["SHIM", 2.66, 4.13]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    MPPI   0.01-  1.38 s  dyaw +0.22  dist 0.34->0.22  |wz|<=0.27 |vx|<=0.15 n=66
+    SHIM   1.40-  2.20 s  dyaw +0.34  dist 0.22->0.20  |wz|<=0.64 |vx|<=0.00 n=37
+    MPPI   2.23-  2.64 s  dyaw +0.22  dist 0.20->0.19  |wz|<=0.60 |vx|<=0.06 n=20
+    SHIM   2.66-  4.13 s  dyaw +0.76  dist 0.19->0.19  |wz|<=0.80 |vx|<=0.00 n=69
+- PRE-TERMINAL shim segments (start dist > xy_tol+0.06 m): 0, total |dyaw| 0 deg; xy_tol used 0.25
+- shim segments: 2; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 44 deg
+
+- at success (AMCL estimate): to REQUESTED goal dist 0.155 m, yaw +1.4 deg | to PLAN END POSE (-0.275,-0.168,90.0 deg) dist 0.177 m, yaw +1.4 deg | est-GT yaw +0.9 deg
+
+## A2_inplace_turn180: SUCCEEDED  (goal -0.300,-0.175,yaw -1.571; sim 5.1 s; error_code 0)
+- GT final: dist 0.188 m, yaw err -0.0 deg; odom wz +0.251 vx -0.000 (last 0.3 s)
+- plans in window: 11; distinct last poses: 1 [(np.float64(-0.3), np.float64(-0.175), -1.5708)]; first plan reverse 0.58 m, cusps 2
+- cmd_vel_nav samples 217: MPPI 0, SHIM 217; terminal: {"t_enter_xy_tol_s": 0.011499999999998067, "mppi_to_shim_handoffs_after_entry": 0, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.18820744414011667, "phases_after_entry": [["SHIM", 0.01, 5.09]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.01-  5.09 s  dyaw +3.13  dist 0.19->0.19  |wz|<=0.80 |vx|<=0.00 n=217
+- PRE-TERMINAL shim segments (start dist > xy_tol+0.06 m): 0, total |dyaw| 0 deg; xy_tol used 0.25
+- shim segments: 1; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 179 deg
+
+- at success (AMCL estimate): to REQUESTED goal dist 0.165 m, yaw -0.7 deg | to PLAN END POSE (-0.300,-0.175,-90.0 deg) dist 0.165 m, yaw -0.7 deg | est-GT yaw -0.7 deg
+
+## N1_nonbin_yaw: SUCCEEDED  (goal -0.300,-0.175,yaw 0.232; sim 3.2 s; error_code 0)
+- GT final: dist 0.188 m, yaw err -13.6 deg; odom wz +0.237 vx -0.000 (last 0.3 s)
+- plans in window: 7; distinct last poses: 4 [(np.float64(-0.3027), np.float64(-0.1541), 0.0), (np.float64(-0.3), np.float64(-0.175), 0.0), (np.float64(-0.2848), np.float64(-0.1618), 0.0)]; first plan reverse 0.27 m, cusps 2
+- cmd_vel_nav samples 135: MPPI 0, SHIM 135; terminal: {"t_enter_xy_tol_s": 0.010500000000007503, "mppi_to_shim_handoffs_after_entry": 0, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.1882074501783824, "phases_after_entry": [["SHIM", 0.01, 3.13]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.01-  3.13 s  dyaw +1.56  dist 0.19->0.19  |wz|<=0.80 |vx|<=0.00 n=135
+- PRE-TERMINAL shim segments (start dist > xy_tol+0.06 m): 0, total |dyaw| 0 deg; xy_tol used 0.25
+- shim segments: 1; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 90 deg
+
+- at success (AMCL estimate): to REQUESTED goal dist 0.144 m, yaw -15.2 deg | to PLAN END POSE (-0.285,-0.162,0.0 deg) dist 0.157 m, yaw -2.0 deg | est-GT yaw -1.6 deg

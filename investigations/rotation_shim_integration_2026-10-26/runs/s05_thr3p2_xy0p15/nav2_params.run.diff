@@ -1,0 +1,8 @@
+--- repo nav2_params.yaml
++++ /home/alaa-radhwan/Projects/warehouse_amr/investigations/rotation_shim_integration_2026-10-26/runs/s05_thr3p2_xy0p15/nav2_params.run.yaml
+@@ -107 +107 @@
+-      xy_goal_tolerance: 0.25
++      xy_goal_tolerance: 0.15
+@@ -133 +133 @@
+-      angular_dist_threshold: 0.785
++      angular_dist_threshold: 3.2

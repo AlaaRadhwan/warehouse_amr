@@ -1,0 +1,104 @@
+{
+  "goals": [
+    {
+      "name": "B_staging_A",
+      "goal": [
+        0.099,
+        -0.175,
+        0.0
+      ],
+      "sim_limit_s": 120,
+      "sim_sent": 40.119,
+      "wall_sent": 1793000768.50907,
+      "sim_accepted": 40.1195,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 96.625,
+      "sim_duration_s": 56.5055,
+      "wall_duration_s": 120.70029401779175,
+      "last_feedback": {
+        "x": 0.23317219642464693,
+        "y": -0.23557476450709292,
+        "yaw": 0.004765026943266126,
+        "distance_remaining": 0.45699378848075867,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "C_reverse_1m",
+      "goal": [
+        -0.9,
+        -0.175,
+        0.0
+      ],
+      "sim_limit_s": 60,
+      "sim_sent": 99.625,
+      "wall_sent": 1793000895.2225304,
+      "sim_accepted": 99.625,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 104.5515,
+      "sim_duration_s": 4.926500000000004,
+      "wall_duration_s": 10.61866307258606,
+      "last_feedback": {
+        "x": -0.7817661766575714,
+        "y": -0.16830377976088462,
+        "yaw": 0.004703763893841534,
+        "distance_remaining": 0.13003845512866974,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "A1_fwd_turn90",
+      "goal": [
+        -0.3,
+        -0.175,
+        1.5707963267948966
+      ],
+      "sim_limit_s": 60,
+      "sim_sent": 107.5515,
+      "wall_sent": 1793000911.700025,
+      "sim_accepted": 107.5515,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 114.296,
+      "sim_duration_s": 6.744500000000002,
+      "wall_duration_s": 14.970678567886353,
+      "last_feedback": {
+        "x": -0.3083367118649676,
+        "y": -0.04742586849850472,
+        "yaw": 1.5905232854139042,
+        "distance_remaining": 0.1562013030052185,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "A2_inplace_turn180",
+      "goal": [
+        -0.3,
+        -0.175,
+        -1.5707963267948966
+      ],
+      "sim_limit_s": 40,
+      "sim_sent": 117.296,
+      "wall_sent": 1793000933.24077,
+      "sim_accepted": 117.296,
+      "status": "SUCCEEDED",
+      "error_code": 0,
+      "error_msg": "",
+      "sim_finished": 122.4795,
+      "sim_duration_s": 5.183499999999995,
+      "wall_duration_s": 11.918939590454102,
+      "last_feedback": {
+        "x": -0.34866559423716126,
+        "y": -0.11648786162727554,
+        "yaw": -1.5622113199757197,
+        "distance_remaining": 0.2224745750427246,
+        "recoveries": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+## B_staging_A: SUCCEEDED  (goal 0.099,-0.175,yaw 0.000; sim 47.9 s; error_code 0)
+- GT final: dist 0.181 m, yaw err -4.4 deg; odom wz -0.040 vx -0.091 (last 0.3 s)
+- plans in window: 105; distinct last poses: 11 [(np.float64(0.0934), np.float64(-0.1383), 0.0), (np.float64(0.0963), np.float64(-0.1567), 0.0), (np.float64(0.099), np.float64(-0.175), 0.0)]; first plan reverse 2.66 m, cusps 2
+- cmd_vel_nav samples 2177: MPPI 1651, SHIM 526; terminal: {"t_enter_xy_tol_s": 47.25749999999999, "mppi_to_shim_handoffs_after_entry": 1, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.24803937636556878, "phases_after_entry": [["SHIM", 47.68, 47.9]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.02-  6.18 s  dyaw +3.21  dist 9.09->9.09  |wz|<=0.80 |vx|<=0.00 n=290
+    MPPI   6.20- 34.59 s  dyaw +0.13  dist 9.09->0.91  |wz|<=0.83 |vx|<=0.59 n=1326
+    SHIM  34.61- 39.98 s  dyaw +3.04  dist 0.91->0.86  |wz|<=0.80 |vx|<=0.00 n=225
+    MPPI  40.01- 47.66 s  dyaw -0.21  dist 0.86->0.20  |wz|<=0.84 |vx|<=0.22 n=325
+    SHIM  47.68- 47.90 s  dyaw -0.01  dist 0.20->0.18  |wz|<=0.06 |vx|<=0.00 n=11
+- shim segments: 3; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 184 deg
+
+## C_reverse_1m: SUCCEEDED  (goal -0.900,-0.175,yaw 0.000; sim 4.3 s; error_code 0)
+- GT final: dist 0.189 m, yaw err -0.3 deg; odom wz +0.110 vx -0.065 (last 0.3 s)
+- plans in window: 9; distinct last poses: 1 [(np.float64(-0.9), np.float64(-0.175), 0.0)]; first plan reverse 1.22 m, cusps 0
+- cmd_vel_nav samples 179: MPPI 163, SHIM 16; terminal: {"t_enter_xy_tol_s": 3.724499999999992, "mppi_to_shim_handoffs_after_entry": 1, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.24850735929176496, "phases_after_entry": [["SHIM", 3.89, 4.23]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    MPPI   0.01-  3.87 s  dyaw +0.03  dist 1.15->0.22  |wz|<=0.05 |vx|<=0.32 n=163
+    SHIM   3.89-  4.23 s  dyaw +0.04  dist 0.22->0.19  |wz|<=0.16 |vx|<=0.00 n=16
+- shim segments: 1; max |wz| in shim = 0.16 (config 0.8); max |dyaw| in a shim segment = 2 deg
+
+## A1_fwd_turn90: SUCCEEDED  (goal -0.300,-0.175,yaw 1.571; sim 10.0 s; error_code 0)
+- GT final: dist 0.189 m, yaw err -1.1 deg; odom wz -0.228 vx -0.000 (last 0.3 s)
+- plans in window: 21; distinct last poses: 7 [(np.float64(-0.3), np.float64(-0.175), 1.5708), (np.float64(-0.2919), np.float64(-0.1725), 1.5708), (np.float64(-0.2821), np.float64(-0.1793), 1.5708)]; first plan reverse 0.18 m, cusps 1
+- cmd_vel_nav samples 420: MPPI 256, SHIM 164; terminal: {"t_enter_xy_tol_s": 7.420500000000004, "mppi_to_shim_handoffs_after_entry": 1, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.2498535207152059, "phases_after_entry": [["SHIM", 7.87, 10.01]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.01-  1.77 s  dyaw +0.69  dist 0.41->0.41  |wz|<=0.80 |vx|<=0.00 n=73
+    MPPI   1.80-  7.85 s  dyaw +1.70  dist 0.41->0.20  |wz|<=0.81 |vx|<=0.17 n=256
+    SHIM   7.87- 10.01 s  dyaw -0.85  dist 0.20->0.19  |wz|<=0.78 |vx|<=0.00 n=91
+- shim segments: 2; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 49 deg
+
+## A2_inplace_turn180: SUCCEEDED  (goal -0.300,-0.175,yaw -1.571; sim 5.1 s; error_code 0)
+- GT final: dist 0.189 m, yaw err +0.2 deg; odom wz -0.251 vx -0.000 (last 0.3 s)
+- plans in window: 11; distinct last poses: 1 [(np.float64(-0.3), np.float64(-0.175), -1.5708)]; first plan reverse 0.62 m, cusps 2
+- cmd_vel_nav samples 212: MPPI 0, SHIM 212; terminal: {"t_enter_xy_tol_s": 0.010499999999993292, "mppi_to_shim_handoffs_after_entry": 0, "shim_to_mppi_handoffs_after_entry": 0, "max_dist_after_entry_m": 0.1891504767081666, "phases_after_entry": [["SHIM", 0.01, 5.07]]}
+- phases (src, t0, t1, d_yaw_gt[rad], dist_start, dist_end, max|wz|cmd, max|vx|cmd, n):
+    SHIM   0.01-  5.07 s  dyaw -3.12  dist 0.19->0.19  |wz|<=0.80 |vx|<=0.00 n=212
+- shim segments: 1; max |wz| in shim = 0.80 (config 0.8); max |dyaw| in a shim segment = 179 deg

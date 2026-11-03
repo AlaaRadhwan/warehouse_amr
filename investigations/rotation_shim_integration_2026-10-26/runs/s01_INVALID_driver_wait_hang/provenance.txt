@@ -1,0 +1,10 @@
+run_id=s01 goalset=full
+git_head=88a7e70 branch=feature/rotation-shim-integration
+ M src/amr_navigation/config/nav2_params.yaml
+ M src/amr_navigation/package.xml
+?? investigations/rotation_shim_integration_2026-10-26/
+4518336750bff55e  /home/alaa-radhwan/Projects/warehouse_amr/src/amr_navigation/config/nav2_params.yaml
+2cdb5b0f9ef5f713  /home/alaa-radhwan/Projects/warehouse_amr/src/amr_control/config/controllers.yaml
+ros-jazzy-nav2-mppi-controller 1.3.12-1noble.20260615.165555
+ros-jazzy-nav2-rotation-shim-controller 1.3.12-1noble.20260615.170216
+0.17 0.29 0.28 1/1603 7421
