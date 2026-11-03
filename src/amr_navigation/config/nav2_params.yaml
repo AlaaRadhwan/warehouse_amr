@@ -119,7 +119,57 @@ controller_server:
       symmetric_yaw_tolerance: false
 
     FollowPath:
-      plugin: "nav2_mppi_controller::MPPIController"
+      # Rotation Shim wrapping MPPI (nav2_rotation_shim_controller 1.3.12). The shim configures the primary
+      # controller under this SAME plugin name, so every MPPI parameter below stays under FollowPath.* unchanged.
+      plugin: "nav2_rotation_shim_controller::RotationShimController"
+      primary_controller: "nav2_mppi_controller::MPPIController"
+
+      # =====================================================
+      # ROTATION SHIM
+      # =====================================================
+
+      # TERMINAL-ONLY SHIM (owner decision 2026-10-26): MPPI does all path following, turning and reversing; the shim only
+      # aligns the final heading inside the goal XY tolerance. angular_dist_threshold is compared with an angular
+      # distance that is always <= pi, so 3.2 rad can never be exceeded: the pre-path / mid-route "rotate to path
+      # heading" branch never fires (verified: nav2_rotation_shim_controller 1.3.12 source, and 0 pre-terminal shim
+      # segments in the s04/s05 validation runs). Consequences: angular_disengage_threshold, forward_sampling_distance,
+      # use_path_orientations and rotate_to_heading_once are inert; the shim's rotation collision look-ahead is also
+      # effectively disabled (see investigations/rotation_shim_integration_2026-10-26/report). The previous
+      # Phase 1 value was 0.785 (45 deg), which caused a ~180 deg start-up rotation and mid-route re-activations.
+      angular_dist_threshold: 3.2
+      angular_disengage_threshold: 0.3925
+
+      # Path point (>= this far from the path start) whose orientation is the "rough path heading".
+      forward_sampling_distance: 0.5
+
+      # Compare the robot yaw with the path-point ORIENTATION (State Lattice poses carry the vehicle heading,
+      # also on reverse segments) instead of the bearing to the point, so reverse segments need no 180 deg turn.
+      use_path_orientations: true
+
+      # Pre-path rotation only for a new goal or while already rotating; ordinary 1 Hz replans do not re-trigger it.
+      rotate_to_heading_once: true
+
+      # Inside the goal's XY tolerance (taken from the goal checker, 0.25 m) rotate to the final path pose
+      # heading, i.e. the requested goal yaw (snapped to the nearest lattice heading bin by the planner).
+      rotate_to_goal_heading: true
+
+      # Rotation-rate profile limited from the measured feedback velocity, not from the previous command.
+      closed_loop: true
+
+      # In-place rotation limits, chosen from existing robot constraints:
+      #   rate  0.8 rad/s = 80 % of MPPI wz_max (1.0): keeps the commanded rate off the limit that was pinned in the
+      #                     e01 spin (measured 1.079 rad/s at a 1.0 command in the uncalibrated plant).
+      #   accel 1.0 rad/s^2 = MPPI az_max; below the velocity smoother's 1.5 rad/s^2 so the shim's own
+      #                     stopping profile, not the smoother, shapes the motion.
+      rotate_to_heading_angular_vel: 0.8
+      max_angular_accel: 1.0
+
+      # Look-ahead for the in-place rotation collision check (footprint swept at the commanded rate).
+      simulate_ahead_time: 1.0
+
+      # =====================================================
+      # MPPI (primary controller): unchanged baseline below
+      # =====================================================
 
       # =====================================================
       # MODEL / OPTIMIZER
