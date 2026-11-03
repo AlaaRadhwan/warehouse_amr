@@ -4,13 +4,9 @@
   <name>amr_bringup</name>
   <version>0.0.0</version>
 
-  <description>
-    Top-level bringup for the warehouse AMR
-  </description>
+  <description>Top-level simulation bringup: Gazebo, saved-map localization, Nav2 and the mission executor, with selectable planner and controller profiles.</description>
 
-  <maintainer email="alaa.radhwanmustafa@gmail.com">
-    alaa-radhwan
-  </maintainer>
+  <maintainer email="alaa.radhwanmustafa@gmail.com">alaa-radhwan</maintainer>
 
   <license>Apache-2.0</license>
 

@@ -6,11 +6,9 @@
 
   <name>amr_interfaces</name>
   <version>0.0.0</version>
-  <description>Custom interfaces for the warehouse AMR</description>
+  <description>Custom ROS 2 actions for the warehouse AMR (ExecuteMission, GoToStation).</description>
 
-  <maintainer email="alaa.radhwanmustafa@gmail.com">
-    alaa-radhwan
-  </maintainer>
+  <maintainer email="alaa.radhwanmustafa@gmail.com">alaa-radhwan</maintainer>
 
   <license>Apache-2.0</license>
 

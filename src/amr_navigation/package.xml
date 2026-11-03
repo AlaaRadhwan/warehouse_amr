@@ -3,7 +3,7 @@
 <package format="3">
   <name>amr_navigation</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Nav2 configuration for the warehouse AMR: parameters, planner/controller profile overlays, saved map, State Lattice primitives, route graph and route behavior tree.</description>
   <maintainer email="alaa.radhwanmustafa@gmail.com">alaa-radhwan</maintainer>
   <license>Apache-2.0</license>
 

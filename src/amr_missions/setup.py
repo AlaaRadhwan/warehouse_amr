@@ -26,7 +26,7 @@ setup(
     zip_safe=True,
     maintainer='alaa-radhwan',
     maintainer_email='alaa.radhwanmustafa@gmail.com',
-    description='TODO: Package description',
+    description='Station-based mission layer: robot_executor (NavigateToPose and Nav2 DockRobot calls) and mission_manager (multi-station missions) over amr_interfaces actions.',
     license='Apache-2.0',
     extras_require={
         'test': [

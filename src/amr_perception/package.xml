@@ -3,7 +3,7 @@
 <package format="3">
   <name>amr_perception</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>AprilTag detection configuration and a dock pose publisher for precision docking at Station A.</description>
   <maintainer email="alaa.radhwanmustafa@gmail.com">alaa-radhwan</maintainer>
   <license>TODO: License declaration</license>
 

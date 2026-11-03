@@ -28,7 +28,7 @@ setup(
     zip_safe=True,
     maintainer='alaa-radhwan',
     maintainer_email='alaa.radhwanmustafa@gmail.com',
-    description='TODO: Package description',
+    description='AprilTag detection configuration and a dock pose publisher for precision docking at Station A.',
     license='TODO: License declaration',
     extras_require={
         'test': [

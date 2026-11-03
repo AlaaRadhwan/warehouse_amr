@@ -3,7 +3,7 @@
 <package format="3">
   <name>amr_missions</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Station-based mission layer: robot_executor (NavigateToPose and Nav2 DockRobot calls) and mission_manager (multi-station missions) over amr_interfaces actions.</description>
   <maintainer email="alaa.radhwanmustafa@gmail.com">alaa-radhwan</maintainer>
   <license>Apache-2.0</license>
 

@@ -3,7 +3,7 @@
 <package format="3">
   <name>amr_control</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>ros2_control configuration for the differential-drive base, including the simulation-calibrated wheel_separation_multiplier.</description>
   <maintainer email="alaa.radhwanmustafa@gmail.com">alaa-radhwan</maintainer>
   <license>Apache-2.0</license>
 
