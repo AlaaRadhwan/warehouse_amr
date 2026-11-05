@@ -3,6 +3,9 @@
 `warehouse_amr_demo.mp4` (44 s, 1280×720, no audio) shows the accepted baseline in Gazebo: routed Station B → Station A staging, a rear-obstacle
 back-out, and a routed goal with a +90° yaw. **Simulation only; one fresh run per scenario (n = 1); time-lapsed** (3×, 2×, 3×, labelled on screen).
 
+The video shows one selected recording per scenario. Other attempts were made while the recording setup (camera tracking and camera updates) was being
+debugged; those were recording-rig problems, not robot failures, and are not shown. Clip 1 was re-recorded once more to fix a camera obstruction.
+
 ## What was recorded
 Launch: `planner:=navfn mppi_path_interpretation:=2d_prefer_forward structured_routing:=true`. Frames come from a temporary Gazebo camera model added to
 the running simulation (screen capture was unavailable); the world, map, parameters and routes were not modified. The rear obstacle is a temporary
