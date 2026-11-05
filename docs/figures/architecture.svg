@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 448" width="1200" height="448" font-family="DejaVu Sans, Verdana, Arial, sans-serif">
+<title>Warehouse AMR - System Architecture</title><desc>Mission layer, Nav2 behavior tree with Route Server and NavFn planning, MPPI controller, velocity output, ros2_control and Gazebo, with AMCL and EKF localization, occupancy map and route graph.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker></defs>
+<rect x="0" y="0" width="1200" height="448" rx="0" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text x="22" y="36" font-size="24" font-weight="700" fill="#0f2a4a" text-anchor="start">Warehouse AMR — System Architecture</text>
+<text x="22" y="58" font-size="14" font-weight="400" fill="#475569" text-anchor="start">ROS 2 Jazzy · Nav2 · Gazebo Harmonic · simulation only</text>
+<rect x="12" y="74" width="1176" height="362" rx="14" fill="#f6f9fd" stroke="#1f4e8c" stroke-width="2.5"/>
+<rect x="22" y="92" width="176" height="92" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="34" y="118" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">Mission layer</text>
+<text x="34" y="140" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">GoToStation action</text>
+<text x="34" y="158" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">station → nav goal</text>
+<rect x="267" y="92" width="176" height="92" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="279" y="118" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">Behavior tree</text>
+<text x="279" y="140" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">coordinates planning,</text>
+<text x="279" y="158" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">sends path to MPPI</text>
+<rect x="512" y="92" width="176" height="92" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="524" y="118" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">MPPI controller</text>
+<text x="524" y="140" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">2D path, reverse ok</text>
+<text x="524" y="158" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">PreferForwardCritic</text>
+<rect x="757" y="92" width="176" height="92" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="769" y="118" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">Velocity output</text>
+<text x="769" y="140" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">velocity smoother</text>
+<text x="769" y="158" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">+ collision monitor</text>
+<rect x="1002" y="92" width="176" height="92" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="1014" y="118" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">ros2_control</text>
+<text x="1014" y="140" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">diff-drive controller</text>
+<text x="1014" y="158" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">wheel sep. × 0.92754</text>
+<line x1="201" y1="138.0" x2="264" y2="138.0" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="232.5" y="129.0" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">goal</text>
+<line x1="446" y1="138.0" x2="509" y2="138.0" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="477.5" y="129.0" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">path</text>
+<line x1="691" y1="138.0" x2="754" y2="138.0" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="722.5" y="129.0" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">cmd_vel</text>
+<line x1="936" y1="138.0" x2="999" y2="138.0" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="967.5" y="129.0" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">cmd_vel</text>
+<rect x="267" y="238" width="176" height="176" rx="10" fill="#ffffff" stroke="#1f4e8c" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="279" y="254" font-size="12.5" font-weight="700" fill="#1f4e8c" text-anchor="start">Planning</text>
+<rect x="275" y="262" width="160" height="58" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="287" y="288" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">Route Server</text>
+<text x="287" y="310" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">lane-based route</text>
+<rect x="275" y="346" width="160" height="58" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="287" y="372" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">NavFn</text>
+<text x="287" y="394" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">first / last-mile plans</text>
+<line x1="355.0" y1="187" x2="355.0" y2="235" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<text x="365.0" y="220" font-size="12" font-weight="600" fill="#334155" text-anchor="start">plan</text>
+<rect x="22" y="262" width="176" height="58" rx="10" fill="#eef0f3" stroke="#5b6573" stroke-width="2"/>
+<text x="34" y="288" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">Route graph</text>
+<text x="34" y="310" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">lane network</text>
+<rect x="22" y="346" width="176" height="58" rx="10" fill="#eef0f3" stroke="#5b6573" stroke-width="2"/>
+<text x="34" y="372" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">Occupancy map</text>
+<text x="34" y="394" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">AMCL + costmaps</text>
+<line x1="201" y1="291" x2="272" y2="291" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="234" y="282" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">lanes</text>
+<line x1="201" y1="375" x2="272" y2="375" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="202" y="366" font-size="12" font-weight="600" fill="#334155" text-anchor="start">costmap</text>
+<path d="M110.0,407 L110.0,426 L548,426 L548,357" fill="none" stroke="#334155" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="473" y="420" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">map</text>
+<rect x="512" y="250" width="176" height="104" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="524" y="276" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">AMCL</text>
+<text x="524" y="298" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">LiDAR + occupancy map</text>
+<text x="524" y="316" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">map → odom TF</text>
+<rect x="757" y="250" width="176" height="104" rx="10" fill="#eaf2fb" stroke="#1f4e8c" stroke-width="2"/>
+<text x="769" y="276" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">EKF</text>
+<text x="769" y="298" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">wheel odom + IMU</text>
+<text x="769" y="316" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">odom → base TF</text>
+<line x1="509" y1="302" x2="446" y2="302" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="477.5" y="293" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">pose</text>
+<line x1="754" y1="302" x2="691" y2="302" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="722.5" y="293" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">odom</text>
+<line x1="552" y1="247" x2="552" y2="187" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="562" y="220" font-size="12" font-weight="600" fill="#334155" text-anchor="start">pose</text>
+<path d="M785,247 L785,208 L660,208 L660,187" fill="none" stroke="#334155" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="722" y="202" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">odom</text>
+<rect x="1002" y="250" width="176" height="104" rx="10" fill="#eef0f3" stroke="#5b6573" stroke-width="2"/>
+<text x="1014" y="276" font-size="15.5" font-weight="700" fill="#0f2a4a" text-anchor="start">Gazebo</text>
+<text x="1014" y="298" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">robot, wheels, LiDAR</text>
+<text x="1014" y="316" font-size="12.5" font-weight="400" fill="#334155" text-anchor="start">IMU, physics, world</text>
+<line x1="1148" y1="187" x2="1148" y2="247" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="1138" y="220" font-size="12" font-weight="600" fill="#334155" text-anchor="end">wheel cmds</text>
+<line x1="999" y1="302" x2="936" y2="302" stroke="#334155" stroke-width="2.2" marker-end="url(#ah)"/>
+<text x="967.5" y="293" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">IMU</text>
+<path d="M1032,187 L1032,224 L905,224 L905,247" fill="none" stroke="#334155" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="967.5" y="218" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">wheel odom</text>
+<path d="M1090.0,357 L1090.0,388 L600.0,388 L600.0,357" fill="none" stroke="#334155" stroke-width="2.2" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="937.5" y="380" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">LiDAR</text>
+</svg>

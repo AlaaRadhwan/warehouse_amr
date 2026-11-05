@@ -26,6 +26,8 @@ exercised by the one-command launch are marked.
 needs that launch started separately; the end-to-end docking run has not been re-validated on the accepted baseline.
 
 ## Navigation data flow (accepted baseline profile)
+![System architecture](figures/architecture.svg)
+
 Goal (`NavigateToPose`, directly or via the mission layer) → BT navigator → **route behavior tree**: Route Server computes the lane path;
 guarded first/last-mile planning (NavFn, ≤ 1.5 m) → **MPPI** controller (2D-path interpretation, reverse allowed, `PreferForwardCritic`) →
 velocity smoother → collision monitor → `cmd_vel` → `diff_drive_controller`. Localization: AMCL on the saved map, EKF for odometry.
