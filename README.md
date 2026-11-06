@@ -46,7 +46,7 @@ Developed on Ubuntu 24.04 with ROS 2 Jazzy and Gazebo Harmonic (`gz sim`). Requi
 
 The repository root is the colcon workspace: the packages are in `src/` and `colcon build` is run from the root, which creates `build/`, `install/` and `log/` there.
 ```bash
-git clone <repository-url> warehouse_amr
+git clone https://github.com/AlaaRadhwan/warehouse_amr.git
 cd warehouse_amr                      # all commands below run from here
 source /opt/ros/jazzy/setup.bash
 rosdep install --from-paths src --ignore-src -r -y
