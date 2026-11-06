@@ -125,4 +125,5 @@ implementation work were divided.
   NoDerivatives). They are downloaded at run time, not stored here, and are not covered by the BSD notice. Licence table and authors:
   [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). Images and video of the simulation show these models.
 * Other third-party material and open items: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), [`THIRD_PARTY_REVIEW.md`](THIRD_PARTY_REVIEW.md).
-* Package licences are declared per package (Apache-2.0 in most). No root licence has been chosen yet.
+* **This project's original code, configuration and documentation are licensed under the [Apache License 2.0](LICENSE)**, Copyright 2026 Alaa Radhwan Mustafa Shamsan
+  (see [`NOTICE`](NOTICE)). All nine ROS 2 packages declare `Apache-2.0`. The grant covers only material authored for this project, not the third-party material above.

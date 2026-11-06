@@ -3,6 +3,8 @@
 Summary of material this project is derived from or refers to. Evidence, status and open questions are in
 [`THIRD_PARTY_REVIEW.md`](THIRD_PARTY_REVIEW.md). This is not legal advice and does not grant rights in any third-party work.
 
+This project's own original material is Apache-2.0 (see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE)); that licence does not extend to anything listed below.
+
 ## Derived material in this repository
 
 | Material | Source | Licence |

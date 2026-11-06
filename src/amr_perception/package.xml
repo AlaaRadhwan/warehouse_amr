@@ -5,7 +5,7 @@
   <version>0.0.0</version>
   <description>AprilTag detection configuration and a dock pose publisher for precision docking at Station A.</description>
   <maintainer email="alaa.radhwanmustafa@gmail.com">alaa-radhwan</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache-2.0</license>
 
   <depend>rclpy</depend>
   <depend>geometry_msgs</depend>

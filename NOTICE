@@ -1,0 +1,13 @@
+Warehouse AMR
+Copyright 2026 Alaa Radhwan Mustafa Shamsan
+
+This project's original code, configuration and documentation are licensed under the Apache License, Version 2.0 (see LICENSE).
+That grant covers only material authored for this project. It does not cover third-party material, which keeps its own licence:
+
+  * src/amr_simulation/worlds/warehouse_world.sdf is adapted from the Clearpath Robotics clearpath_simulator warehouse world
+    (BSD-3-Clause, Copyright (c) 2023 clearpathrobotics); see src/amr_simulation/worlds/NOTICE-clearpath.md.
+  * Gazebo Fuel models referenced by the world are by other authors under their own Creative Commons licences and are not
+    stored in this repository.
+  * Other third-party material, dependencies and open items: THIRD_PARTY_NOTICES.md and THIRD_PARTY_REVIEW.md.
+
+This project is independent and is not affiliated with or endorsed by Clearpath Robotics.

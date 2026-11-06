@@ -29,7 +29,7 @@ setup(
     maintainer='alaa-radhwan',
     maintainer_email='alaa.radhwanmustafa@gmail.com',
     description='AprilTag detection configuration and a dock pose publisher for precision docking at Station A.',
-    license='TODO: License declaration',
+    license='Apache-2.0',
     extras_require={
         'test': [
             'pytest',
