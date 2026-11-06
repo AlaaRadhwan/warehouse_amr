@@ -1,3 +1,7 @@
+
+
+
+
 # Warehouse AMR
 
 **Independent ROS 2 Autonomous Mobile Robot Project**
@@ -11,7 +15,7 @@ The repository also keeps the measurements and reports behind each design decisi
 > for independent physical safety measures. See [`docs/LIMITATIONS_AND_FUTURE_WORK.md`](docs/LIMITATIONS_AND_FUTURE_WORK.md).
 
 ## Demo
-**[Watch the 44 s simulation demo](docs/media/warehouse_amr_demo.mp4)**: routed Station B → A, a rear-obstacle back-out, and a routed goal with a requested
+**[Watch the 44 s simulation demo](https://github.com/user-attachments/assets/8e7df18d-d176-4938-9d69-d698aadf52a2)**: routed Station B → A, a rear-obstacle back-out, and a routed goal with a requested
 +90° orientation. Simulation only; one fresh run per scenario; time-lapsed (3×, 2×, 3×, labelled on screen). How it was recorded, the numbers it shows and
 its attribution: [`docs/media/README.md`](docs/media/README.md).
 The video shows one selected recording per scenario. Other attempts were made while the recording setup (camera tracking) was being debugged; they
