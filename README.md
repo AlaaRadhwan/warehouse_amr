@@ -12,7 +12,7 @@ each design decision are kept in the repository.
 Routed navigation between stations, backing out of a tight spot with an obstacle behind the robot, and arriving at a goal with a requested orientation
 (time-lapsed Gazebo footage of the accepted configuration; details in [`docs/media/README.md`](docs/media/README.md)).
 
-https://github.com/user-attachments/assets/8e7df18d-d176-4938-9d69-d698aadf52a2
+[Watch or download the 44-second simulation demo (MP4)](https://github.com/AlaaRadhwan/warehouse_amr/raw/main/docs/media/warehouse_amr_demo.mp4)
 
 ## System architecture
 ![Warehouse AMR system architecture](docs/figures/architecture.svg)
